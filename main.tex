@@ -1,0 +1,209 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman,norsk,english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts,textcomp}
+\usepackage{color}
+\usepackage{array}
+\usepackage{supertabular}
+\usepackage{hhline}
+\usepackage{hyperref}
+\hypersetup{pdftex, colorlinks=true, linkcolor=blue, citecolor=blue, filecolor=blue, urlcolor=blue, pdftitle=, pdfauthor=, pdfsubject=, pdfkeywords=}
+\usepackage[pdftex]{graphicx}
+
+\usepackage{fancyhdr}
+\usepackage{subfiles}
+
+% Outline numbering
+\setcounter{secnumdepth}{2}
+\makeatletter
+\newcommand\arraybslash{\let\\\@arraycr}
+\makeatother
+% List styles
+\newcommand\liststyleWWviiiNumxiii{%
+\renewcommand\theenumi{\arabic{enumi}}
+\renewcommand\theenumii{\alph{enumii}}
+\renewcommand\theenumiii{\roman{enumiii}}
+\renewcommand\theenumiv{\arabic{enumiv}}
+\renewcommand\labelenumi{[\theenumi]}
+\renewcommand\labelenumii{\theenumii.}
+\renewcommand\labelenumiii{\theenumiii.}
+\renewcommand\labelenumiv{\theenumiv.}
+}
+% Page layout (geometry)
+\setlength\voffset{-1in}
+\setlength\hoffset{-1in}
+\setlength\topmargin{1.251cm}
+\setlength\oddsidemargin{2cm}
+\setlength\textheight{20.242cm}
+\setlength\textwidth{16.999cm}
+\setlength\footskip{3.302cm}
+\setlength\headheight{1.251cm}
+\setlength\headsep{1.152cm}
+% Footnote rule
+\setlength{\skip\footins}{0.119cm}
+\renewcommand\footnoterule{\vspace*{-0.018cm}\setlength\leftskip{0pt}\setlength\rightskip{0pt plus 1fil}\noindent\textcolor{black}{\rule{0.25\columnwidth}{0.018cm}}\vspace*{0.101cm}}
+
+
+% Pages styles
+\makeatletter
+
+\fancypagestyle{normal}{%
+ 	\fancyhead{} % clear all header fields
+	\fancyhead[LO,LE]{\scshape Høgskolen i {\AA}lesund\\Hovedprosjekt}
+ 	\fancyhead[RO,RE]{\scshape Side \thepage}
+	\renewcommand{\headrulewidth}{0.0pt}
+}
+\fancypagestyle{frontpage}{%
+  	\fancyhead{}
+	\fancyfoot{}
+	\renewcommand{\footrulewidth}{0.4pt}
+	\fancyhead[L]{\scshape \huge Hovedprosjekt}
+	\fancyhead[R]{\includegraphics[width=5.9944cm,height=2.0574cm]{hials.png}}
+	\fancyfoot[L]{
+\parbox{35mm}{\small\ \\ \textbf{Postadresse}\\ Høgskolen i {\AA}lesund \\ N-6025 {\AA}lesund \\Norway}
+\parbox{35mm}{\small\textbf{Besoksadresse}\\ Larsg{\aa}rdsvegen 2 \\ \textbf{Internett} \\ www.hials.no}
+\parbox{35mm}{\small\textbf{Telefon}\\ 70 16 12 00 \\ \textbf{Epostadresse} \\ postmottak@hials.no}
+\parbox{30mm}{\small\textbf{Telefax}\\ 70 16 13 00 \\ \\}
+\parbox{30mm}{\small\textbf{Bankkonto}\\ 7694 05 00636 \\ \textbf{Foretaksregisteret} \\ NO 971 572 140}
+}
+
+}
+
+\makeatother
+\setlength\tabcolsep{1mm}
+\renewcommand\arraystretch{1.7}
+
+% Framside variabler
+\newcommand{\Tittel}{}
+\newcommand{\Kandidatnummer}{}
+\newcommand{\Dato}{}
+\newcommand{\Fagkode}{}
+\newcommand{\Fagnavn}{}
+\newcommand{\Doktilgang}{}
+\newcommand{\Studium}{}
+\newcommand{\Sider}{ / }
+\newcommand{\Biblnr}{}
+\newcommand{\Veiledere}{}
+
+
+\begin{document}
+\clearpage\setcounter{page}{1}\pagestyle{normal}
+\thispagestyle{frontpage}
+
+\begin{flushleft}
+\tablefirsthead{}
+\tablehead{}
+\tabletail{}
+\tablelasttail{}
+\begin{supertabular}[10cm]{|m{17.077cm}|}
+\hline
+{\scshape Tittel:}\\
+\Tittel
+\\\hline
+\end{supertabular}
+\end{flushleft}
+
+\begin{flushleft}
+\tablefirsthead{\hline
+\multicolumn{5}{|m{17cm}|}{{\scshape Kandidatnummer(e):}}\\
+\multicolumn{5}{|m{17cm}|}{\Kandidatnummer
+}\\}
+\tablehead{\hline
+\multicolumn{5}{|m{17cm}|}{{\scshape Kandidatnummer(e):}}\\
+\multicolumn{5}{|m{17cm}|}{~
+}\\}
+\tabletail{}
+\tablelasttail{}
+\begin{supertabular}{|m{2.7159998cm}m{3.007cm}m{3.054cm}m{3.55cm}|m{3.90cm}|}
+\hline
+\multicolumn{1}{|m{2.7159998cm}|}{{\scshape Dato: }} &
+\multicolumn{1}{m{3.007cm}|}{{\scshape Fagkode:}} &
+\multicolumn{2}{m{6.804cm}|}{{\scshape Fagnavn:}} &
+{\scshape Dokument tilgang:}\\
+\multicolumn{1}{|m{2.7159998cm}|}{\Dato
+} &
+\multicolumn{1}{m{3.007cm}|}{\Fagkode
+} &
+\multicolumn{2}{m{6.804cm}|}{\Fagnavn
+} &
+\Doktilgang
+\\\hline
+\multicolumn{3}{|m{9.177cm}|}{{\scshape Studium:}} &
+{\scshape Ant sider/Vedlegg:} &
+{\scshape Bibl. nr:}\\
+\multicolumn{3}{|m{9.177cm}|}{\Studium
+} & \centering{\Sider} 
+& \Biblnr
+\\\hline
+\end{supertabular}
+\end{flushleft}
+
+\begin{flushleft}
+\tablefirsthead{}
+\tablehead{}
+\tabletail{}
+\tablelasttail{}
+\begin{supertabular}{|m{17.058999cm}|}
+\hline
+{\scshape Veileder(e) :}\\
+\Veiledere
+\\\hline
+\end{supertabular}
+\end{flushleft}
+
+\begin{flushleft}
+\tablefirsthead{}
+\tablehead{}
+\tabletail{}
+\tablelasttail{}
+\begin{supertabular}{|m{17.058999cm}|}
+\hline
+{\scshape Sammendrag:}\\
+
+{\itshape\color{blue} [Sammendraget her skal være identisk til kapittelet
+SAMMENDRAG i rapporten]}\\
+\hline
+\end{supertabular}
+\end{flushleft}
+
+{\centering\itshape
+Denne oppgaven er en eksamensbesvarelse utført av studenter ved Høgskolen i Ålesund.
+\par}
+
+\subfile{"0 Forord/forord.tex"}
+
+\newpage
+
+\clearpage{\centering\bfseries
+INNHOLD
+\par}
+
+\setcounter{tocdepth}{3}
+\renewcommand\contentsname{}
+\tableofcontents
+
+\clearpage
+
+\subfile{"0.1 Sammendrag/sammendrag.tex"}
+
+\subfile{"0.2 Terminologi/terminologi.tex"}
+
+\subfile{"1 Innledning/innledning.tex"}
+
+\subfile{"2 Teoretisk grunnlag/teoretisk_grunnlag.tex"}
+
+\subfile{"3 Materialer og Metode/metode.tex"}
+
+\subfile{"4 Resultater/resultater.tex"}
+
+\subfile{"5 Drofting/drofting.tex"}
+
+\subfile{"6 Konklusjon/konklusjon.tex"}
+
+\subfile{"7 Referanser/referanser.tex"}
+
+\subfile{"99 Vedlegg/vedlegg.tex"}
+
+\end{document}

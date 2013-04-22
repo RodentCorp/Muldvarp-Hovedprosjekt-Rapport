@@ -51,7 +51,8 @@
 
 \fancypagestyle{normal}{%
  	\fancyhead{} % clear all header fields
-	\fancyhead[LO,LE]{\scshape Høgskolen i {\AA}lesund\\Hovedprosjekt}
+	\fancyfoot{}
+	\fancyhead[LO,LE]{\scshape Høgskolen i Ålesund\\Hovedprosjekt}
  	\fancyhead[RO,RE]{\scshape Side \thepage}
 	\renewcommand{\headrulewidth}{0.0pt}
 }
@@ -147,7 +148,7 @@
 \tablelasttail{}
 \begin{supertabular}{|m{17.058999cm}|}
 \hline
-{\scshape Veileder(e) :}\\
+{\scshape Veileder(e):}\\
 \Veiledere
 \\\hline
 \end{supertabular}
@@ -161,9 +162,7 @@
 \begin{supertabular}{|m{17.058999cm}|}
 \hline
 {\scshape Sammendrag:}\\
-
-{\itshape\color{blue} [Sammendraget her skal være identisk til kapittelet
-SAMMENDRAG i rapporten]}\\
+\subfile{"0.1 Sammendrag/sammendrag.tex"}\\
 \hline
 \end{supertabular}
 \end{flushleft}
@@ -185,6 +184,8 @@ INNHOLD
 \tableofcontents
 
 \clearpage
+
+{\bfseries \Large SAMMENDRAG}
 
 \subfile{"0.1 Sammendrag/sammendrag.tex"}
 

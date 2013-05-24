@@ -11,9 +11,16 @@
 \usepackage{hyperref}
 \hypersetup{pdftex, colorlinks=true, linkcolor=blue, citecolor=blue, filecolor=blue, urlcolor=blue, pdftitle=, pdfauthor=, pdfsubject=, pdfkeywords=}
 \usepackage[pdftex]{graphicx}
+\usepackage{endnotes}
+\usepackage[figurename=Figur.]{caption}
+\usepackage{wrapfig}
 
 \usepackage{fancyhdr}
 \usepackage{subfiles}
+\usepackage{subcaption}
+
+\renewcommand\notesname{}
+\graphicspath{{bilder/}{../bilder/}}
 
 % Outline numbering
 \setcounter{secnumdepth}{2}
@@ -171,6 +178,8 @@
 Denne oppgaven er en eksamensbesvarelse utført av studenter ved Høgskolen i Ålesund.
 \par}
 
+\newpage
+
 \subfile{"0 Forord/forord.tex"}
 
 \newpage
@@ -185,9 +194,13 @@ INNHOLD
 
 \clearpage
 
-{\bfseries \Large SAMMENDRAG}
+\renewcommand{\arraystretch}{1.1}
+
+\section*{SAMMENDRAG}
 
 \subfile{"0.1 Sammendrag/sammendrag.tex"}
+
+\newpage
 
 \subfile{"0.2 Terminologi/terminologi.tex"}
 
@@ -205,6 +218,6 @@ INNHOLD
 
 \subfile{"7 Referanser/referanser.tex"}
 
-\subfile{"99 Vedlegg/vedlegg.tex"}
+\subfile{"A Vedlegg/vedlegg.tex"}
 
 \end{document}

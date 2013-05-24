@@ -3,83 +3,68 @@
 
 \section{MATERIALER OG METODE}
 
-\bigskip
-
-{\itshape\color{blue}
-[Denne delen skal redegj{\o}re for hvordan man planla {\aa} g{\aa} fram / har g{\aa}tt fram for {\aa} l{\o}se oppgaven
-og sannsynliggj{\o}re framgangsm{\aa}ten. Hovedm{\aa}lsettingen med dette avsnittet er {\aa} beskrive alle sider ved
-prosjektet som er n{\o}dvendig for {\aa} kunne gjennskape prosjektet/fors{\o}ket ved en senere anledning.}
-
-{\itshape\color{blue}
-Dette er et 2-delt avsnitt. P{\aa} den ene siden skal man her beskrive hvordan man har organisert prosjektet, hvordan
-man har planlagt prosjektet, hvilke prosedyrer man har etablert for godkjenning av kode og eventuelle delleveranser,
-hvordan man har kvalitetssikret arbeidet. I tillegg skal man her beskrive hvordan oppdragsgiver har v{\ae}rt involvert
-i prosjektet og avtalte kriterier for fullf{\o}rt oppgave.}
-
-{\itshape\color{blue}
-Det skal ogs{\aa} her fremkomme hva som er forventet at tas frem av dokumentasjon i prosjektet (brukerveiledning,
-systemdokumentasjon, testrapporter, akseptansetester etc.).}
-
-{\itshape\color{blue}
-P{\aa} den andre siden, skal man ogs{\aa} beskrive de tekniske sidene ved prosjektet: }
-
-{\itshape\color{blue}
-\textbf{For SW-prosjekter} betyr det hvilken utviklingsmetodikk som er valgt (som da b{\o}r v{\ae}re beskrevet i
-kapittel 4), hvilke programmeringsspr{\aa}k er benyttet, hvilke verkt{\o}y og eksterne biblioteker har man benyttet,
-hvordan er utviklingsmilj{\o}et satt opp (katalogstruktur, bygg-filer som makefile el.l., avhengigheter mellom
-SW-moduler etc.). Dersom det er satt opp et testoppsett for {\aa} teste systemet, slik det vil bli satt opp/installert
-hos kunde, s{\aa} skal dette oppsettet beskrives.}
-
-{\itshape\color{blue}
-\textbf{For HW/automasjons-prosjekter }skal det her gis en detaljert oversikt over utstyr som er benyttet (multimeter,
-skop etc.), m{\aa}lemetoder som er benyttet, samt en detaljert beskrivelse av eventuell
-oppstilling/laboppsett/m{\aa}leoppstilling. Det skal ogs{\aa} gis en detaljert beskrivelse av datagrunnlaget som er
-benyttet. Husk {\aa} oppgi b{\aa}de kilde og n{\o}yaktighet (kvalitet) til datagrunnlaget. Det kan derfor v{\ae}re
-hensiktsmessig {\aa} benytte f{\o}lgende underkapittel ifm. slike prosjekter:]}
-
-
-\bigskip
-
 \subsection{Data}
+\subsubsection{Fronter}
+Fronter er en kompleks læringsplattform for bruk på skoler. Den tilbyr en omfattende grunnpakke som elever og lærere kan bruke for å kommunisere og samarbeide om skolearbeid. Dette innebærer funksjoner som beskjeder fra lærere, tilgjengeliggjøring av dokumenter og læringsmateriell, innleveringer og prøver, og chat. Fronter tilbyr også en rekke utvidelsesmoduler for spesielle behov, som enkel bilderedigering, SMS og plagiatkontroll.
+Fronter sin salgsmodell er en såkalt SaaS modell. Dette vil si at Fronter selger lisenser for bruk av sin programvare, men at de er vert for sine egne web servere. På denne måten trenger ikke kundene å drifte sine egne servere. Dette gjør fronter til et godt alternativ både for små og store institusjoner da det eneste som kreves av kunden er tilgang til en nettleser for sine brukere.
 
-\bigskip
+\subsubsection{TimeEdit}
+Timeplan administrasjonssystemet TimeEdit er et system brukt av store institusjoner for å administrere og allokere lokaler. Tjenesten tillater brukerne å se timeplanen for en person, klasse, studieretning eller lokale for et ønsket tidsintervall. Høgskolen I Ålesund bruker TimeEdit versjon 1.4.8 hvor alle tjenestens data lagres og administreres lokalt på skolens servere.
 
-{\itshape\color{blue}
-[Her beskrives hvilke data som er benyttet i rapporten. Hvilke data som er benyttet, hvor dataene kommer fra (kilde) og
-hva som er usikkerheten i dataene.]}
+\subsubsection{BibSys}
+Biblioteksystemet BibSys er et arkiveringssystem for bøker og annen media relatert til driften av norske bibliotek. Systemet tillater brukere å søke etter, låne ut, levere inn og reservere bøker ved alle norske bibliotek tilknyttet systemet. Systemet er underlagt Kunskapsdepartementet, men blir administrert ved NTNU i Trondheim.
 
+\subsection{Møter}
+terje fyll inn? du har mailane ikkje sant?
 
-\bigskip
+\subsection{Verktøy}
+Alle gruppemedlemmene brukte Netbeans som IDE til programmeringen av både Android applikasjonen og Java EE webapplikasjonen. Til utviklingen av Android applikasjonen ble også det offisielle Android SDKet (Software Development Kit) brukt. For å få støtte til Android prosjekter i NetBeans brukte vi tredjeparts pluginen NBAndroid. Glassfish Server Open Source Edition ble brukt som plattform for webapplikasjonen.
 
-\subsection[Metode]{Metode}
-
-\bigskip
-
-{\itshape\color{blue}
-[Her beskriver hvilke metoder som er benyttet til {\aa} bearbeide dataene. Det gjelder f.eks metoder for filtrering,
-signalanalyse, m{\o}nstergjenkjenning osv. Alle formel skal v{\ae}re nummerert og alle symboler i metodene skal
-v{\ae}re definert under notasjonslisten i terminologikapittelet. }
-
-{\itshape\color{blue}
-Der a er{\dots}{\dots}.}
-
-{\itshape\color{blue}
-Senere i rapporten refererer du til nummeret p{\aa} metoden.]}
-
-
-\bigskip
+Vi ønsket å bruke LaTeX til å skrive prosjektrapporten, men fant ingen prosjektmal fra skolen. Derfor utviklet vi vår egen mal basert på skolen eksisterende prosjektmaler i andre format. Denne malen ligger offentlig tilgjengelig på GitHub.
 
 \subsection{Materialer}
+\subsubsection{Smartelefon - Galaxy Nexus}
+En av de to enhetene som ble brukt til å teste mobilapplikasjonen under utviklingen var smarttelefonen Galaxy Nexus, produsert av Samsung. Denne modellen går også under modellnavnet GT-I9250. Gruppen hadde 3 slike telefoner til rådighet(en for hvert gruppemedlem). Telefonene kjørte under utviklingen Android versjon 4.2.1, kodenavn Jelly Bean.
+\subsubsection{Tablet - Nexus 7}
+Dette nettbrettet er et 7 tommers nettbrett produsert av Asus for Google. Det var helt nytt under produksjonsfasen, og tilbød veldig gode spesifikasjoner til en fornuftig pris. Nettbrettet ble brukt til testing av applikasjonen for andre skjermstørrelser(sammenlignet med Galaxy Nexus), og for demonstrasjon. Nettbrettet kjørte Android versjon 4.2.2 under utviklingen.
 
-\bigskip
+\subsubsection{Server}
+Prosjektet fikk tildelt en virtuell Ubuntu linux server på skolens VMWare vSphere cluster. På denne ble glassfish installert og webapplikasjonen publisert.
 
-{\itshape\color{blue}
-[Her beskriver du det praktiske utstyr som er benyttet for {\aa} f{\aa} fram resultatene i rapporten. Det gis her en
-detaljert oversikt over utstyr som er benyttet (multimeter, skop etc.), m{\aa}lemetoder som er benyttet, samt en
-detaljert beskrivelse av eventuell oppstilling/laboppsett/m{\aa}leoppstilling. Dersom utstyret er en del av produktet
-som skal utvikles under prosjektet, beskriver du dette under kapittelet Resultater.]}
+\begin{figure}[h!]
+        \centering
+        \begin{subfigure}[b]{7cm}
+                \centering
+                \includegraphics[width=\textwidth]{server1.jpg}
+
+        \end{subfigure}
+        \begin{subfigure}[b]{7cm}
+                \centering
+                \includegraphics[width=\textwidth]{server2.jpg}
+
+        \end{subfigure}
+        \caption{Bilder av serveren}
+\end{figure}
+
+\subsection{Utviklingssyklus}
+Under prosjektet tok gruppen utgangspunkt i SCRUM rammeverket, men det ble fort etablert en egentilpasset samarbeidsstil som passet til gruppen. Denne nye stilen innebærte bi-ukentlige statusmøter, daglige statusrapportering blant gruppemedlemmene dog ikke nødvendigvis ved starten av dagen og ikke like formelt som i SCRUM.
+
+For arbeidet i seg selv ble det brukt to online løsninger som gjorde det mulig å sammarbeide på det samme prosjektet samtidig. For kode arbeidet var det kildekode delingstjenesten GitHub som ble brukt. Med denne tjenesten kunne alle gruppemedlemmene sitte med hver sin kopi av arbeidet, og når det ble gjort fremskritt ble dette sendt tilbake til serveren slik at den nye koden blir tilgjengelig for alle. For prosjektrapporten ble det brukt tekstbehandleren Google Docs. Denne gjør at alle gruppens medlemmer kan jobbe med det samme dokumentet samtidig, og se hva de andre skriver i sanntid. Grunnen til at disse to tjenestene ble valgt var at alle gruppens medlemmer har god erfaring med dem, og at de tillater en stor grad av sammarbeid uavhengig om deltakerne fysisk befinner seg på samme sted. I sluttfasen av prosjektrapport ble teksten fra Google Docs gjort om til LaTeX format for å kunne bedre kontrollere utseende til den endelige rapporten.
+
+\subsection{Framgangsmetode}
+Denne delen av rapporten omhandler prosjektgruppens framgangsmetode for å løse hovedproblemstillingen og de forskjellige problemene og situasjonene som dukket opp etterhvert.
+
+\subsubsection{Fronter}
+Vi lærte tidlig at fronter hadde et API, vi tok kontakt med +
+\subsubsection{TimeEdit}
+Vi ønsket å implementere en enkel utgave av skolens timaplansystem i elærings applikasjonen. Det skulle være mulig å se dagens fag på en enkel måte. Planen var å skaffe tilgang til TimeEdit sin API, og innhente data derifra via serveren vår ved hjelp av enkle spørringer basert på REST og JSON. Mobilapplikasjonen skulle altså kunne gjøre et kall mot serveren hvor den ba om informasjon om dagens timer/fag for et studieprogram, og så skulle serveren gjøre kallet videre til TimeEdit.
+\subsubsection{BIBSys}
+Det kom tidlig frem at BiBSys hadde et API som var tilgjengelig til bruk for studenter og andre utviklere. Dette kunne man se fra antall student-utviklede applikasjoner ved NTNU. Utifra dette ville vi forsøke å få tilgang til APIen og implementere det i webapplikasjonen. Vi ønsket å implementere boksøk med utlånsstatus. Dette var en del av prosjektet vi forventet ville gå relativt raskt og uten problemer.
+
+\subsubsection{Videreutvikling av applikasjonene}
+I den forrige versjonen av systemet var strukturen hardkodet inn i mobilapplikasjonen. Vi ønsket å gjøre systemet mer dynamisk slik at det kunne tilpasses de individuelle fagene og studienes behov for data. Vi ville at strukturen på mobilapplikasjonen skulle defineres for hvert objekt i webapplikasjonen. 
 
 
-\bigskip
+\newpage
 
 \end{document}

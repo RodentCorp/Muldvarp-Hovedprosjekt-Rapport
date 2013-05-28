@@ -3,63 +3,42 @@
 
 \section{RESULTATER}
 
-\bigskip
-
-{\itshape\color{blue}
-[Dette er rapportens st{\o}rste del, som inneholder en objektiv beskrivelse av resultatene av oppgaven. Dette kan
-v{\ae}re prosesserte data, utstyr og programvare. }
-
-{\itshape\color{blue}
-Ved oppgave som omfatter teorigjennomgang, analyse eller teknisk/vitenskapelig unders{\o}kelse: resultater av
-unders{\o}kelsen inklusive eventuelle usikkerheter/un{\o}yaktigheter - uten vurdering (disse kommer under
-dr{\o}fting).}
-
-{\itshape\color{blue}
-\textbf{Kommentar}: Det er her dere skal bearbeide arbeidet ut fra de teorier og metoder som er nevnt i de to
-foreg{\aa}ende kapitlene, og som kan gi et forslag til l{\o}sning p{\aa} den problemstillingen som er definert i
-innledningen. Merk at det da er n{\o}dvendig {\aa} gj{\o}re en del henvisninger tilbake til disse to kapitlene for at
-den som leser rapporten skal kunne f{\o}lge bakgrunnen for de vurderinger dere n{\aa} gj{\o}r. Husk at dere aldri
-m{\aa} gj{\o}re vurderinger og analyser uten at dette er dokumentert i teori kapittelet. Ubegrunnet synsing er
-fullstendig verdil{\o}st. I en oppgave som denne der selve l{\ae}reprosessen er vesentlig, b{\o}r dere v{\ae}re flinke
-til {\aa} formulere de tanker og vurderinger som gj{\o}res i selve argumenteringen, alts{\aa} beskrive b{\aa}de prosess
-og l{\o}sning. Som en huskeregel kan dere tenke at normalt har man en tendens til {\aa} ikke skrive ned nok rundt selve
-prosessen med argumentering.}
-
-{\itshape\color{blue}
-Det er viktig at resultatet av produktet ogs{\aa} beskrives som en del av en st{\o}rre sammenheng]}
-
-{\itshape\color{blue}
-\textbf{For SW-utviklings prosjekter:} Her skal dere beskrive l{\o}sningen. Denne skal beskrives ved hjelp av etablert
-notasjon i form av UML med diagrammer som Use-Case diagrammer, klassediagrammer, sekvensdiagrammer, komponent
-diagrammer og deployment diagrammer. Tilstandsdiagrammer kan ogs{\aa} v{\ae}re sv{\ae}rt nyttig. Det skal klart g{\aa}
-frem av teksten og diagrammer hvordan arkitekturen til systemet ble, med begrunnelse for hvorfor en slik arkitektur ble
-valgt. Begrunnelsen skal forankres med referanse til teori --avsnittet (kapittel 4).}
-
-{\itshape\color{blue}
-Dersom du mener at du har l{\o}st oppgaven ved {\aa} lage et godt design, skal du begrunne dette, og gjerne vise
-eksempler fra l{\o}sningen din som understreker dette. Igjen med referanse til teori delen. }
-
-{\itshape\color{blue}
-Eksempel: ''..Det ble valgt {\aa} l{\o}se denne funksjonaliteten ved {\aa} benytte Obeserver-patternet, som beskrevet i
-kapittel 4.2. Dette gir et design med lav kobling (low coupling), som igjen {\o}ker graden av gjennbruk for modulen.
-Klassen MinKlasse har rollen som Subject, og klassene MinVisning1 og MinVisning2 er implementert som
-Observere{\dots}.''}
-
-{\itshape\color{blue}
-Det er ogs{\aa} her vikitg {\aa} f{\aa} frem ulike l{\o}sninger man har vurdert i prosessen for {\aa} komme frem til
-endelig valgt l{\o}sning. Begrunnelse skal gis for hvorfor den ene l{\o}sningene ble valgt fremfor den andre.}
-
-{\itshape\color{blue}
-Husk at det er viktigere {\aa} peke p{\aa} enkelt sider ved l{\o}sningen du har valgt, og begrunne hvorfor du mener
-disse er gode (igjen forankret i teorikapittelet), enn {\aa} beskrive absolutt hele l{\o}sningen din. Fokuser m.a.o.
-p{\aa} det som du mener er spesiellt i din l{\o}sning.}
-
-{\itshape\color{blue}
-Dersom du har laget et system som det finnes tilsvarende av i markedet, m{\aa} du her beskrive hvorfor du mener din
-l{\o}sning er bedre enn de som allerede finnes/hva du har gjort annerledes enn de eksisterende l{\o}sningene. Igjen med
-en begrunnelse forankret i teoridelen.]}
 
 
-\bigskip
+\begin{lstlisting}[frame=single]
+function addObject(id) {
+	var reloadingdiv = document.getElementById('reloading');
+	reloadingdiv.style.display = '';
+	document.form.wv_addObj.value = id;
+	document.form.submit();
+
+.......
+
+<INPUT type='hidden' name='wv_addObj' value=''>
+\end{lstlisting}
+
+
+\begin{lstlisting}[language=Java, frame=single, caption={Descriptive Caption Text}]
+import javax.ejb.Stateless;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+
+.........
+
+@Stateless
+@Path("timeedit")
+public class TimeEditService {
+    //Maximum number of object requests that will be parsed by getURL()
+    private static int MAX_OBJECT_REQUESTS = 10;
+
+.........
+
+}
+\end{lstlisting}
+
+
+
+\newpage
 
 \end{document}

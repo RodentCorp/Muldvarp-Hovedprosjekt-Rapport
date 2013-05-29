@@ -13,9 +13,9 @@
 \hypersetup{pdftex, colorlinks=true, linkcolor=blue, citecolor=blue, filecolor=blue, urlcolor=blue, pdftitle=, pdfauthor=, pdfsubject=, pdfkeywords=}
 \usepackage[pdftex]{graphicx}
 \usepackage{endnotes}
-\usepackage[figurename=Figur.]{caption}
+\usepackage[figurename=Figur, tablename=Tabell]{caption}
 \usepackage{wrapfig}
-
+\usepackage{lastpage}
 
 \usepackage{fancyhdr}
 \usepackage{subfiles}
@@ -121,13 +121,13 @@
 
 % Framside variabler
 \newcommand{\Tittel}{D1304: Mobil-app til støtte av kurs og undervisning}
-\newcommand{\Kandidatnummer}{1709, Terje Nilsson Wallem, Johan Alexander de Lima Hessen}
+\newcommand{\Kandidatnummer}{Kristoffer Strøm Bergset (1709), Terje Nilsson Wallem, Johan Alexander de Lima Hessen}
 \newcommand{\Dato}{31.05.13}
 \newcommand{\Fagkode}{ID303006}
 \newcommand{\Fagnavn}{Hovedprosjekt - Data og automasjon}
 \newcommand{\Doktilgang}{}
 \newcommand{\Studium}{Bachelor i ingeniørfag - datateknikk}
-\newcommand{\Sider}{ / }
+\newcommand{\Sider}{\pageref{LastPage} / 3}
 \newcommand{\Biblnr}{}
 \newcommand{\Veiledere}{Mikael Tollefsen}
 
@@ -144,7 +144,7 @@
 \begin{supertabular}[10cm]{|m{17.077cm}|}
 \hline
 {\scshape Tittel:}\\
-\Tittel
+\Large \Tittel
 \\\hline
 \end{supertabular}
 \end{flushleft}

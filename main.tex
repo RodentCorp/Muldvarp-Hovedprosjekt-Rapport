@@ -16,6 +16,7 @@
 \usepackage[figurename=Figur, tablename=Tabell]{caption}
 \usepackage{wrapfig}
 \usepackage{lastpage}
+\usepackage{float}
 
 \usepackage{fancyhdr}
 \usepackage{subfiles}
@@ -63,17 +64,7 @@
 \makeatletter
 \newcommand\arraybslash{\let\\\@arraycr}
 \makeatother
-% List styles
-\newcommand\liststyleWWviiiNumxiii{%
-\renewcommand\theenumi{\arabic{enumi}}
-\renewcommand\theenumii{\alph{enumii}}
-\renewcommand\theenumiii{\roman{enumiii}}
-\renewcommand\theenumiv{\arabic{enumiv}}
-\renewcommand\labelenumi{[\theenumi]}
-\renewcommand\labelenumii{\theenumii.}
-\renewcommand\labelenumiii{\theenumiii.}
-\renewcommand\labelenumiv{\theenumiv.}
-}
+
 % Page layout (geometry)
 \setlength\voffset{-1in}
 \setlength\hoffset{-1in}

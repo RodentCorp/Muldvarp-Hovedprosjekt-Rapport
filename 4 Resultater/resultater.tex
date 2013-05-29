@@ -30,7 +30,7 @@ Diagrammet under viser den overordnede strukturen til hele systemet som ble utvi
         \end{subfigure}
         \caption{Skjermbilder av fremsiden til mobilapplikasjonen}
 \end{figure}
-\newline
+
 Mobilapplikasjonene er laget for Android operativsystemet og bruker Android SDK versjon 14. Med unntak av slidingmeny funksjonen brukt i TimeEdit implementasjonen er all teknologien i applikasjonen inkludert i Android SDKet eller utviklet av prosjektmedlemmene. Med unntak av logoene til høgskolen, fronter og bibsys er ikonene til fragmentene hentet fra en åpen ikonpakke på nettet. Resten av grafikken er standard i Android SDKet.\newline
 \newline
 Endringer i mobilapplikasjonen fra forrige versjon (høsten 2012):
@@ -689,7 +689,7 @@ Neste steg var å finne ut hvordan TimeEdit’s programstruktur gjør seg synlig
 \end{figure}
 
 \begin{lstlisting}[language=HTML, frame=single, caption={BESKRIVLESDDS}]
-<a href='javascript:addObject(175000)'><img src='/img/plus.gif' ….>
+<a href='javascript:addObject(175000)'><img src='/img/plus.gif' ...>
 \end{lstlisting}
 
 Av kildekoden til TimeEdit og de assosierte elementene i nettleseren ovenfor, ser man at enheter i systemet som fag, lærere eller klasser er i systemet representert som objekt med tilhørende datafelt. Felles for alle objektene er en ID bestående utelukkende av tall på fem eller seks siffer som benyttes for å kunne gjøre oppslag i systemet. TimeEdit har dermed et eget system for håndtering og kontroll av informasjonsobjekter, som ikke er direkte kompatibelt med systemet i E-lærings websiden eller Høyskolens andre systemer. Dette var forventet, men presenterer også ett problem som må under utviklingen løses for at systemene skulle kobles sammen sømløst. 
@@ -794,8 +794,7 @@ public class TimeEditService {
 
 I første omgang var det viktigst å få gjort en tilkobling via HTTP til TimeEdit for å få hentet ut et HTML-dokument og skape en logisk struktur av de nødvendige dataene som kunne behandles programmatisk. For å få til en slik struktur, ble en del indre klasser opprettet for representere forskjellige objekter som speilet TimeEdit’s innordning av objekter og tidsrammer. Disse klassene er kun nyttig i sammenheng med midlertidig organisering av data, og har ikke nytte utenfor klasse-skopet.
 
-\begin{itemize}
-\item TimeEditSchedule \newline Representerer ett år med semesterplaner.
+TimeEditSchedule \newline Representerer ett år med semesterplaner.
 \begin{itemize}
 \item ScheduleWeek \newline Klasse som representerer ett sett med dager.
 \begin{itemize}
@@ -808,7 +807,6 @@ I første omgang var det viktigst å få gjort en tilkobling via HTTP til TimeEd
 \end{itemize}
 \end{itemize}
 \end{itemize}
-\end{itemize}
 
 En forbindelse mellom vår EJB og TimeEdit er enkelt opprettet som illustrert av kode-utraget nedenfor:
 
@@ -816,7 +814,7 @@ En forbindelse mellom vår EJB og TimeEdit er enkelt opprettet som illustrert av
 public TimeEditSchedule getTimeEditSchedule(String siteURL){      
         TimeEditSchedule timeEditSchedule = new TimeEditSchedule();
         Document doc = null;
-       …....
+        ......
         try {
             doc = Jsoup.connect(siteURL).get();
         } catch (IOException ex) {
@@ -832,7 +830,7 @@ if(!tableColumns.get(i).getElementsByTag("font").isEmpty()){
                   if(stringData.contains("Uke")){
                               //create new week and break loop if the first element contains Uke
 //                            System.out.println("NEW WEEK: " + stringData);
-…..
+.....
 }
 \end{lstlisting}
 
@@ -840,18 +838,18 @@ HTML-dokumentet som returnert av TimeEdit sorterer informasjonen vi trenger ved 
 Hovedtabellen er merket med en class-tag (“booking”), og med Jsoup hentes tabellen enkelt ut og man kan iterere over innholdet og ekstrahere data med en switchcase nummerert etter hver kolonne. Noe forkortet illustrasjon fra funksjonen getTimeEditSchedule nedenfor:
 
 \begin{lstlisting}[language=Java, frame=single, caption={asdasdsadasdasdasdsadsadasdasdsadsa}]
-….
+.....
  Element content = doc.getElementsByClass("booking").first();
             Elements rows = content.getElementsByTag("tr");
             for(Element row : rows) {
                 Elements tableColumns = row.getElementsByTag("td");
                 for(int i = 0; i < tableColumns.size(); i++) {
-…..
+.....
 switch(i){
                                 case 2: //Dag (Man, Tir, Ons etc)
                                     day = new ScheduleDay(stringData);
                                     break;
-…..
+.....
 }
 \end{lstlisting}
 
@@ -911,7 +909,7 @@ Ovenfor er en funksjon fra TimeEditService som utfører en HTTP-forbindelse via 
 javascript:addObject\\((\\d{6}|\\d{7})\\)
 \end{lstlisting}
 
-Som vil matche all tekst som inneholder denne javascript-funksjonen, og som et ekstra lag med sikkerhet kun variabler som har en lengde på seks eller sju siffer. I java regex noterer “\d” et tall, hvorav etterfølgende krøllparanteser ({}) med som inneslutter et tall noterer lengde. I sammenheng med symbolet “|” som betyr “OR”, velger vi da å matche innhold med enten seks eller sju siffer.
+Som vil matche all tekst som inneholder denne javascript-funksjonen, og som et ekstra lag med sikkerhet kun variabler som har en lengde på seks eller sju siffer. I java regex noterer “\\d” et tall, hvorav etterfølgende krøllparanteser ({}) med som inneslutter et tall noterer lengde. I sammenheng med symbolet “|” som betyr “OR”, velger vi da å matche innhold med enten seks eller sju siffer.
 Etter dette kan man enkelt skrelle vekk teksten i javascript-funksjonen og hente ut selve tallet (TimeEdit objektkode) med Java’s String replace-funksjon.
 Deretter kan man benytte den samme metoden vi utviklet for å hente ut timeplaner basert på objektkoder. Videre skulle det også å ha vært mulig å lagre klasse-kode og TimeEdit objektkodene, slik at det kun ville ha vært nødvendig å gjøre to HTTP-spørringer en gang for hver kode, eller muligens kjøre gjennom alle fagkodene for å hente ut TimeEdit objektkodene. Dette kunne oppnås ved å legge til ett felt i Course og Programme JPA-klassene som representerer en TimeEdit kode. 
 
@@ -1058,7 +1056,7 @@ lectures:
 {
 lectureStart: "08:15",
 lectureEnd: "10:00",
-type: "Foreles, Øvinger",
+type: "Foreles, Ovinger",
 classId: "AU1, DA1, AU-y1, DA-y1",
 room: "Borgundfjorden, L165 - Datalab , L167 - Prosjektrom",
 teachers: "Adrian Rutle",
@@ -1074,7 +1072,7 @@ courseID: null
 {
 lectureStart: "10:15",
 lectureEnd: "12:00",
-type: "Øvinger",
+type: "Ovinger",
 classId: "AU1, DA1, AU-y1, DA-y1",
 room: "L165 - Datalab , L167 - Prosjektrom",
 teachers: "Adrian Rutle",
@@ -1219,7 +1217,7 @@ For å hente ut de relevante dataene, søkte vi igjennom xml filen, og hentet ut
 
 Her går koden igjennom seksjonen linje for linje, og skreller vekk alt som ikke skal være med. Til slutt lagres tittelen og forfatternavnet i en enkel entityklasse og settes inn i listen som skal returneres til mobilapplikasjonen.\newline
 \newline
-Man kan se tydelig hvordan jobben serveren gjør forenkler jobben for mobilapplikasjonen. Dataene serveren mottar fra BIBSys er på venstre side, mens dataene serveren sender videre til mobilapplikasjonen etter å ha parset innholdet står på høyre. XML dokumentet har forøvrig blitt kortet ned med ca. ⅔  av plasshensyn.
+Man kan se tydelig hvordan jobben serveren gjør forenkler jobben for mobilapplikasjonen. Dataene serveren mottar fra BIBSys er på venstre side, mens dataene serveren sender videre til mobilapplikasjonen etter å ha parset innholdet står på høyre. XML dokumentet har forøvrig blitt kortet ned med ca. 2/3  av plasshensyn.
 
 \begin{figure}[H]
   \centering

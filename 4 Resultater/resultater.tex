@@ -37,7 +37,7 @@ Endringer i mobilapplikasjonen fra forrige versjon (høsten 2012):
 \begin{itemize}
 \item Ikke lenger statiske fragmenter / data. I den forrige versjonen var alle fragmentene tilstede på alle sidene, selv om de ikke hadde innhold. Dette gjorde at alle lagen i applikasjonen så helt like ut og forvirret brukere.
 \item Full omskriving av metodene for innlasting av data. Bruker nå kun et GET (se begreper) kall for å laste ned et studie/fag/etc. I forrige versjon var det en GET kall for hvert fragment/side. Dette gjorde at datainnlastingen tok lengre tid.
-\item Full omskriving av JSON parsingen. I den tidligere versjonen var parsingen av objektene gjort i samme klasse som datainnlastingen. Nå har hvert av dataklassene en konstruktør for JSON data og håndterer derfor parsingen selv. Dette har gjort det lettere å feilsøke parsingen og å legge til nye dataklasser.
+\item Full omskriving av JSON parsingen. I den tidligere versjonen var parsingen av objektene gjort i samme klasse som datainnlastingen. Nå har hver av dataklassene en konstruktør for JSON data og håndterer derfor parsingen selv. Dette har gjort det lettere å feilsøke parsingen og å legge til nye dataklasser.
 \item Stabilitet. Bedre feilhåndtering og forenklet logikk har bidratt til å gjøre mobilapplikasjonen mye mer stabil.
 \item Integrasjon av de eksterne tjenestene TimeEdit og BibSys. Mer om dette senere i rapporten.
 \end{itemize}
@@ -119,7 +119,7 @@ Mobilapplikasjonen laster inn data fra webapplikasjonen via REST tjenestene på 
   \caption{Viser flyten mellom webapplikasjonen og mobilapplikasjonen}
 \end{figure}
 
-Først lager hovedprosessen en tilkobling til serviceprosessen og sender en førespørsel om dataen den trenger. Så laster serviceprosessen ned og parser dataen hovedprosessen forespurte. Når informasjon er ferdig parset av serviceprosessen, sender den en melding til hovedprosessen om at informasjon er klar til bruk. Deretter henter hovedprosessen informasjonen fra serviceprosessen og gjør den tilgjengelig for bruk av fragmentene.\newline
+Først lager hovedprosessen en tilkobling til serviceprosessen og sender en førespørsel om dataen den trenger. Så laster serviceprosessen ned og parser dataene hovedprosessen forespurte. Når informasjon er ferdig parset av serviceprosessen, sender den en melding til hovedprosessen om at informasjon er klar til bruk. Deretter henter hovedprosessen informasjonen fra serviceprosessen og gjør den tilgjengelig for bruk av fragmentene.\newline
 For eksempel så vil første innlasting av data til mobilapplikasjonen bestå av kall til “frontpage” for å få fragmentene til fremsiden, “programme” for å hente en liste av alle studiene, “articles/news” for å få nyhetene og “timeedit/<klasseid>” for å hente brukerens timeplan. Senere vil mobilapplikasjonen sende førespørsler etter mer data etter behov. Se seksjonen om webapplikasjonen i resultatdelen for nærmere oversikt over de forskjellige tjeneste-kallene
 
 \subsection{Fragmenter/Moduler}
@@ -233,7 +233,7 @@ Quiz-fragmentet som tilgjengelig fra hovedsiden inneholder en liste over quizzer
 \end{figure}
 
 Etter å ha valgt en quiz får du opp startskjermen med informasjon om quizzen. Her står det en kort beskrivelse av innholdet, og antall spørsmål quizzen inneholder. Quizzen startes herfra ved å trykke på “Start Quiz!”.
-Oppgavene eller spørsmålene kan være flervalgs eller enkeltvalgs-typer, og advarsler vil komme opp dersom ingen alternativ er valgt. Navigasjon mellom alle spørsmålene er også mulig, og ved siste vil man å en advarsel om at er i ferd med å avslutte Quizzen og gå til resultatskjermen. Man er også i stand til å avslutte Quizzen når somhelst, og dette vil forkaste alle svar.
+Oppgavene eller spørsmålene kan være flervalgs eller enkeltvalgs-typer, og advarsler vil komme opp dersom ingen alternativ er valgt. Navigasjon mellom alle spørsmålene er også mulig, og ved siste vil man å en advarsel om at er i ferd med å avslutte Quizzen og gå til resultatskjermen. Man er også i stand til å avslutte Quizzen når som helst, og dette vil forkaste alle svar.
 
 \begin{figure}[H]
         \centering
@@ -273,7 +273,7 @@ Videre kan man trykke oppsummeringsknappen for å se en opptelling riktige svar 
   \caption{Oversikt over webapplikasjonen}
 \end{figure}
 
-Webapplikasjonen er laget på Java Enterprise Edition 6 plattformen. Arkitekturen er basert på Model View Controller-modellen, men er avviker fra modellen (mer om dette senere i rapporten). Webapplikasjonen har en nettsidefrontend for administrasjon og et sett med REST tjenester for å gjøre dataen lett tilgjengelig for eksterne applikasjoner som mobilapplikasjonen. I dette prosjektet publiserte vi webapplikasjonen på en GlassFish Open Source Edition server, men den kan også publiseres på andre webapplikasjonsservere som støtter Java Enterprise Edition 6 webapplikasjoner. \newline
+Webapplikasjonen er laget på Java Enterprise Edition 6 plattformen. Arkitekturen er basert på Model View Controller-modellen, men avviker noe fra modellen (mer om dette senere i rapporten). Webapplikasjonen har en nettsidefrontend for administrasjon og et sett med REST tjenester for å gjøre dataen lett tilgjengelig for eksterne applikasjoner som mobilapplikasjonen. I dette prosjektet publiserte vi webapplikasjonen på en GlassFish Open Source Edition server, men den kan også publiseres på andre webapplikasjonsservere som støtter Java Enterprise Edition 6 webapplikasjoner. \newline
 \newline
 Teknologier brukt i webapplikasjonen:
 \begin{itemize}
@@ -453,7 +453,7 @@ Her velges fragmentene som skal visest for det valgte studiet i mobilapplikasjon
   \caption{Skjermbilde av webapplikasjonen - Fag-redigeringssiden}
 \end{figure}
 
-Redigeringssiden for fag. Her defineres fagets navn, brødtekst og bilde. Her visest også hvilke studier faget tilhører. Resten av siden er delt inn i underkategorier der fagets tema og oppgaver, obligatoriske innleveringer, eksamener og hvilke fragmenter som skal visest på mobilapplikasjonen defineres.
+Redigeringssiden for fag. Her defineres fagets navn, brødtekst og bilde. Her visest også hvilke studier faget tilhører. Resten av siden er delt inn i underkategorier der fagets tema og oppgaver, obligatoriske innleveringer, eksamener og hvilke fragmenter som skal vises på mobilapplikasjonen defineres.
 
 \subsubsection{Dokumenter}
 Som i de andre fanene vises først alle dokumentene i systemet i en liste.
@@ -599,7 +599,7 @@ For at eksterne applikasjoner som mobilapplikasjonen skal kunne bruke dataen i s
 
 \subsection{TimeEdit}
 
-Den første oppgaven ved integreringen av TimeEdit var å bestemme hvilke av tjenestene som TimeEdit tilbyr var nyttig for applikasjonen’s bruksområde. TimeEdit som implementert av HIALS tilbyr b.la 
+Den første oppgaven ved integreringen av TimeEdit var å bestemme hvilke av tjenestene som TimeEdit tilbyr var nyttig for applikasjonen’s bruksområde. TimeEdit som implementert av HIALS tilbyr bla. 
 
 \begin{itemize}
 \item Booking av rom. \endnote{\url{https://timeedit.hials.no/WebReservations/WebObjects/}} \newline
@@ -657,11 +657,11 @@ Basert på det ovennevnte kan vi hevde følgende fordeler og ulemper:
 -  Ingen kontroll eller strukturering av relevante dataene\newline
 \end{enumerate}
 
-Etter å ha vurdert disse tre metodene ble gruppen enige om å bruke TimeEdit’s API. Grunnlaget for dette er at det fremsto som det alternativet som ville enklest gi oss et strukturert datasett å jobbe med, da både alternativ 2 og 3 krever web-scraping for å ekstrahere nyttig data. Hvis dataene var allerede tilgjengelig i et API kunne mye arbeid unngås. Enkeltheten ved å vise TimeEdit’s nettside direkte så ikke ut til å være verdt presentasjonsproblemene som ville forekomme. Dermed følger prioriteringen for ønsket metode samme nummerering som listen i figur (VIS TIL FIGUR HER I LATEX).
+Etter å ha vurdert disse tre metodene ble gruppen enige om å bruke TimeEdit’s API. Grunnlaget for dette er at det fremsto som det alternativet som ville enklest gi oss et strukturert datasett å jobbe med, da både alternativ 2 og 3 krever web-scraping for å ekstrahere nyttig data. Hvis dataene var allerede tilgjengelig i et API kunne mye arbeid unngås. Enkeltheten ved å vise TimeEdit’s nettside direkte så ikke ut til å være verdt presentasjonsproblemene som ville forekomme. Dermed følger prioriteringen for ønsket metode samme nummerering som listen i figuren.
 
 For å gå frem med denne løsningen tok vi kontakt med Geir Halsvik, som er leder for IT seksjonen ved Høgskolen i Ålesund. Av han fikk vi vite at ansvarlig for TimeEdit ved høyskolen er Nils Roald, og at systemet driftes av Kenneth Opedal. Vi ble også informert om at skolen er i gang med å implementere en stor oppdatering av TimeEdit systemet. Den nye versjonen av TimeEdit(versjon 3.x) vil bli betydelig forskjellig fra dagens utgave, både på frontend og backend.\newline
 \newline
-Dette gjør at vi møter en ny problemstilling - skal applikasjonen lages for dagens system, og bli avleggs om noen måneder, eller skal vi prøve å få tak i tilgang til den nye versjonen? Gruppen ble enige om å kontakte Evolvera ångående API for den nye versjonen. Etter første med undersøkelser fikk vi vite at det er nødvendig med en sertifisering for å få tilgang til systemet. Etter dette bestemte gruppen seg for å ta kontakt med Evolvera direkte, da et slikt kurs ville måtte ta sted i Sverige, og gruppen har hverken tid eller ressurser til et slikt kurs. I mellomtiden skulle gruppen utforske web-scraping som et alternativ i tilfelle det ikke var mulig å få API tilgang uten kurs. Som en siste utvei kan problemet løses ved å presentere TimeEdit sin nettside i applikasjonen. Dette har fordelen med at man kan bare forandre ressurslinken når det nye systemet kommer i drift. Ulempen med dette er at nettsidene ikke er tilpasset liten skjerm som diskutert tidligere.\newline
+Dette gjør at vi møter en ny problemstilling - skal applikasjonen lages for dagens system, og bli avleggs om noen måneder, eller skal vi prøve å få tak i tilgang til den nye versjonen? Gruppen ble enige om å kontakte Evolvera(de som utvikler systemet) ångående API for den nye versjonen. Etter første runde med undersøkelser fikk vi vite at det er nødvendig med en sertifisering for å få tilgang til systemet. Etter dette bestemte gruppen seg for å ta kontakt med Evolvera direkte, da et slikt kurs ville måtte ta sted i Sverige, og gruppen har hverken tid eller ressurser til et slikt kurs. I mellomtiden skulle gruppen utforske web-scraping som et alternativ i tilfelle det ikke var mulig å få API tilgang uten kurs. Som en siste utvei kan problemet løses ved å presentere TimeEdit sin nettside i applikasjonen. Dette har fordelen med at man kan bare forandre ressurslinken når det nye systemet kommer i drift. Ulempen med dette er at nettsidene ikke er tilpasset liten skjerm som diskutert tidligere.\newline
 Forsøk på aksessere TimeEdit’s API uavhengig av noe kurs for sertifisering med prøving-og-feiling i nettleseren lyktes heller ikke.\newline
 \newline
 Løsningen som ble valgt var å implementere en web-scraping-mekanisme på serversiden av applikasjonen som tilbød strukturert data gjennom et egetutviklet API (web service). Mobil-applikasjonen er i stand hente de dataene den trenger fra web-applikasjonen ved behov. Dette løser også problemstillingen med at HIALS skulle implementere en ny versjon av TimeEdit, da det ikke blir nødvendig å oppdatere samtlige mobile enheter for å kompensere for endringen. For brukerne vil ikke opplevelsen bli noe forskjellig med den gamle TimeEdit løsningen og den nye TimeEdit løsningen.
@@ -800,9 +800,9 @@ Jsoup og TagSoup imiterer HTML-hierarkiet på en logisk måde i kode-syntaksen, 
 
 \subsubsection{TimeEdit og E-læringsapplikasjonen, to forskjellige systemer}
 
-En metode for å kunne sette likhetstegn mellom to objekter i to forskjellige systemer, f.eks et fag som representert av E-lærings websiden og et fag som representert av TimeEdit var som tidligere nevnt er nødvendig.\newline
+En metode for å kunne sette likhetstegn mellom to objekter i to forskjellige systemer, f.eks et fag som representert av E-lærings websiden og et fag som representert av TimeEdit var som tidligere nevnt nødvendig.\newline
 \newline
-TimeEdit støtter også søk med fritekst, og søk med fagkode eller klassekode gir som regel ett resultat som vist i bildet (nedenfor eller figurnavn) - dette kan vi utnytte til å hente ut TimeEdit-objektkodene vi trenger.
+TimeEdit støtter også søk med fritekst, og søk med fagkode eller klassekode gir som regel ett resultat som vist i bildet nedenfor - dette kan vi utnytte til å hente ut TimeEdit-objektkodene vi trenger.
 
 \begin{figure}[H]
   \centering
@@ -1216,7 +1216,7 @@ Siden vi ikke fikk den nødvendige tilgangen til skolens frontersystem valgte vi
         \caption{Skjermbilder av Fronter-funksjonen til mobilapplikasjonen}
 \end{figure}
 
-Fronter fragmentet viser informasjon fra et valgt rom på fronter og kan kun leggest til på fag laget. Siden implenentasjonen ikke ble fullført vises kun eksempeldata her. Om fronter implementasjonen blir fullført i fremtiden er integrasjonen i mobilapplikasjonen allerede klar til bruk. 
+Fronter fragmentet viser informasjon fra et valgt rom på fronter og kan kun legges til på fag laget. Siden implenentasjonen ikke ble fullført vises kun eksempeldata her. Om fronter implementasjonen blir fullført i fremtiden er integrasjonen i mobilapplikasjonen allerede klar til bruk. 
 
 \subsection{BibSys}
 
@@ -1245,9 +1245,9 @@ I denne url malen er det noen faste og variable parametre. Disse er som følger:
 \end{center}
 \end{table}
 
-Ved å bruke denne eksempel URL’en i en nettleser vil man kunne se resultatene som blir returnert fra BIBSys sine servere.\newline
+Ved å bruke denne eksempel URL’en i en nettleser vil man kunne se resultatene som blir returnert fra BibSys sine servere.\newline
 \newline
-Nå som vi visste hvordan man søker i BIBSys sine databaser, og hva vi kunne vente oss tilbake, måtte vi avgjøre hva slags struktur systemet vårt skulle ha. Av tidligere erfaring fra alle de andre funksjonene som applikasjonen allerede tilbyr ble vi enige om at serveren skulle ta seg av spørringen til BIBSys sine systemer og prossesere resultatet til et enklere format. Mobilapplikasjonen vil da kunne gjøre en enkel spørring mot serveren, og så tar serveren seg av spørringen og parsingen, og gir tilbake et enkelt resultat. På denne måten vil det også være enkelt å oppdatere løsningen i frtemtiden, da alle forandringer vil skje på serveren, og brukerne ikke trenger å oppdatere. Om det blir lagt til noen nye funksjoner, vil man alikevel måtte oppdatere mobilapplikasjonen.
+Nå som vi visste hvordan man søker i BibSys sine databaser, og hva vi kunne vente oss tilbake, måtte vi avgjøre hva slags struktur systemet vårt skulle ha. Av tidligere erfaring fra alle de andre funksjonene som applikasjonen allerede tilbyr ble vi enige om at serveren skulle ta seg av spørringen til BibSys sine systemer og prossesere resultatet til et enklere format. Mobilapplikasjonen vil da kunne gjøre en enkel spørring mot serveren, og så tar serveren seg av spørringen og parsingen, og gir tilbake et enkelt resultat. På denne måten vil det også være enkelt å oppdatere løsningen i frtemtiden, da alle forandringer vil skje på serveren, og brukerne ikke trenger å oppdatere. Om det blir lagt til noen nye funksjoner, vil man alikevel måtte oppdatere mobilapplikasjonen.
 
 \begin{figure}[H]
   \centering
@@ -1255,7 +1255,7 @@ Nå som vi visste hvordan man søker i BIBSys sine databaser, og hva vi kunne ve
   \caption{asdasdsadasdasdasdsadsads}
 \end{figure}
 
-Som man kan se er det veldig mye informasjon som blir returnert, så vi måtte finne en måte å hente ut kun de dataene som var relevante. For å løse dette valgte vi å bruke Javabiblioteket Jsoup som vi allerede hadde brukt tidligere for å hente ut data fra timeplansystemet TimeEdit, da dette biblioteket hadde vist seg å være ypperlig til å hente ut data fra store og kompliserte datasett.\newline
+Som man kan se er det veldig mye informasjon som blir returnert, så vi måtte finne en måte å hente ut kun de dataene som var relevante. For å løse dette valgte vi å bruke Javabiblioteket Jsoup som vi allerede hadde brukt tidligere for å hente ut data fra timeplansystemet TimeEdit. Dette var fordi biblioteket hadde vist seg å være ypperlig til å hente ut data fra store og kompliserte datasett.\newline
 \newline
 For å hente ut de relevante dataene, søkte vi igjennom xml filen, og hentet ut infoen som ligger ved tag id 245. Denne under-seksjonen inneholder navnet på forfatter, tittel, og undertittel.
 \begin{figure}[H]
@@ -1266,7 +1266,7 @@ For å hente ut de relevante dataene, søkte vi igjennom xml filen, og hentet ut
 
 Her går koden igjennom seksjonen linje for linje, og skreller vekk alt som ikke skal være med. Til slutt lagres tittelen og forfatternavnet i en enkel entityklasse og settes inn i listen som skal returneres til mobilapplikasjonen.\newline
 \newline
-Man kan se tydelig hvordan jobben serveren gjør forenkler jobben for mobilapplikasjonen. Dataene serveren mottar fra BIBSys er på venstre side, mens dataene serveren sender videre til mobilapplikasjonen etter å ha parset innholdet står på høyre. XML dokumentet har forøvrig blitt kortet ned med ca. 2/3  av plasshensyn.
+Man kan se tydelig hvordan jobben serveren gjør forenkler jobben for mobilapplikasjonen. Dataene serveren mottar fra BibSys er på venstre side, mens dataene serveren sender videre til mobilapplikasjonen etter å ha parset innholdet står på høyre. XML dokumentet har forøvrig blitt kortet ned med ca. 2/3 av plasshensyn.
 
 \begin{figure}[H]
   \centering

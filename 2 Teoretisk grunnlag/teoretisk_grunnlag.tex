@@ -12,7 +12,7 @@ Denne delen tar for seg de forskjellige teknologier, arkitekturmodeller og konse
 \subsection{Systemintegrasjon}
 
 \subsubsection{Definisjon}
-Systemintegrasjon er å få to eller flere systemer til å samhandle. Det har også blitt definert som "å bringe subsystemer sammen i et system, og forsikre at subsystemene arbeider sammen i systemet" \endnote{ \url{https://en.wikipedia.org/wiki/System_integration} - 22.05.2013}. \newline
+Systemintegrasjon er å få to eller flere systemer til å samhandle. Det har også blitt definert som "å bringe subsystemer sammen i et system, og forsikre at subsystemene arbeider sammen i systemet" \endnote{\url{http://en.wikipedia.org/wiki/System_integration} - 22.05.2013}. \newline
 \newline
 Systemintegrasjon kan gjennomføres ved å få de aktuelle systemene til å snakke med hverandre, det ene snakker til det andre(som en slags monolog). I situasjoner hvor det er mer enn to systemer kan det være en kombinasjon av de to løsningene. Det kan også forekomme at det mellom to(eller flere) systemer blir det implementert et tredje program som har som oppgave å koordinere de andre.\newline
 \newline
@@ -161,7 +161,7 @@ Syntaksen i et regulært uttrykk varierer med implementasjonen da programmerings
 
 \begin{table}[H]
 \begin{center}
-\caption{This table shows some data}
+\caption{Sammenligner regex på Java og Perl}
   \begin{tabular}{ | p{6cm} | p{6cm} |}
     \hline
     Java & Perl \\ \hline
@@ -192,7 +192,7 @@ JAX-RS er et Java API for RESTful Web-services som har som mål å være enkelt 
 Annotasjonene i JAX-RS benyttes for å binde HTTP-metoder og spesifikke URI’er til individuelle funksjoner i klassen, eller til og med hele java-klassen. I tillegg til dette har JAX-RS API’et god støtte for marshalling og unmarshalling av egendefinerte dataobjekter til diverse dataformater, mapping av exceptions til HTTP-responskoder og svar, i tillegg til å kunne håndtere avansert HTTP-forhandling.
 Nedenfor er et eksempel på JAX-RS i en Java-klasse, med forskjellige Java-annotasjoner som reflekterer HTTP-metoder (@GET, @POST).
 
-\begin{lstlisting}[language=Java, frame=single, caption={(SDSADASDASDSADASDADSA)}]
+\begin{lstlisting}[language=Java, frame=single, caption={(Eksempel på REST-tjenester med JAX-RS)}]
 @Path("/resource")
 public class resourceClass {
 
@@ -237,10 +237,10 @@ Denne delen beskriver relevante tredjeparts støttebibliotek for Java.
 
 JSoup er et bibliotek for Java som blir brukt til å håndtere HTML kode fra nettsider i sanntid. Dette gjøres ved bruk av en relativt enkel API. JSoup henter ned koden fra en nettside, og så kan man navigere gjennom HTML koden for å hente ut den delen av koden man trenger. \endnote{\url{http://jsoup.org/} - 06.05.2013} Dette er en enkel metode å web-scrape en nettside. Ulempen med denne metoden er at man må vite nøyaktig hvordan kildekoden til nettsiden man er ute etter ser ut. Man kan for eksempel hente ut info som ligger mellom spesifikke HTML notasjoner, eller man kan hente ut data ved bruk av en spesiell id. En annen funksjon er å strippe vekk alle html notasjoner, slik at man står igjen med et rent dokument. \endnote{\url{http://jsoup.org/cookbook/} - 28.03.2013}
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \centering
   \includegraphics[width=14cm]{jsoup.png}
-  \caption{Jasdasdsadsad}
+  \caption{Et eksempel på hvordan man kan bruke JSoup}
 \end{figure}
 
 \subsubsection{RibbonMenu}

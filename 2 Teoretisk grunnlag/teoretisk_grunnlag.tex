@@ -12,7 +12,7 @@ Denne delen tar for seg de forskjellige teknologier, arkitekturmodeller og konse
 \subsection{Systemintegrasjon}
 
 \subsubsection{Definisjon}
-Systemintegrasjon er å få to eller flere systemer til å samhandle. Det har også blitt definert som “å bringe subsystemer sammen i et system, og forsikre at subsystemene arbeider sammen i systemet”. \newline
+Systemintegrasjon er å få to eller flere systemer til å samhandle. Det har også blitt definert som "å bringe subsystemer sammen i et system, og forsikre at subsystemene arbeider sammen i systemet". \newline
 \newline
 Systemintegrasjon kan gjennomføres ved å få de aktuelle systemene til å snakke med hverandre, det ene snakker til det andre(som en slags monolog). I situasjoner hvor det er mer enn to systemer kan det være en kombinasjon av de to løsningene. Det kan også forekomme at mellom to(eller flere) systemer blir det implementert et tredje program som har som oppgave å koordinere de andre.\newline
 \newline
@@ -44,9 +44,9 @@ Protokollen kan forby tilgang til deler av sin egen mappestruktur, eller for å 
   \begin{center}
     \includegraphics[width=0.3\textwidth]{mvc.png}
   \end{center}
-  \caption{A gull}
+  \caption{Model View Controller-modellen}
 \end{wrapfigure}
-Model View Controller (MVC) er en arkitektur for programvare som begrenser hvilke deler av programmet brukeren interagerer med. “Model”-delen er kjernen i applikasjonen og består av dataen til applikasjonen (databasen), applikasjonslogikk, metoder og funksjoner. “View”-delen består av den informasjonen fra modell-laget som er tiltenkt brukeren som for eksempel tekst, bilde, lyd osv. “Controller” delen består av håndtering av brukerens input for å styre de to andre lagene. 
+Model View Controller (MVC) er en arkitektur for programvare som begrenser hvilke deler av programmet brukeren interagerer med. "Model"-delen er kjernen i applikasjonen og består av dataen til applikasjonen (databasen), applikasjonslogikk, metoder og funksjoner. "View"-delen består av den informasjonen fra modell-laget som er tiltenkt brukeren som for eksempel tekst, bilde, lyd osv. "Controller" delen består av håndtering av brukerens input for å styre de to andre lagene. 
 
 \subsection{Web Services}
 
@@ -54,7 +54,7 @@ En web service, eller nett-tjeneste, er en mekanisme som muligjør kommunikasjon
 
 \subsubsection{REST}
 
-REST (Representational State Transfer) er en ikke-protokoll-spesifikk dataoverførings-arkitektur bestående av klienter og servere. Denne arkitekturen beskriver en del begrensinger som når benyttet i et distribuert system fører til nyttige egenskaper som loose coupling og horisontal skalerbarhet. En typisk REST transaksjon kan beskrives på følgende måte; en klient sender en forespørsel til en server, som bearbeider forespørselen og sender tilbake data. Måten dette foregår på, metodene og standardene som benyttes er hva begrensningene definerer. Nettjenester som er designet i tråd med REST’s arkitektur-prinsipper kalles “RESTful services”.\newline
+REST (Representational State Transfer) er en ikke-protokoll-spesifikk dataoverførings-arkitektur bestående av klienter og servere. Denne arkitekturen beskriver en del begrensinger som når benyttet i et distribuert system fører til nyttige egenskaper som loose coupling og horisontal skalerbarhet. En typisk REST transaksjon kan beskrives på følgende måte; en klient sender en forespørsel til en server, som bearbeider forespørselen og sender tilbake data. Måten dette foregår på, metodene og standardene som benyttes er hva begrensningene definerer. Nettjenester som er designet i tråd med REST’s arkitektur-prinsipper kalles "RESTful services".\newline
 \newline
 Grunnleggende arkitekturprinsipper i REST:
 
@@ -156,16 +156,16 @@ Java applikasjoner, eller programmer kjører på en virtuell maskin som heter Ja
 
 \subsection{Regulære uttrykk og Java}
 
-Et regulært uttrykk (ofte forkortet “regex”) er en streng med karakterer som utgjør et mønster, som igjen beskriver eller matcher en eller flere strenger. Et slikt uttrykk brukes for å søke etter grupper av sammenhengende tekst, som da kan behandles på ønsket måte. Med unntak av spesielle karakterer, vil et regulært uttrykk beskrive en streng karakter for karakter, hvor f.eks det regulære uttrykket “regex” vil matche det første tilfellet av strengen “regex” i en annen tekststreng. De spesielle karakterene definert i syntaksen oversettes til en spesiell handling eller kan alene definere flere karakterer i en tekststreng. \newline
-Syntaksen i et regulært uttrykk varierer med implementasjonen da programmeringspråk eller programmer som har støtte for regulære uttrykk benytter seg av forskjellige prosesserings-motorer, eller har sin helt egen variant av konseptet. Til tross for dette, er likevel syntaksen svært lik hvis ikke helt identisk i de fleste tilfeller hvor de regulære uttrykkene baserer seg på Perl. Eksempelvis i Java er det noen slike forskjeller, som siden versjon 4 har støtte for regulære uttrykk vært tilbudt gjennom \textbf{java.util.regex} pakken, og baserer seg på Perl’s implementasjon. Et regulært uttrykk i Perl kan være strengen “\\w”, en spesiell karakter, som vil beskrive enhver streng med én bokstav, bindende punktuasjon eller ett tall.
+Et regulært uttrykk (ofte forkortet "regex") er en streng med karakterer som utgjør et mønster, som igjen beskriver eller matcher en eller flere strenger. Et slikt uttrykk brukes for å søke etter grupper av sammenhengende tekst, som da kan behandles på ønsket måte. Med unntak av spesielle karakterer, vil et regulært uttrykk beskrive en streng karakter for karakter, hvor f.eks det regulære uttrykket "regex" vil matche det første tilfellet av strengen "regex" i en annen tekststreng. De spesielle karakterene definert i syntaksen oversettes til en spesiell handling eller kan alene definere flere karakterer i en tekststreng. \newline
+Syntaksen i et regulært uttrykk varierer med implementasjonen da programmeringspråk eller programmer som har støtte for regulære uttrykk benytter seg av forskjellige prosesserings-motorer, eller har sin helt egen variant av konseptet. Til tross for dette, er likevel syntaksen svært lik hvis ikke helt identisk i de fleste tilfeller hvor de regulære uttrykkene baserer seg på Perl. Eksempelvis i Java er det noen slike forskjeller, som siden versjon 4 har støtte for regulære uttrykk vært tilbudt gjennom \textbf{java.util.regex} pakken, og baserer seg på Perl’s implementasjon. Et regulært uttrykk i Perl kan være strengen "\\w", en spesiell karakter, som vil beskrive enhver streng med én bokstav, bindende punktuasjon eller ett tall.
 
 \begin{table}[H]
 \begin{center}
 \caption{This table shows some data}
-  \begin{tabular}{ | p{5cm} | p{5cm} |}
+  \begin{tabular}{ | p{6cm} | p{6cm} |}
     \hline
-    Java & Perl \\
-    “\textbackslash \textbackslash w” & “\textbackslash w” \\ \hline
+    Java & Perl \\ \hline
+    "\textbackslash \textbackslash w" & "\textbackslash w" \\ \hline
     Rekkevidde [A-Za-z0-9\_] uten Unicode & Rekkevidde [A-Za-z0-9\_] pluss Unicode \\
     \hline
   \end{tabular}
@@ -193,21 +193,21 @@ Annotasjonene i JAX-RS benyttes for å binde HTTP-metoder og spesifikke URI’er
 Nedenfor er et eksempel på JAX-RS i en Java-klasse, med forskjellige Java-annotasjoner som reflekterer HTTP-metoder (@GET, @POST).
 
 \begin{lstlisting}[language=Java, frame=single, caption={(SDSADASDASDSADASDADSA)}]
-@Path(“/resource”)
+@Path("/resource")
 public class resourceClass {
 
         .....
 
         @GET
-        @Path(“/object/{id}”)
+        @Path("/object/{id}")
         @Produces({MediaType.APPLICATION_JSON})
-        public Response getObjectById(@PathParam(“id”) String id) {
+        public Response getObjectById(@PathParam("id") String id) {
                 ....
                 return responseObjectBasedOnMethodImplementation;
         }
 
         @POST
-        @Path(“/object/”)
+        @Path("/object/")
         @Consumes({MediaType.APPLICATION_JSON})
         public Response createNewObjectFromJSON(InputStream inputStream) {
             .....
@@ -215,7 +215,7 @@ public class resourceClass {
         }
 
         @POST
-        @Path(“/object/name/{name}: \\w{1,10}”)
+        @Path("/object/name/{name}: \\w{1,10}")
         @Produces({MediaType.APPLICATION_JSON})
         public Response getObjectFrom Name(InputStream inputStream) {
             .....
@@ -225,8 +225,8 @@ public class resourceClass {
 }
 \end{lstlisting}
 
-Kodesnutten ovenfor viser to metoder som begge er tilgjengelig via en URI som er definert i Java-annotasjonen @Path ovenfor klassen og metodene. Innenfor @Path-strengen er “{id}” en variabel som kan benyttes for å hente ut et spesifikt objekt. Java-annotasjonene @Produces og @Consumes spesifiserer hvilken mediatype (her JSON) som skal produseres og tolkes respektivt.
-Java-annotasjonen @Path har også støtte for regulære uttrykk, som muligjør flere typer URI-matching. Den tredje funksjonen i figur (FIGUR HER) demonstrerer dette, hvor det regulære uttrykket “\\w{1,10}” vil i Java matche enhver streng med sammenhengende karakterer med maksimal lengde 10, noe som gjør at man i praksis begrenser {name}-parameteren til 10 karakterer. Har {name}-parameteren en lengde på 11 eller mer, vil kun en 404-feil returneres.\newline
+Kodesnutten ovenfor viser to metoder som begge er tilgjengelig via en URI som er definert i Java-annotasjonen @Path ovenfor klassen og metodene. Innenfor @Path-strengen er "{id}" en variabel som kan benyttes for å hente ut et spesifikt objekt. Java-annotasjonene @Produces og @Consumes spesifiserer hvilken mediatype (her JSON) som skal produseres og tolkes respektivt.
+Java-annotasjonen @Path har også støtte for regulære uttrykk, som muligjør flere typer URI-matching. Den tredje funksjonen i figur (FIGUR HER) demonstrerer dette, hvor det regulære uttrykket "\\w{1,10}" vil i Java matche enhver streng med sammenhengende karakterer med maksimal lengde 10, noe som gjør at man i praksis begrenser {name}-parameteren til 10 karakterer. Har {name}-parameteren en lengde på 11 eller mer, vil kun en 404-feil returneres.\newline
 Fra endepunktet’s perspektiv (den endelige URI’en)kan også det JAX-RS definerer som matrise-elementer benyttes, som består av forhåndsdefinerte strenger (@MatrixParam) som etterfølger en @PathParam-streng med ett semikolon (;). Denne funksjonaliten fører til økt fleksibilitet da man oppnår flere kombinasjoner med @PathParam og @MatrixParam.
 
 \subsection{Bibliotek}
@@ -245,7 +245,7 @@ JSoup er et bibliotek for Java som blir brukt til å håndtere HTML kode fra net
 
 \subsubsection{RibbonMenu}
 
-Ribbonmenu er et bibliotek for Android som brukes til å presentere data i en meny som kan “skli” inn fra siden av skjermen. Dette biblioteket etterligner den samme funksjonen som man finner i menyen på applikasjonene FaceBook og Google+. Fordelen med å bruke denne typen meny er at man har plass til mye informasjon og store ikoner i menyen, uten å bruke mye plass på skjermen når man ikke bruker den. En annen fordel er at den følger Google sine retningslinjer om komformitet i applikasjonsdesign. Det finnes et standard bibliotek fra Google med mye av den samme funksjonen, men denne var ikke tilgjengelig da utviklingen av applikasjonen startet. Dette biblioteket heter Navigation Drawer.
+Ribbonmenu er et bibliotek for Android som brukes til å presentere data i en meny som kan "skli" inn fra siden av skjermen. Dette biblioteket etterligner den samme funksjonen som man finner i menyen på applikasjonene FaceBook og Google+. Fordelen med å bruke denne typen meny er at man har plass til mye informasjon og store ikoner i menyen, uten å bruke mye plass på skjermen når man ikke bruker den. En annen fordel er at den følger Google sine retningslinjer om komformitet i applikasjonsdesign. Det finnes et standard bibliotek fra Google med mye av den samme funksjonen, men denne var ikke tilgjengelig da utviklingen av applikasjonen startet. Dette biblioteket heter Navigation Drawer.
 
 \section{Programverktøy}
 
@@ -261,7 +261,7 @@ Glassfish er en applikasjonsserver for Java Enterprise Edition webapplikasjoner.
 
 \subsubsection{Git}
 
-Git er et distribuert versjonskontrollsystem for programvareutvikling. Git er ideelt til teambasert programmering da det gjør det mye letter å slå sammen filer og endringer gjort av de individuelle teammedlemmene. Et Git prosjekt består av en mappe der alle endringer blir lagret som revisisjoner (commits). Disse revisjonene blir organisert med full historikk slik at bidragsyterene i prosjektet kan se hvem som har gjort hvilke endringer og “rulle tilbake” endringer som ikke er ønskelige.  
+Git er et distribuert versjonskontrollsystem for programvareutvikling. Git er ideelt til teambasert programmering da det gjør det mye letter å slå sammen filer og endringer gjort av de individuelle teammedlemmene. Et Git prosjekt består av en mappe der alle endringer blir lagret som revisisjoner (commits). Disse revisjonene blir organisert med full historikk slik at bidragsyterene i prosjektet kan se hvem som har gjort hvilke endringer og "rulle tilbake" endringer som ikke er ønskelige.  
 
 \subsection{Android}
 
@@ -274,8 +274,8 @@ Android er populært hos utviklerene da det er et mer åpent operativsystem. Det
 
 Android er basert på en åpen kildekode linux kjerne og er skrevet i C, C++ og Java. Alle applikasjoner som blir levert til Android er skrevet i Java og og bruker XML. Dette blir kompilert om for bruk i Android sin Dalvik virtual Machine(som er Android sin version av Java Virtual Machine).\newline
 \newline
-Android applikasjoner er bygd opp av to hovedkomponenter. Disse er såkalte “aktiviteter” og “tjenester”(service). En aktivitet er den delen som vises på skjermen, og kjører kun så lenge den blir vist på skjermen. En typisk applikasjon består av flere aktiviteter hvor man kan navigere mellom disse. 
-I tillegg kan hver aktivitet ha flere “fragmenter”. Et fragment kan inneholde logikk og et grafisk grensesnitt, men må alltid være en del av en aktivitet. Flere fragmenter kan kombineres for å lage en samling med forskjellige brukergrensesnitt i samme skjermbilde.  \newline
+Android applikasjoner er bygd opp av to hovedkomponenter. Disse er såkalte "aktiviteter" og "tjenester"(service). En aktivitet er den delen som vises på skjermen, og kjører kun så lenge den blir vist på skjermen. En typisk applikasjon består av flere aktiviteter hvor man kan navigere mellom disse. 
+I tillegg kan hver aktivitet ha flere "fragmenter". Et fragment kan inneholde logikk og et grafisk grensesnitt, men må alltid være en del av en aktivitet. Flere fragmenter kan kombineres for å lage en samling med forskjellige brukergrensesnitt i samme skjermbilde.  \newline
 En tjeneste er en bakgrunnsprosess som kan kjøre selv om man bytter mellom aktiviteter. Tjenestene blir ofte brukt til ting som IO og mellomlagring av globale variabler.
 
 \newpage

@@ -342,9 +342,9 @@ Webapplikasjonen kompileres til en .war fil. Denne filen kan publiseres på fler
 
 \subsubsection{Sette opp administratorbruker}
 
-\begin{wrapfigure}{l}{4cm}
+\begin{wrapfigure}{l}{3.5cm}
   \begin{center}
-    \includegraphics[width=4cm]{glassfish_filerealm.png}
+    \includegraphics[width=3.5cm]{glassfish_filerealm.png}
   \end{center}
   \caption{Viser hvor file realm er}
 \end{wrapfigure}
@@ -1037,68 +1037,68 @@ I tillegg til å kunne tilby en fullt formatert timeplan i JSON som vist i forko
 
 \begin{lstlisting}[language=HTML, frame=single, caption={asdasdsadasdasdasdsadsadasdasdsadsa}]
 {
-scheduleYear: "2013",
-weekStart: "14",
-weeekEnd: "15",
-numberOfWeeks: 2,
-weeks: 
-[
-{
-weekString: "Uke 14, 2013",
-weekNo: "14",
-days: 
-[
-{
-day: "Ons",
-date: "3 apr",
-lectures: 
-[
-{
-lectureStart: "08:15",
-lectureEnd: "10:00",
-type: "Foreles, Ovinger",
-classId: "AU1, DA1, AU-y1, DA-y1",
-room: "Borgundfjorden, L165 - Datalab , L167 - Prosjektrom",
-teachers: "Adrian Rutle",
-comment: null,
-courses: 
-[
-{
-courseName: "Objektorientert programmering",
-courseID: null
-}
-]
-},
-{
-lectureStart: "10:15",
-lectureEnd: "12:00",
-type: "Ovinger",
-classId: "AU1, DA1, AU-y1, DA-y1",
-room: "L165 - Datalab , L167 - Prosjektrom",
-teachers: "Adrian Rutle",
-comment: null,
-courses: 
-[
-{
-courseName: "Objektorientert programmering",
-courseID: null
-}
-]
-}
-]
-},
-{},
-{}
-]
-},
-{
-weekString: "Uke 15, 2013",
-weekNo: "15",
-days: 
-[]
-}
-]
-}
+	scheduleYear: "2013",
+	weekStart: "14",
+	weeekEnd: "15",
+	numberOfWeeks: 2,
+	weeks: 
+		[
+			{
+				weekString: "Uke 14, 2013",
+				weekNo: "14",
+				days: 
+					[
+						{
+							day: "Ons",
+							date: "3 apr",
+							lectures: 
+								[
+									{
+										lectureStart: "08:15",
+										lectureEnd: "10:00",
+										type: "Foreles, Ovinger",
+										classId: "AU1, DA1, AU-y1, DA-y1",
+										room: "Borgundfjorden, L165 - Datalab , L167 - Prosjektrom",
+										teachers: "Adrian Rutle",
+										comment: null,
+										courses: 
+											[
+												{
+													courseName: "Objektorientert programmering",
+													courseID: null
+												}
+											]
+									},
+									{
+										lectureStart: "10:15",
+										lectureEnd: "12:00",
+										type: "Ovinger",
+										classId: "AU1, DA1, AU-y1, DA-y1",
+										room: "L165 - Datalab , L167 - Prosjektrom",
+										teachers: "Adrian Rutle",
+										comment: null,
+										courses: 
+											[
+												{
+													courseName: "Objektorientert programmering",
+													courseID: null
+												}
+											]
+									}
+								]
+						},
+						{},
+						{}
+					]
+				},
+				{
+					weekString: "Uke 15, 2013",
+					weekNo: "15",
+					days: 
+						[]
+				}
+			]
+		}
 \end{lstlisting}
 
 kan også en enklere formatert timeplan returneres som kun returnerer dager /m forelesninger og involverte fag. Dette ble vurdert som hensiktsmessig siden det ikke var nødvendig å returnere hele og fullt formaterte timeplaner til de fleste av funksjonene i mobil-applikasjonen. 

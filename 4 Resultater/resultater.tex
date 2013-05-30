@@ -599,47 +599,88 @@ For at eksterne applikasjoner som mobilapplikasjonen skal kunne bruke dataen i s
 
 \subsection{TimeEdit}
 
-Den første oppgaven ved integreringen av TimeEdit var å videre definere hva av tjenesten som var nyttig for applikasjonen’s bruksområde. TimeEdit som implementert av HIALS tilbyr b.la booking av rom, oppslag av planlagte forelesninger basert på hvilke forelesere er med, eller hvilket studieløp forelesningen er med i, m.m. \endnote{\url{jsoup.org}} \endnote{\url{jsoup.org}} \newline
-\newline
-Hovedfokuset i applikasjonen er sentrert rundt studier og enkelt-fag, og dermed er den mest relevante tjenesten TimeEdit tilbyr oppslag på nettopp studier og fag. TimeEdit kan da supplere den eksisterende funksjonaliteten ved å tilby dypere innsikt i og bredere oversikt over applikasjonens innhold.\newline
-\newline
-Det å kunne enkelt reservere rom fra applikasjonen er forsåvidt også noe som har klar nytteverdi, men er ikke like godt knyttet opp mot applikasjonen’s hovedfokus. Dermed ble ikke tatt med i denne omgangen av funksjonsimplementeringen.
-
-\subsection{Utvikling}
-
-Med en gang kunne vi ramse opp tre metoder for å implementere skolens timeplanløsning i applikasjonen. Disse tre er:
+Den første oppgaven ved integreringen av TimeEdit var å bestemme hvilke av tjenestene som TimeEdit tilbyr var nyttig for applikasjonen’s bruksområde. TimeEdit som implementert av HIALS tilbyr b.la 
 
 \begin{itemize}
-\item Tilgang til TimeEdit sin API
-\item Vise timeEdit sin nettside direkte
-\item “Web-scraping” av TimeEdit sin nettside
+\item Booking av rom. \endnote{\url{https://timeedit.hials.no/WebReservations/WebObjects/}} \newline
+Krever HIALS brukernavn/passord
+\item Timeplan over planlagte forelesninger \endnote{\url{http://timeedit.hials.no/4DACTION/WebShowSearch/1/1-0?}} \newline
+ ….basert på :
+\begin{itemize}
+\item Studieløp
+\item Enkeltfag
+\item Forelesere
+\item Rom
+\end{itemize}
 \end{itemize}
 
-Av disse tre løsningene er fremvisning av TimeEdit sin nettside i applikasjonen den løsningen som er enklest å implementere, da dette kun innebærer å lage en visuell container i applikasjonen, og gi den en link til nettsiden. Ulempen med denne metoden er at nettsiden til TimeEdit ikke er designet for visning på små skjermer. Dette merker man ved at det må mye zooming og scrolling til for å utføre et søk i timeplanen. Undersøkelser viser at lignende søk kan ta opptil dobbelt så lang tid på en mobil enhet i forhold til en stor skjerm.
-Den foretrukne metoden er å bruke TimeEdit sin egen API. Ved å bruke denne ville applikasjonen være tildels beskyttet mot små forandringer i koden til TimeEdit, og dataene ville kunne bli presentert i applikasjonen med det samme gjennomgående utseende/temaet som de andre funksjonene. Ulempene med denne metoden i forhold til å bare vise nettsiden til TimeEdit er at det er noe mer arbeid å grafisk presentere dataene i applikasjonen.
-Web-scraping er den mest tidkrevende av de tre alternativene. Dette er fordi man først må lese ut data ved å gå igjennom svar koden fra TimeEdit nettsiden, og så presentere disse dataene i en egenprodusert GUI. Den er også sårbar for forandringer på TimeEdit sine nettsider.\newline
+Hovedfokuset i applikasjonen er sentrert rundt studier og enkelt-fag, og dermed er den mest relevante tjenesten oppslag på nettopp dette. TimeEdit kan supplere den eksisterende funksjonaliteten i mobil-applikasjonen ved å tilby dypere innsikt i og bredere oversikt over studier og enkeltfag. Mer konkret skal en bruker av mobil-applikasjonen være i stand til å slå opp et fag eller studie, og så ha muligheten til å få servert en ferdig formatert og relatert time-plan.
+Det å kunne enkelt reservere rom fra applikasjonen er forsåvidt også noe som har klar nytteverdi, men er ikke like godt knyttet opp mot applikasjonen’s hovedfokus. Dermed ble booking av rom ikke tatt med i funksjonsimplementeringen.
+
+\subsubsection{Utvikling}
+
+Når hvilke tjenester fra TimeEdit som skulle implementeres i applikasjonen ble fastslått, gjensto det å bestemme metoden for å oppnå integreringen. Denne delen beskriver hvilke valg-alternativ vi kom fram til at vi hadde, sammenligning og den endelige vurderingen.\newline
 \newline
-Etter å ha vurdert disse tre metodene ble gruppen enige om å bruke TimeEdit sin API. På denne måten ville vi kunne produsere en stabil mobil-vennlig funksjon i samme stil som resten av applikasjonen.\newline
+TimeEdit er som tidligere beskrevet en tjeneste utviklet av selskapet Evolvera som tilbys brukeren gjennom en nettleser. Basert på kun denne kunnskapen kunne vi ramse opp tre metoder for å implementere skolens timeplanløsning i applikasjonen. Disse tre (med begrunnelse) er:
+\begin{enumerate}
+\item Bruk av eksisterende API tilknyttet TimeEdit\newline
+For en slik data-sentrert tjeneste er det sannsynlig at en API-løsning er utviklet, da dette er vanlig for moderne geskjefter. \endnote{Matthew A.Russel,  O’Reilly Media, Inc, 2011, Mining the Social Web}
+\item Web-scraping av HIALS TimeEdit’s nettside\newline
+Som beskrevet i delen om Web-Scraping under Teoretisk Grunnlag, er det mulig å parse en nettside for relevant data og rekonstruere den i et mer anvendbart format.
+\item Vise TimeEdit’s nettside direkte gjennom Android’s eksisterende funksjoner\newline
+Dette er et klart valg-alternativ som er gjennomførbart.
+\end{enumerate}
+
+En oppsummeringsliste med ulemper/fordeler ved disse valgmulighetene er tilgjengelig lengre nede i denne seksjonen, i tillegg til hvilken som ble valgt. \newline
 \newline
+Av disse tre alternativene er direktevisning av TimeEdit’s nettside enklest å implementere, da dette kun innebærer å lage en container i applikasjonen(ved bruk av Android WebView) som peker til siden. Ulempen med denne metoden er at nettsiden til TimeEdit ikke er designet for visning på små skjermer. Dette innebærer at det må mye navigering (zooming, scrolling, leting) til for å komme fram til riktig data, noe som er lite ønskelig fra et brukerperspektiv.\newline
+Gruppen benyttet Galaxy Nexus-enhetene til å besøke og navigere HIALS TimeEdit’s nettside, med dårlig brukeropplevelse som forventet. Dataene var presentert uoversiktlig og de små skjermene gjorde det vanskelig å utbedre dette. Dermed ble det tidlig klart at å vise TimeEdit’s nettside direkte var langt i fra et ønskelig alternativ, selv om tilnærmings-metoder som det å bruke en WebView til å ha en egen-definert CSS-fil for å endre layout ble inkludert i vurderingen. \newline
+Trolig kunne vi ha fått til bedre visning på små skjermer, men dataene ville likevel vært utilgjengelig for oss dersom vi ikke benyttet oss av web-scraping-teknikker for å strukturerere de.\newline
+\newline
+Den foretrukne metoden er å bruke TimeEdit’s eget API. Ved bruk av et API vil applikasjonen være tildels beskyttet mot små forandringer i koden til TimeEdit, og dataene ville kunne bli presentert i applikasjonen med det samme gjennomgående utseende/temaet som de andre funksjonene. Ulempene med denne metoden i forhold til å bare vise nettsiden til TimeEdit er at det er noe mer arbeid å grafisk presentere dataene i applikasjonen.\newline
+Web-scraping er det mest tidkrevende av de tre alternativene fordi det legger til ekstra steg med arbeid for å få hentet ut dataene. I tillegg til å hente og presentere dataene, er det nødvendig å utvikle en metode for å filtrere ut kun riktig data fra TimeEdit’s nettsider. En annen ulempe er at løsningen er sårbar for forandringer på TimeEdit sine nettsider.
+Basert på det ovennevnte kan vi hevde følgende fordeler og ulemper:
+
+\begin{enumerate}
+\item Bruk av eksisterende API tilknyttet TimeEdit\newline
++ Sikker\newline
++ Allerede utviklet og ummiddelbart anvendbar\newline
+-  Avhengig av en tredjepart\newline
+\item Web-scraping av HIALS TimeEdit’s nettside\newline
++ Mer frihet til å definere løsning\newline
+-  Usikker\newline
+-  Tidkrevende da ekstra arbeid er nødvendig\newline
+\item Vise TimeEdit’s nettside direkte\newline
++ Enklest å implementere\newline
+-  Kanskje vanskeligst å implementere godt\newline
+-  Lite presenterbar på mobile applikasjoner\newline
+-  Ingen kontroll eller strukturering av relevante dataene\newline
+\end{enumerate}
+
+Etter å ha vurdert disse tre metodene ble gruppen enige om å bruke TimeEdit’s API. Grunnlaget for dette er at det fremsto som det alternativet som ville enklest gi oss et strukturert datasett å jobbe med, da både alternativ 2 og 3 krever web-scraping for å ekstrahere nyttig data. Hvis dataene var allerede tilgjengelig i et API kunne mye arbeid unngås. Enkeltheten ved å vise TimeEdit’s nettside direkte så ikke ut til å være verdt presentasjonsproblemene som ville forekomme. Dermed følger prioriteringen for ønsket metode samme nummerering som listen i figur (VIS TIL FIGUR HER I LATEX).
+
 For å gå frem med denne løsningen tok vi kontakt med Geir Halsvik, som er leder for IT seksjonen ved Høgskolen i Ålesund. Av han fikk vi vite at ansvarlig for TimeEdit ved høyskolen er Nils Roald, og at systemet driftes av Kenneth Opedal. Vi ble også informert om at skolen er i gang med å implementere en stor oppdatering av TimeEdit systemet. Den nye versjonen av TimeEdit(versjon 3.x) vil bli betydelig forskjellig fra dagens utgave, både på frontend og backend.\newline
 \newline
-Dette gjør at vi har en ny problemstilling. Skal applikasjonen lages for dagens system, og bli avleggs om noen måneder, eller skal vi prøve å få tak i tilgang til den nye versjonen? Gruppen ble enige om å kontakte Evolvera ångående API for den nye versjonen. Etter en første undersøkelse fikk vi vite at det er nødvendig med en sertifisering for å få tilgang til systemet. Etter dette bestemte gruppen seg for å ta kontakt med Evolvera direkte, da et slikt kurs ville måtte ta sted i Sverige, og gruppen har hverken tid eller ressurser til et slikt kurs. I mellomtiden skulle gruppen utforske web-scraping som et alternativ i tilfelle det ikke var mulig å få API tilgang uten kurs. Som en siste utvei kan problemet løses ved å presentere TimeEdit sin nettside i applikasjonen. Dette har fordelen med at man kan bare forandre ressurslinken når det nye systemet kommer i drift. Ulempen med dette er at nettsidene ikke er tilpasset liten skjerm som diskutert tidligere.\newline
+Dette gjør at vi møter en ny problemstilling - skal applikasjonen lages for dagens system, og bli avleggs om noen måneder, eller skal vi prøve å få tak i tilgang til den nye versjonen? Gruppen ble enige om å kontakte Evolvera ångående API for den nye versjonen. Etter første med undersøkelser fikk vi vite at det er nødvendig med en sertifisering for å få tilgang til systemet. Etter dette bestemte gruppen seg for å ta kontakt med Evolvera direkte, da et slikt kurs ville måtte ta sted i Sverige, og gruppen har hverken tid eller ressurser til et slikt kurs. I mellomtiden skulle gruppen utforske web-scraping som et alternativ i tilfelle det ikke var mulig å få API tilgang uten kurs. Som en siste utvei kan problemet løses ved å presentere TimeEdit sin nettside i applikasjonen. Dette har fordelen med at man kan bare forandre ressurslinken når det nye systemet kommer i drift. Ulempen med dette er at nettsidene ikke er tilpasset liten skjerm som diskutert tidligere.\newline
+Forsøk på aksessere TimeEdit’s API uavhengig av noe kurs for sertifisering med prøving-og-feiling i nettleseren lyktes heller ikke.\newline
 \newline
-Løsningen som ble valgt er å implementere en web-scraping mekanisme på server siden av applikasjonen, og så henter applikasjonen de dataene den trenger fra serveren. På denne måten trenger man bare forandre hvordan serveren innhenter data, mens android applikasjonen kan forbli uforandret. Det vil si at for brukerne vil ikke opplevelsen bli noe forskjellig med den gamle TimeEdit løsningen og den nye TimeEdit løsningen
+Løsningen som ble valgt var å implementere en web-scraping-mekanisme på serversiden av applikasjonen som tilbød strukturert data gjennom et egetutviklet API (web service). Mobil-applikasjonen er i stand hente de dataene den trenger fra web-applikasjonen ved behov. Dette løser også problemstillingen med at HIALS skulle implementere en ny versjon av TimeEdit, da det ikke blir nødvendig å oppdatere samtlige mobile enheter for å kompensere for endringen. For brukerne vil ikke opplevelsen bli noe forskjellig med den gamle TimeEdit løsningen og den nye TimeEdit løsningen.
 
 \subsection{Lovlige hensyn}
 
-Med den web scraping løsningen som ble valgt var det viktig å vite at innhentingen av dataene ikke bryter med noen lover om opphavsrett, da spesifikt åndsverksloven.
+Med den løsningen som ble valgt var det viktig å vite at innhentingen av dataene ikke bryter med noen lover om opphavsrett, da spesifikt åndsverksloven \endnote{\url{http://www.lovdata.no/all/tl-19610512-002-001.html\#1}}.
 Etter å ha undersøkt dette, hovedsakelig ved bruk av internett kom vi frem til konklusjonen at innhentingen av data ikke bryter med lover eller retningslinjer for opphav av data. Dette er basert på de to følgende argumentene;
 
 \begin{itemize}
 \item Dataene er produsert og administrert av skolen, og er derfor skolens eiendom. Evolvera(selskapet som leverer og eier TimeEdit), leverer kun løsningen som presenterer dataene.
-\item Robots.txt filen som ligger ved timeplanen tilsier at automatiske tjenester kan innhente data fra alle kataloger for domenet timeedit.hials.no. Dette er en vedlagt fil/protokoll som viser hva automatiske tjenester har tilgang til.
+\item Robots.txt filen som ligger ved timeplanen tilsier at automatiske tjenester kan innhente data fra alle kataloger for domenet timeedit.hials.no\endnote{\url{http://timeedit.hials.no/robots.txt}}. Dette er en vedlagt fil/protokoll som viser hva automatiske tjenester har tilgang til.
 \end{itemize}
+
+
 
 \subsection{Utvikling av løsning}
 
-Da det var bestemt at vi skulle benytte oss av web-scraping for å søke etter og hente ut behandlingsklar informasjon, begynte vi med analyse av TimeEdit-tjenesten som tilbudt sluttbrukeren via nettsiden.
+Da det var bestemt at vi skulle benytte oss av web-scraping for å søke etter og hente ut behandlingsklar informasjon, begynte vi med analyse av TimeEdit-tjenesten som tilbudt sluttbrukeren via nettsiden \endnote{\url{http://timeedit.hials.no/4DACTION/WebShowSearch/1/1-0?wv\_type=5\&wv\_search=\&wv\_startWeek=1301\&wv\_stopWeek=1318\&wv\_first=0}}.
 
 \begin{figure}[H]
   \centering
@@ -739,11 +780,11 @@ Følgende den initielle analysen av TimeEdit’s presentasjonslag, gjenstår imp
 I tillegg til en selv-utviklet løsning eksisterer følgende løsninger myntet på nettopp web-scraping:
 
 \begin{itemize}
-\item Jsoup
-\item TagSoup
-\item HTMLUnit
-\item Web Harvest
-\item jArvest
+\item Jsoup \endnote{\url{http://jsoup.org}}
+\item TagSoup \endnote{\url{http://home.ccil.org/~cowan/XML/tagsoup/}}
+\item HTMLUnit \endnote{\url{http://htmlunit.sourceforge.net/}}
+\item Web Harvest \endnote{\url{http://web-harvest.sourceforge.net/}}
+\item jArvest \endnote{\url{http://sing.ei.uvigo.es/jarvest/examples.html}}
 \end{itemize}
 
 Tanken på utvikle en egen løsning via Java’s eget HTTPClient bibliotek falt bort da det er mye enklere og tidsbesparende å benytte en eksisterende løsning som allerede er godt dokumentert. Noe testing med en egen løsning ble utført, men det skapte en større kodebase å vedlikeholde, noe som ikke var ønskelig og heller ikke nødvendig i dette tilfellet. Ved å lære og bruke en av de ovennevnte støttebibliotekene kunne gruppen dermed fokusere på den viktigste delen av løsningen - selve uthentingen og bearbeidingen av informasjonen.\newline
@@ -1143,7 +1184,7 @@ I mobilapplikasjonen er TimeEdit-funksjonalitet også tilgjengelig ved å trykke
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=5cm]{fronter-json.png}
+  \includegraphics[width=7cm]{fronter-json.png}
   \caption{asdasdsadasdasdasdsadsads}
 \end{figure}
 
@@ -1173,13 +1214,15 @@ Fronter fragmentet viser informasjon fra et valgt rom på fronter og kan kun leg
 
 \subsection{BibSys}
 
-Det første som måtte gjøres var å definere hvilke funksjoner som skulle implementeres. De mer gjennomførte søkesidene på nettet tilbyr mange muligheter for tilpassede søkekriterier, slik som tittel, forfatter, ISBN, bibliotek, etc. Gruppen ble enige om å begrense funksjonaliteten til et enkelt søk på tittel, begrenset til beholdningen til biblioteket ved Høgskolen i Ålesund. Resultatet av dette søket skulle vises i en liste i mobilapplikasjonen.\newline
+Det første som måtte gjøres var å definere hvilke funksjoner som skulle implementeres. De mer gjennomførte søkesidene på nettet tilbyr mange muligheter for tilpassede søkekriterier, slik som tittel, forfatter, ISBN, bibliotek, etc. \endnote{\url{http://ask.bibsys.no/ask/action/stdsearch} - 21.05.2013} Gruppen ble enige om å begrense funksjonaliteten til et enkelt søk på tittel, begrenset til beholdningen til biblioteket ved Høgskolen i Ålesund. Resultatet av dette søket skulle vises i en liste i mobilapplikasjonen.\newline
 \newline
 For å få tilgang til databasen til BIBSys tok vi kontakt med support på BIBSys ved hjelp av vår kontaktperson ved skolens bibliotek, Monica Marchant. Derifra ble det informert om at det grensesnittet de hadde som passet best til vårt var SRU(search/retrieve via URL). Dette er en metode hvor man setter søkeparametrene sine inn i en URL, og så svarer serveren med resultatet i form av et XML dokument.
 \newline
 Først måtte vi altså lage en mal til URL’en slik at vi kunne enkelt putte inn søkeparametrene vi ønsket. Ved hjelp av noen eksempler fra BIBSys sin support kom vi frem til følgende mal:
 \newline
-\url{http://sru.bibsys.no/search/biblio?version=1.2\&operation=searchRetrieve\&startRecord=1\&maximumRecords=10\&query=bs.bibkode=xb\%20AND\%20bs.tittel=ibsen} \newline
+\begin{lstlisting}[language=HTML, frame=single]
+http://sru.bibsys.no/search/biblio?version=1.2\&operation=searchRetrieve\&startRecord=1\&maximumRecords=10\&query=bs.bibkode=xb\%20AND\%20bs.tittel=ibsen
+\end{lstlisting}
 I denne url malen er det noen faste og variable parametre. Disse er som følger:
 
 \begin{table}[H]

@@ -662,7 +662,7 @@ Basert på det ovennevnte kan vi hevde følgende fordeler og ulemper:
 -  Ingen kontroll eller strukturering av relevante dataene\newline
 \end{enumerate}
 
-Etter å ha vurdert disse tre metodene ble gruppen enige om å bruke TimeEdit’s API. Grunnlaget for dette er at det fremsto som det alternativet som ville enklest gi oss et strukturert datasett å jobbe med, da både alternativ 2 og 3 krever web-scraping for å ekstrahere nyttig data. Hvis dataene var allerede tilgjengelig i et API kunne mye arbeid unngås. Enkeltheten ved å vise TimeEdit’s nettside direkte så ikke ut til å være verdt presentasjonsproblemene som ville forekomme. Dermed følger prioriteringen for ønsket metode samme nummerering som listen i figuren.
+Etter å ha vurdert disse tre metodene ble gruppen enige om å bruke TimeEdit’s API. Grunnlaget for dette er at det fremsto som det alternativet som ville enklest gi oss et strukturert datasett å jobbe med, da både alternativ 2 og 3 krever web-scraping for å ekstrahere nyttig data. Hvis dataene var allerede tilgjengelig i et API kunne mye arbeid unngås. Enkeltheten ved å vise TimeEdit’s nettside direkte så ikke ut til å være verdt presentasjonsproblemene som ville forekomme. Dermed følger prioriteringen for ønsket metode samme nummerering som listen over.
 
 For å gå frem med denne løsningen tok vi kontakt med Geir Halsvik, som er leder for IT seksjonen ved Høgskolen i Ålesund. Av han fikk vi vite at ansvarlig for TimeEdit ved høyskolen er Nils Roald, og at systemet driftes av Kenneth Opedal. Vi ble også informert om at skolen er i gang med å implementere en stor oppdatering av TimeEdit systemet. Den nye versjonen av TimeEdit(versjon 3.x) vil bli betydelig forskjellig fra dagens utgave, både på frontend og backend.\newline
 \newline
@@ -690,7 +690,7 @@ Da det var bestemt at vi skulle benytte oss av web-scraping for å søke etter o
 \begin{figure}[H]
   \centering
   \includegraphics[width=14cm]{timeedit1.png}
-\caption{Ovenfor  er et skjermbilde av TimeEdtit’s nettside for søk på klasser}
+\caption{Et skjermbilde av TimeEdtit’s nettside for søk på klasser}
 \label{fig:TimeEditMain}
 \end{figure}
 Nettsiden i Figur 1.31 er grensesnittet til tjenesten som vi skal integrere. Den er aksesserbar fra hvilkensomhelst nettleser via HIAL's hjemmeside \endnote{\url{http://www.hials.no}} og inneholder de funksjonene fra TimeEdit som vi ønsker å integrere i e-læringsapplikasjonen. Selve dataene vi ønsker befinner seg i tekstformat i en eller annen del av kildekoden. Kildekoden kan granskes enkelt ved hjelp av en nettleser eller ved å laste ned siden og åpne den med et tekstredigeringsprogram. Vi benyttet oss av nettleseren for å granske kildekoden. Kildekoden består av svært mye tekst, og det vil ikke legges ved denne rapporten, men kan undersøkes ved å laste ned nettsiden selv. Der det er nødvendig vil vi vise utdrag.\newline
@@ -716,6 +716,7 @@ Neste steg er derfor å skaffe seg kjennskap til og forståelse av strukturen i 
   \centering
   \includegraphics[width=14cm]{timeedit2.png}
   \caption{En vanlig timeplan}
+\label{fig:timeeditc}
 \end{figure}
 
 I selve timeplanen som presentert av TimeEdit, kan oversikts-perspektivet brytes ned i følgende tidsgrupperinger:
@@ -738,7 +739,7 @@ Neste steg var å finne ut hvordan TimeEdit’s programstruktur gjør seg synlig
 \caption{Treff-element som vises etter søk i TimeEdit som presentert i en nettleser.}
 \end{figure}
 
-\begin{lstlisting}[language=HTML, frame=single, caption={Utdrag av kildekoden til TimeEdit's nettside som vist i figur 1.32}]
+\begin{lstlisting}[language=HTML, frame=single, caption={Utdrag av kildekoden til TimeEdit's nettside som vist i figur 1.32}, label={lst:timeeditb}]
 <a href='javascript:addObject(175000)'><img src='/img/plus.gif' ...>
 \end{lstlisting}
 
@@ -801,7 +802,7 @@ Tanken på utvikle en egen løsning via Java’s eget HTTPClient bibliotek falt 
 Gruppen som helhet analyserte de forskjellige alternativene som nevnt i listen ovenfor ved å gå gjennom dokumentasjon og presentasjon av funksjonalitet som bibliotekene hadde. Disse er alle nettbaserte.
 Gruppen konkluderte med at Jsoup var det enklest benyttbare alternativet. En av de viktigste grunnene til at gruppen kom til denne beslutningen var at Jsoup viste seg å være best dokumentert, fra både offisielt hold og tredjeparts bruk av Jsoup. 
 En annen og minst like viktig grunn, var hvordan gruppen oppfattet enkelheten i syntaksen. For eksempel HTMLUnit imiterer en klient, og krever gjerne dypere kjennskap til kildekoden som skal analyseres, og har litt mer komplisert og noe for ordrik syntaks. For å f.eks hente ut en spesifikk tag i et HTML-dokument krevde HTMLUnit for mye.
-Jsoup og TagSoup imiterer HTML-hierarkiet på en logisk måde i kode-syntaksen, noe som gjorde det mer attraktivt en andre alternativer (Objektstrukturen i biblioteket hadde et hierarki som etterlignet HTML-hierarki-systemet).Dette ville gjøre koden mer lesbar, vedlikeholdbar og ikke minst skrivbar for gruppemedlemmene. 
+Jsoup og TagSoup imiterer HTML-hierarkiet på en logisk måde i kode-syntaksen, noe som gjorde det mer attraktivt en andre alternativer (Objektstrukturen i biblioteket hadde et hierarki som etterlignet HTML-hierarki-systemet). Dette ville gjøre koden mer lesbar, vedlikeholdbar og ikke minst skrivbar for gruppemedlemmene. 
 
 \subsubsection{TimeEdit og E-læringsapplikasjonen, to forskjellige systemer}
 
@@ -811,11 +812,22 @@ TimeEdit støtter også søk med fritekst, og søk med fagkode eller klassekode 
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=5cm]{timeedit4.png}
+  \begin{subfigure}[b]{0.3\textwidth}
+  \centering
+\includegraphics[width=5cm]{timeedit6.png}
+\caption{Fag}
+\end{subfigure}
+\quad
+\begin{subfigure}[b]{0.3\textwidth}
+\centering
+\includegraphics[width=5cm]{timeedit4.png}
+\caption{Klasse}
+\end{subfigure}
   \caption{TimeEdits fritekstsøk for fag og klasse}
+\label{fig:timeedita}
 \end{figure}
 
-Som vist i figur (vis til tidligere kodesnipp her) inneholder treff-elementet objektkoden, og herfra er det kun et spørsmål om hvordan man skal legge til dette søkesteget i løsningen.
+Som vist i figur \ref{fig:timeedita} og kodesnutt \ref{lst:timeeditb} inneholder treff-elementet objektkoden, og herfra er det kun et spørsmål om hvordan man skal legge til dette søkesteget i løsningen.
 
 \subsubsection{Utvikling av løsning i Java med Jsoup og JAX-RS}
 
@@ -823,7 +835,7 @@ Basert på analysen av TimeEdit og ved valg av støttebibliotek gjensto det kun 
 
 \subsubsection{Generering av URL}
 
-Basert på det som kom fram av analysen av TimeEdit tidligere, opprettet vi funksjoner som genererte en korrekt formatert URL basert på relevante input-parametere.
+Basert på det som kom fram av analysen av TimeEdit tidligere, opprettet vi metoder i klassen TimeEditService i web-applikasjonen som genererte en korrekt formatert URL basert på relevante input-parametere. Kodesnutten i vedlegg 4 dem inneholder disse metodene, og vi vil ikke gå mer i dybde mer enn nødvendig - hovedpoenget her er å demonstrere at vi benytter dataene vi samlet inn til å generere URLer. Testing av disse ble gjort ved å lime inn resultatet fra nettleseren og verifisere resultatet.
 
 \subsubsection{Parsing i Jsoup}
 Med Jsoup som støttebibliotek kan henting, parsing og REST-funksjonalitet skrives inn i en og samme klasse, en EJB om nødvendig. Jsoup er kompakt, funksjonsrikt og lettbrukt nok til at dette er mulig uten å gjøre koden uleselig. For å beholde modulariteten i systemet, utviklet vi TimeEdit-løsningen som en enkelt støttet REST root resource klasse, som beskrevet i seksjonen Teoretisk Grunnlag - REST tjenester. Et utdrag fra denne klassen er vist nedenfor:
@@ -844,21 +856,13 @@ public class TimeEditService {
 }
 \end{lstlisting}
 
-I første omgang var det viktigst å få gjort en tilkobling via HTTP til TimeEdit for å få hentet ut et HTML-dokument og skape en logisk struktur av de nødvendige dataene som kunne behandles programmatisk. For å få til en slik struktur, ble en del indre klasser opprettet for representere forskjellige objekter som speilet TimeEdit’s innordning av objekter og tidsrammer. Disse klassene er kun nyttig i sammenheng med midlertidig organisering av data, og har ikke nytte utenfor klasse-skopet.
+I første omgang var det viktigst å få gjort en tilkobling via HTTP til TimeEdit for å få hentet ut et HTML-dokument og skape en logisk struktur av de nødvendige dataene som kunne behandles programmatisk. For å få til en slik struktur, ble en del indre klasser opprettet for representere forskjellige objekter som speilet TimeEdit’s innordning av objekter og tidsrammer. Strukturen her kan beskrives som hierarkisk da en overordnet klasse vil innehold lister (java.util.List) av den underordnede klassen. Disse klassene er kun nyttig i sammenheng med midlertidig organisering av data, og har ikke nytte utenfor klasse-skopet.
 
-TimeEditSchedule \newline Representerer ett år med semesterplaner.
-\begin{itemize}
-\item ScheduleWeek \newline Klasse som representerer ett sett med dager.
-\begin{itemize}
-\item ScheduleDay \newline Klasse som representerer en dag i timeplanen med forelesninger.
-\begin{itemize}
-\item ScheduleLecture \newline Klasse som representerer en forelesning for ett gitt kurs.
-\begin{itemize}
-\item ScheduleCourse \newline Klasse som representerer en forelesning for ett gitt kurs.
-\end{itemize}
-\end{itemize}
-\end{itemize}
-\end{itemize}
+\begin{figure}[H]
+\centering
+                \includegraphics[width=8cm]{timeedit7.png}
+\caption{Diagram over Klassen TimeEditService med indre klasser.}
+\end{figure}
 
 En forbindelse mellom vår EJB og TimeEdit er enkelt opprettet som illustrert av kode-utraget nedenfor:
 
@@ -876,7 +880,7 @@ public TimeEditSchedule getTimeEditSchedule(String siteURL){
 
 Document-objektet doc kan så enkelt gjennomgås ved hjelp av løkker og if-setninger som utnytter vår kjennskap til kildekoden til HTML-dokumentet som returneres av TimeEdit. Eksempelet nedenfor viser hvordan man kan gå gjennom HTML via Jsoup og hente ut data:
 
-\begin{lstlisting}[language=Java, frame=single, caption={asdasdsadasdasdasdsadsadasdasdsadsa}]
+\begin{lstlisting}[language=Java, frame=single, caption={Utdrag fra klassen TimeEditService i web-applikasjonen}]
 if(!tableColumns.get(i).getElementsByTag("font").isEmpty()){
                   stringData = tableColumns.get(i).getElementsByTag("font").first().text();
                   if(stringData.contains("Uke")){
@@ -886,10 +890,11 @@ if(!tableColumns.get(i).getElementsByTag("font").isEmpty()){
 }
 \end{lstlisting}
 
-HTML-dokumentet som returnert av TimeEdit sorterer informasjonen vi trenger ved hjelp av standard tabeller med rader og kolonner. Framgangsmetoden vi benyttet for å hente ut dataene gikk dermed ut på å gå gjennom hver rad og hente ut tekstdataene i hver kolonne. Som demonstrert i figur (vis til tidligere figur her) er informasjonen av lik type i alle samsvarende kolonner - dvs at i envher rad vil f.eks kolonne nummer 5 alltid vil inneholde samme type data.
-Hovedtabellen er merket med en class-tag (“booking”), og med Jsoup hentes tabellen enkelt ut og man kan iterere over innholdet og ekstrahere data med en switchcase nummerert etter hver kolonne. Noe forkortet illustrasjon fra funksjonen getTimeEditSchedule nedenfor:
+Kodesnutten ovenfor viser en if-setning som sjekker om det eksisterer et element i HTML-koden som har taggen "font", og at denne ikker tom. Deretter henter sjekker den innholdet i elementet. Selve arbeidet er utelatt av plasshensyn.\newline
+HTML-dokumentet som returnert av TimeEdit sorterer informasjonen vi trenger ved hjelp av standard tabeller med rader og kolonner. Framgangsmetoden vi benyttet for å hente ut dataene gikk dermed ut på å gå gjennom hver rad og hente ut tekstdataene i hver kolonne. Som demonstrert i figur 1.32 er informasjonen av lik type i alle samsvarende kolonner - dvs at i envher rad vil f.eks kolonne nummer 5 alltid vil inneholde samme type data.\newline
+Hovedtabellen er merket med en class-tag (“booking”), og med Jsoup hentes tabellen enkelt ut og man kan iterere over innholdet og ekstrahere data med en switchcase nummerert etter hver kolonne. Noe forkortet illustrasjon fra funksjonen getTimeEditSchedule i klassen TimeEditService følger:
 
-\begin{lstlisting}[language=Java, frame=single, caption={asdasdsadasdasdasdsadsadasdasdsadsa}]
+\begin{lstlisting}[language=Java, frame=single, caption={Utdrag fra klassen TimeEditService fra no.hials.muldvarpweb.v2}]
 .....
  Element content = doc.getElementsByClass("booking").first();
             Elements rows = content.getElementsByTag("tr");
@@ -905,7 +910,7 @@ switch(i){
 }
 \end{lstlisting}
 
-\begin{lstlisting}[language=HTML, frame=single, caption={asdasdsadasdasdasdsadsadasdasdsadsa}]
+\begin{lstlisting}[language=HTML, frame=single, caption={Utdrag fra HTML-kildekoden til nettsiden i figur \ref{fig:timeeditc}}]
 <TABLE class='booking' border='0' cellpadding='5' cellspacing='0'>
 \end{lstlisting}
 
@@ -915,8 +920,9 @@ Med dette fikk vi organisert hele timeplanen inn i en struktur som vi senere kun
 
 Som tidligere nevnt var det også nødvendig å kunne hente ut en timeplan basert på fagkode eller klassekode. Dette løste vi ved å bruke to HTTP-spørringer, ett for å finne riktig TimeEdit objektkode basert på TimeEdit’s fritekstsøk, og ett siste for å hente ut den faktiske timeplanen som benyttet metoden vi har utviklet tidligere.
 
-\begin{lstlisting}[language=Java, frame=single, caption={asdasdsadasdasdasdsadsadasdasdsadsa}]
-@GET    @Path("coursecode/{coursecode}{startweek:(/startweek/[^/]+?)?}{stopweek:(/stopweek/[^/]+?)?}{date:(/date/[^/]+?)?}")
+\begin{lstlisting}[language=Java, frame=single, caption={Utdrag fra en JAX-RS annotert REST resource metode i klassen TimeEditService}]
+    @GET    
+    @Path("coursecode/{coursecode}{startweek:(/startweek/[^/]+?)?}{stopweek:(/stopweek/[^/]+?)?}{date:(/date/[^/]+?)?}")
     @Produces({MediaType.APPLICATION_JSON})
     public Response getScheduleByCourseCode(@PathParam("coursecode") String courseCode,
             @PathParam("startweek") String startweek,
@@ -930,7 +936,7 @@ Som tidligere nevnt var det også nødvendig å kunne hente ut en timeplan baser
     }
 \end{lstlisting}
 
-\begin{lstlisting}[language=Java, frame=single, caption={asdasdsadasdasdasdsadsadasdasdsadsa}]
+\begin{lstlisting}[language=Java, frame=single, caption={Nytte-funksjon i klassen TimeEditService som bruker regulære uttrykk for å hente ut objektkoder}]
 public String getObjectCodeFromQuery(String query, int type){
         String searchURL = TIMEEDIT_HIALS_URL + TIMEDIT_PARAM_SEARCH_TYPE + "=" + type + "&" + TIMEDIT_PARAM_SEARCH + "=" + query;        Document doc = null;
         try {
@@ -957,13 +963,22 @@ public String getObjectCodeFromQuery(String query, int type){
 
 Ovenfor er en funksjon fra TimeEditService som utfører en HTTP-forbindelse via Jsoup til TimeEdit, og bruker Java’s regex-bibliotek til å finne å identifisere søketreffene som inneholder riktig TimeEdit-kode. Som vist i kapittelet om analyse av TimeEdit, befinner TimeEdit-koden seg som variabel inne i et kall til en javascript-funksjon. Da vi har navnet til denne funksjonen, “addObject()”, trenger vi regex til å matche denne funksjonen. Dette ble fullført med regex-strengen under:
 
-\begin{lstlisting}[language=HTML, frame=single, caption={asdasdsadasdasdasdsadsadasdasdsadsa}]
+\begin{lstlisting}[language=HTML, frame=single, caption={Utdrag fra kildekoden i figur \ref{fig:timeeditc}}]
 javascript:addObject\\((\\d{6}|\\d{7})\\)
 \end{lstlisting}
 
-Som vil matche all tekst som inneholder denne javascript-funksjonen, og som et ekstra lag med sikkerhet kun variabler som har en lengde på seks eller sju siffer. I java regex noterer “\\d” et tall, hvorav etterfølgende krøllparanteser ({}) med som inneslutter et tall noterer lengde. I sammenheng med symbolet “|” som betyr “OR”, velger vi da å matche innhold med enten seks eller sju siffer.
+som vil matche all tekst som inneholder denne javascript-funksjonen, og som et ekstra lag med sikkerhet kun variabler som har en lengde på seks eller sju siffer. I Java regex noterer “\textbackslash \textbackslash d” et tall (uten dobbel kvotering og java-spesifikke spesielle karakterer), hvorav etterfølgende krøllparanteser (\{\}) som inneslutter et tall noterer lengde. I sammenheng med symbolet “|” som betyr “OR”, velger vi da å matche innhold med enten seks eller sju siffer. Dette kunne også oppnås ved å notere lengde ved å endre uttrykket til "\textbackslash \textbackslash d\{6,7\}". \newline
 Etter dette kan man enkelt skrelle vekk teksten i javascript-funksjonen og hente ut selve tallet (TimeEdit objektkode) med Java’s String replace-funksjon.
-Deretter kan man benytte den samme metoden vi utviklet for å hente ut timeplaner basert på objektkoder. Videre skulle det også å ha vært mulig å lagre klasse-kode og TimeEdit objektkodene, slik at det kun ville ha vært nødvendig å gjøre to HTTP-spørringer en gang for hver kode, eller muligens kjøre gjennom alle fagkodene for å hente ut TimeEdit objektkodene. Dette kunne oppnås ved å legge til ett felt i Course og Programme JPA-klassene som representerer en TimeEdit kode. 
+Deretter kan man benytte den samme metoden vi utviklet for å hente ut timeplaner basert på objektkoder. Videre skulle det også å ha vært mulig å lagre klasse-kode og TimeEdit objektkodene, slik at det kun ville ha vært nødvendig å gjøre to HTTP-spørringer en gang for hver kode, eller muligens kjøre gjennom alle fagkodene for å hente ut TimeEdit objektkodene. Dette kunne oppnås ved å legge til ett datafelt i Course og Programme JPA-klassene som representerer en TimeEdit kode. En web-scraping-løsning for dette måtte i så fall utvikles, og denne kunne basere seg på arbeidet gjort så langt.\newline
+
+Løsningen dette resulterte i kunne gjøre HTTP-kall mot TimeEdit's nettside og motta svar, analysere og ekstrahere svaret for å så strukturere dataene. Alt dette kunne baseres på 
+\begin{itemize}
+\item TimeEdit objektoder
+\item Fagkoder (innenfor HIALS's system)
+\item Klassekoder (innenfor HIALS's system)
+\end{itemize}
+
+\newpage
 
 \subsubsection{Design av API}
 Denne delen omhandler hvilke grunnlag vi la til rette for å utvikle vår API for TimeEdit samt hvilke resultater vi endte opp med.
@@ -971,23 +986,40 @@ Denne delen omhandler hvilke grunnlag vi la til rette for å utvikle vår API fo
 \subsubsection{API}
 API’et er utviklet kun med tanke for bruk av e-læringsapplikasjonen for mobile plattformer. Med dette blir dokumentasjon og svar-type mindre viktig og arbeidet kan fokuseres på å kunne produsere riktige og konsistente resultater. Det blir heller ikke nødvendig å produsere svar i mer enn en type dataformat, og gruppen ble enige om å bruke JSON siden det fremstår som mer lettlest og ikke unødvendig ordrikt. Dette betyr midlertidig ikke at flere dataformat kan tilbys om nødvendig i framtiden.
 
-\subsubsection{API-URI}
+\subsubsection{Utforming av URI}
+URI-en til TimeEdit API-et som tilbudt av E-lærings-nettstedet ble utviklet med overflatisk simplisitet og lesbarhet som mål i henhold til seksjonen om URI-design under teoretisk grunnlag. Dette innebærer at vi bruker REST-arkitekturstilen også til utformingen av URI'ene. REST er beregnet for bruk med teknologier som har blitt populære grunnet enkelhet mtp. lesbarhet og anvendbarhet av mennesker, og med dette som grunnlag har vi rom for å hevde at en URI skal helst være:
+\begin{itemize}
+\item \textbf{Beskrivende og meningsfull for mennesker} \newline
+URI’en må beskrive ressursen URI’en identifiserer. Dette innebærer også at ordbruken må være
+\begin{itemize}
+\item \textbf{Ordlagt med substantiv og ikke verb (HTTP)} \newline
+I henhold med prinsippet om et uniformt begrenset grensesnitt og HTTP, må URI’en også unngå å bruke verb fordi dette er allerede dekket av HTTP-protokollen. (GET, POST etc.)
+\end{itemize}
+\item \textbf{Logisk strukturert} \newline
+Rekkefølgen og oppbyggingen av URI’en skal ikke vanskeliggjøre forståelse av hvilken ressurs som identifiseres, men heller gi mer innsikt jo lengre den er. Dette innebærer at URI’en må forstås som logisk stykkvis oppdelt og relatert til det foregående elementet.
+\item \textbf{Kompenserende for menneskelig feil}
+\item \textbf{Konsistent}
+\end{itemize}
 
-URI-en til TimeEdit API-et som tilbudt av E-lærings-nettstedet ble utviklet med overflatisk simplisitet og lesbarhet som mål. Dette betyr at man skulle kunne tolke og forstå hva som ønskes søkt av en spørring mot API’et kun ved å lese URI’en uten nødvendigvis å ha dyp kjennskap til API’et. Formålet med dette er å gjøre API’et lett å jobbe opp i mot, og å redusere tiden brukere av API’et benytter for å skaffe innsikt i systemet samt for å redusere tiden brukt til feilsøking da feil vil forhåpentligvis forekomme sjeldnere.\newline
-I tillegg skulle eventuelle feiltastinger eller annet feilbruk av API-et ikke taksere det underliggende systemet ved å gjøre unødvendig arbeid med spørringer som ikke vil gi noe nyttig resultat. Klart feilformaterte spørringer burde dermed forkastes, og bruker opplyses om dette.\newline
-\newline
-For å oppnå disse målsetningene benytter vi oss av Java’s API for REST webservices, JAX-RS. Dette medfølger Java EE, og det er da kun et spørsmål om å gjøre bruk av API’et.
+Dette betyr at man skulle kunne tolke og forstå hva som ønskes søkt av en spørring mot APIet kun ved å lese URIen uten nødvendigvis å ha dyp kjennskap til APIet. Formålet med dette er å gjøre API’et lett å jobbe opp i mot, og å redusere tiden brukere av API’et benytter for å skaffe innsikt i systemet samt for å redusere tiden brukt til feilsøking da feil vil forhåpentligvis forekomme sjeldnere.
+I tillegg skulle eventuelle feiltastinger eller annet feilbruk av API-et ikke taksere det underliggende systemet ved å gjøre unødvendig arbeid med spørringer som ikke vil gi noe nyttig resultat. Klart feilformaterte spørringer burde dermed forkastes, og bruker opplyses om dette.
+
+For å oppnå disse målsetningene benytter vi oss av Java’s API for REST webservices, JAX-RS. Dette medfølger Java EE 6 som vi bruker, og det er da kun et spørsmål om å gjøre bruk av API’et innenfor våre klasser og metoder.
 Som tidligere nevnt hadde vi opprettet en REST root resource service klasse (TimeEditService), hvor vi har annotert klassen med @Path og variabel “timeedit”, som gjør den gjeldende ressurs-stien til følgende:
-
-\begin{lstlisting}[language=HTML, frame=single, caption={asdasdsadasdasdasdsadsadasdasdsadsa}]
-{server}/services/timeedit/
-\end{lstlisting}
-
-Deretter vil enhver funksjon med @Path annotasjon innenfor klasse-skopet benytte ressurs-stien ovenfor, i tillegg til sin egen-definerte variabel.
+\begin{table}[H]
+\begin{center}
+\caption{Base-URI pluss sti som defineres i web-applikasjonen.}
+\begin{tabular}{| p{12cm} |}
+\hline
+ [SERVERPATH]/services/timeedit/ \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+Deretter vil enhver funksjon med @Path annotasjon innenfor klasse-skopet benytte ressurs-stien ovenfor, i tillegg til sin egen-definerte variabel. Navnet "/services/" innenfor URI'en gjør det klart at alt som etterfølger er "services", eller på norsk, "tjenester" - dette har som henskit å gjøre det klart for brukeren hva som kan foventes av svar.\newline
 Basert på behovet som definert tidligere kom vi fram til at API’et måtte tilby minst følgende tjenester:
 
 \begin{itemize}
-\item
+\item Henting av timeplan basert på...
 \begin{itemize}
 \item timeedit objekt-koder
 \item fagkode
@@ -996,34 +1028,37 @@ Basert på behovet som definert tidligere kom vi fram til at API’et måtte til
 \end{itemize}
 
 I tillegg skulle det være mulig å definere en start-uke og stopp-uke eller dato i timeplanen for å avgrense svar-innholdet.\newline
-For å tilfredsstille behovet ovenfor (og evt. ekstra behov), opprettet vi følgende endepunkter for webservices:
+For å tilfredsstille behovet ovenfor (og evt. ekstra behov), opprettet vi følgende @Path parmetere for webservices:
 
 \begin{table}[H]
 \begin{center}
-\caption{DASDSADSADASDASDASDASDASDADASD}
+\caption{Tabell over ikke-absolutte URIer, tilknyttet funksjon med JAX-RS og en beskrivelse.}
+\label{table:timeeditd}
   \begin{tabular}{ | p{4cm} | p{6cm} | p{6cm} |}
     \hline
-    Service URI & Funksjonsnavn & Beskrivelse \\ \hline
-    /timeedit/ & getScheduleByMultipleObjectID\newline getParams & Aksepterer TimeEdit objektkoder og svarer med fullt formatert timeplan \\ \hline
-    /timeedit/simple/ & getSimpleScheduleByMultipleObjectID & Aksepterer TimeEdit objektkoder og svarer med enkelt formatert timeplan \\ \hline
-    /timeedit/coursecode/ & getScheduleByCourseCode & Aksepterer kurskoder og svarer med enkelt formatert timeplan \\ \hline
-    /timeedit/classcode/ & getScheduleByClassCode & Aksepterer fagkoder og svarer med enkelt formatert timeplan \\ \hline
-    /timeedit/params/ & getScheduleByMirrorParameters & Speiler TimeEdit sitt parameter-system, aksepterer også fulle URLer \\ \hline
-    /timeedit/query/ & getScheduleByQuery & Ikke implementert \\
+    @Path-Parameter & Funksjonsnavn & Beskrivelse \\ \hline
+/ & getScheduleByMultipleObjectID\newline getParams & Aksepterer TimeEdit objektkoder og svarer med fullt formatert timeplan \\ \hline
+/simple/ & getSimpleScheduleByMultipleObjectID & Aksepterer TimeEdit objektkoder og svarer med enkelt formatert timeplan \\ \hline
+/coursecode/ & getScheduleByCourseCode & Aksepterer kurskoder og svarer med enkelt formatert timeplan \\ \hline
+/classcode/ & getScheduleByClassCode & Aksepterer fagkoder og svarer med enkelt formatert timeplan \\ \hline
+/params/ & getScheduleByMirrorParameters & Speiler TimeEdit sitt parameter-system, aksepterer også fulle URLer \\ \hline
+/query/ & getScheduleByQuery & Ikke implementert \\
     \hline
   \end{tabular}
 \end{center}
 \end{table}
 
+Som vist tabell \ref{table:timeeditd}  i @Path-Parameter-kolonnen, er ordene som benyttes i URI'en i lowercase, og på engelsk. Dette bidrar til at URIen blir \textit{konsistent} da de eksisterende URIene i applikasjonen for fag, studier etc... allerede er på engelsk. Hvis en bruker vet at alt er i lowercase, reduserer det sannsynligheten for skrivefeil da man ikke trenger å bekymre seg over tegnsetting. Noe som også forhåpentlig vil bidra til mindre skrivefeil er at forholdsvis korte men beskrivende ord brukes. Så langt har vi oppnådd en logisk struktur også, i og med at f.eks timeedit er overordnet alle parametere som kommer etter i URIen.
+
 \begin{figure}[H]
   \centering
   \includegraphics[width=5cm]{timeedit5.png}
-  \caption{Demonstrerer Web-servicene som registrert}
+\caption{Demonstrerer Web-servicene som registrert i NetBeans}
 \end{figure}
 
-Disse endepunktene vil ikke dekke hele TimeEdit’s funksjonsbredde, men er mer en tilstrekkelig for vår bruk. 
+Disse ressurs-endepunktene vil naturligvis ikke dekke hele TimeEdit’s funksjonsbredd, men er mer en tilstrekkelig for vår bruk.
 
-\begin{lstlisting}[language=Java, frame=single, caption={asdasdsadasdasdasdsadsadasdasdsadsa}]
+\begin{lstlisting}[language=Java, frame=single, caption={Utdrag fra klassen TimeEditService som viser en JAX-RS annotert funksjon.}]
   /**
      *
      * @param id The ID of the Object from which the schedule is to be
@@ -1035,8 +1070,8 @@ Disse endepunktene vil ikke dekke hele TimeEdit’s funksjonsbredde, men er mer 
      * @param date
      * @return Response
      */
-@GET    @Path("{objectstring:|((\\d{6}|\\d{7})/?)+}{startweek:(/startweek/[^/]+?)?}{stopweek:(/stopweek/[^/]+?)?}{date:(/date/[^/]+?)?}")
-    @Produces({MediaType.APPLICATION_JSON})
+    @GET
+    @Path("{objectstring:|((\\d{6}|\\d{7})/?)+}{startweek:(/startweek/[^/]+?)?}{stopweek:(/stopweek/[^/]+?)?}{date:(/date/[^/]+?)?}")
     public Response getScheduleByMultipleObjectID(@PathParam("objectstring") String objectString,
             @PathParam("startweek") String startweek,
             @PathParam("stopweek") String stopweek,
@@ -1047,22 +1082,22 @@ Disse endepunktene vil ikke dekke hele TimeEdit’s funksjonsbredde, men er mer 
     }
 \end{lstlisting}
 
-API URI’en som kan defineres i @Path annotasjonen er ikke dynamisk, noe som forhindret målsetningen om en enkelt forståelig og brukbar API-URI i å oppnås. Fordi URI’en er statisk definert, kan man ikke utelate deler av den. En funksjon med @Path URI som er definert slik:
+API URIen som kan defineres i @Path annotasjonen er ikke dynamisk, noe som forhindret oss i å nå målsetningen om en enkelt forståelig og brukbar API-URI. Fordi URIen er statisk definert, kan man ikke utelate deler av den. En funksjon med @Path URI som er definert slik:
 
-\begin{lstlisting}[language=HTML, frame=single, caption={asdasdsadasdasdasdsadsadasdasdsadsa}]
+\begin{lstlisting}[language=HTML, frame=single, caption={Eksempel på en statisk definert URI}]
 /resource/{objectID}/color/{color}/length/{length}
 \end{lstlisting}
 
 vil ikke kalles dersom rekkefølgen endres eller noe utelates. Det vil si at en URI formet slik:
 
-\begin{lstlisting}[language=HTML, frame=single, caption={asdasdsadasdasdasdsadsadasdasdsadsa}]
+\begin{lstlisting}[language=HTML, frame=single, caption={Eksempel på en URI}]
 http://www.server.com/resource/25/length/10
 \end{lstlisting}
 
 vil kun gi tilbake en feilmelding eller 404 - Resource not found, da en av path-parameterene var utelatt. En løsning for å unngå nettopp denne typen scenarioer, er å opprette flere funksjoner som tar i hensyn forskjellige path-mønstre, men dette skaper overflod av kode.
-Derfor tok vi i bruk regex som @Path også støtter, og kom fram til en regex-streng som vist i i utdraget av figur (figur her) DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+Derfor tok vi i bruk regex som @Path også støtter, og kom fram til en regex-streng som vist i i utdraget av figuren nedenfor:
 
-\begin{lstlisting}[language=HTML, frame=single, caption={asdasdsadasdasdasdsadsadasdasdsadsa}]
+\begin{lstlisting}[language=HTML, frame=single, caption={Selve strengen inne i en @Path variabel med regex}]
 {objectstring:|((\\d{6}|\\d{7})/?)+}{startweek:(/startweek/[^/]+?)?}{stopweek:(/stopweek/[^/]+?)?}{date:(/date/[^/]+?)?}
 \end{lstlisting}
 
@@ -1075,19 +1110,25 @@ I likhet med normal URI-sti definering i @Path, matcher også denne metoden stie
 \item date \newline Streng som bestemmer hvilken dato spesifikt timeplanen skal hentes fra.
 \end{itemize}
 
-Spørsmålstegnet (?) i regex er et symbol som gjør det foregående settet med karakterer “valgfritt”, (den matcher mønsteret ingen eller en gang) det vil si at f.eks PathParameter-variabelen “date” kan være valgfri i URI’en, og at funksjonen vil kalles dersom den utelates. Dermed har vi oppnådd målsetningen om å skape en dynamisk og enkelt brukbar URI.
+Spørsmålstegnet (?) i regex er et symbol som gjør det foregående settet med karakterer “valgfritt”, (den matcher mønsteret ingen eller en gang) det vil si at f.eks PathParameter-variabelen “date” kan være valgfri i URIen, og at funksjonen vil kalles dersom den utelates. Dermed har vi oppnådd målsetningen om å skape en dynamisk og enkelt brukbar URI. Forhåpentligvis kan dette være noe kompenserende for feilbruk av APIet da resultat vil likevel returneres og bruker kan være fornøyd selv om noe utelates.
 \newline
-I tilegg var det ønskelig å supplere flere TimeEdit objektkoder i en og samme URI, og dette løste vi med regex også. Pluss-symbolet i regex repeterer the forrige symbolet en eller flere ganger, så det kan plasseres bak en regex-gruppering som beskriver TimeEdit objektkoder. Da matcher regex TimeEdit objektkoden (inkludert skråstreker) flere ganger. Resultatet er at URI’en kan støtte flere TimeEdit objektoder så lenge de kommer etter hverandre og er separert med skråstrek:
+I tilegg var det ønskelig å supplere flere TimeEdit objektkoder i en og samme URI, noe vi også løste med regex. Pluss-symbolet (+) i regex repeterer the forrige symbolet en eller flere ganger, så det kan plasseres bak en regex-gruppering som beskriver TimeEdit objektkoder. Da matcher regex TimeEdit objektkoden (inkludert skråstreker) flere ganger. Resultatet er at URIen kan støtte flere TimeEdit objektoder så lenge de kommer etter hverandre og er separert med skråstrek:
 
-\begin{lstlisting}[language=HTML, frame=single, caption={asdasdsadasdasdasdsadsadasdasdsadsa}]
-http://www.server.com/resources/timeedit/183000/185000/startweek/1301/stopweek/1315
+\begin{lstlisting}[language=HTML, frame=single, caption={Fungerende eksempel på en URI i APIet.}]
+http://www.server.com/resources/timeedit/183000/185000/187500/startweek/1301/stopweek/1315
 \end{lstlisting}
 
-Eksempelet ovenfor viser en gyldig URI som inneholder to TimeEdit objektkoder, i tillegg til at “date” PathParameter-variablen er utelatt. Det finnes en øvre grense på hvor mange TimeEdit-koder som kan inkluderes.\newline
-\newline
+Eksempelet ovenfor viser en gyldig URI som inneholder tre TimeEdit objektkoder, i tillegg til at “date” PathParameter-variablen er utelatt. Det finnes en øvre grense på hvor mange TimeEdit-koder som kan inkluderes som kan defineres i TimeEditService.\newline
+
+\subsubsection{Konvertering av klasser til JSON}
+Når APIet var utformet gjensto det å konvertere klassene som holdt dataene til JSON. I seksjonen om JAX-RS i teoretisk grunnlag nevnes det at JAX-RS har egen støtte for nettopp konvertering av POJO-klasser (eller andre Java-API klasser som Response) til JSON, gitt at Getter-og-Setter funksjoner er definert. I klassen TimeEditService håndteres dette i metoden getResponse, som bruker Response-klassen i Java APIet til å genere svar. Eksempel på bygging av et slikt Response objekt ses nedenfor, hvor variabelen \textbf{responseEntity} er en TimeEditSchedule-klasse.
+\begin{lstlisting}[language=HTML, frame=single, caption={Fungerende eksempel på en URI i APIet.}]
+return Response.ok(responseEntitity, MediaType.APPLICATION_JSON).build();
+\end{lstlisting}
+
 I tillegg til å kunne tilby en fullt formatert timeplan i JSON som vist i forkortet versjon nedenfor:
 
-\begin{lstlisting}[language=HTML, frame=single, caption={asdasdsadasdasdasdsadsadasdasdsadsa}]
+\begin{lstlisting}[language=HTML, frame=single, caption={Forkortet JSON- av en fullt formatert timeplan som hentet fra TimeEdit og behandlet i webapplikasjonen}]
 {
 	scheduleYear: "2013",
 	weekStart: "14",
@@ -1153,11 +1194,44 @@ I tillegg til å kunne tilby en fullt formatert timeplan i JSON som vist i forko
 		}
 \end{lstlisting}
 
-kan også en enklere formatert timeplan returneres som kun returnerer dager /m forelesninger og involverte fag. Dette ble vurdert som hensiktsmessig siden det ikke var nødvendig å returnere hele og fullt formaterte timeplaner til de fleste av funksjonene i mobil-applikasjonen. 
+kan også en enklere formatert timeplan returneres som kun returnerer dager /m forelesninger og involverte fag. Det vil si kun JSON-arrayet "days" som også er inkludert i kodesnutten ovenfor. Dette ble vurdert som hensiktsmessig siden det ikke var nødvendig å returnere hele og fullt formaterte timeplaner til de fleste av funksjonene i mobil-applikasjonen.
 
 \subsection{Integrering av TimeEdit i mobil-applikasjonen}
 
-Med ferdigutviklet metode for å koble sammen TimeEdit og vårt eget system for fag, gjensto det å implementere og presentere dataene i mobil-applikasjonen. Dette ble gjort i henhold med den eksisterende lag-strukturen i applikasjonen, og i tillegg til dette kan man sjekke dagens timeplan fra hvor som helst i applikasjonen, som illustrert under:
+Med ferdigutviklet metode for å koble sammen TimeEdit og vårt eget system for fag, gjensto det å implementere og presentere dataene i mobil-applikasjonen. Funksjonalitet for å gjøre HTTP-kall er allerede implementert i mobil-applikasjonen for Android, og dette bygger vi på. Mobil-applikasjonen er en såkalt \textit{rik applikasjon}, som kortfattet betyr at applikasjonen bruker Android's API og retningslinjer for behanding og presentering av data. For å oppnå dette opprettet vi en domenestruktur i form av klasser på klientsiden (mobil-applikasjon), som kunne behandle dataene med egne funksjoner og metoder. Mobil-applikasjonen har en egen Domain-struktur, og kortfattet betyr dette at alle domene-klasser burder arve fra klassen Domain. Innholdet i disse klassene reflekterer stort sett innholdet i domeneklassene på web-applikasjonsbiten, men med funksjoner for deserialisering av JSON. Et eksempel på dette kan ses i kodesnutten under:
+ 
+\begin{lstlisting}[language=Java, frame=single, caption={To funksjoner fra Domain-klassen TimeEditSchedule i mobil-applikasjonen}]
+public TimeEditSchedule(JSONObject json) throws JSONException {
+     if(json.optString("scheduleYear").isEmpty()){
+        simpleFormat = true;
+        this.days = ScheduleWeek.JSONArrayToDays(json.getJSONArray("days"));
+     } else {
+         simpleFormat = false;
+         this.scheduleYear = json.getString("scheduleYear");
+         this.weekStart = json.getString("weekStart");
+         this.weekEnd = json.getString("weekEnd");
+         this.weeks= JSONArrayToWeeks(json.getJSONArray("weeks"));
+     }      
+ }
+     
+ public static List<ScheduleWeek> JSONArrayToWeeks(JSONArray jsonArray) throws JSONException {
+     List<ScheduleWeek> retVal = new ArrayList<ScheduleWeek>();        
+     for (int i = 0; i < jsonArray.length(); i++) {
+         retVal.add(new ScheduleWeek(jsonArray.getJSONObject(i)));
+     }        
+     return retVal;
+ }
+ \end{lstlisting}
+ 
+ Integrering av TimeEdit ble gjort i henhold med den eksisterende lag-strukturen i applikasjonen som er diskutert tidligere i dette kapittelet i seksjonen om Mobilapplikasjonen. Grovt innebærer det at den nåværende konteksten i programmet skal styre innholdet som presenteres, dvs. at hvis man er inne på et fag, skal timeplanen være fra dette faget.
+ 
+Mye av presentasjonen i applikasjonen består av moduler som er internt kalt "fragmenter" som inneholder lister, visninger videoer eller andre funksjoner. Det ble bestemt at et fragment for TimeEdit skulle opprettes, og med dette var det nødvendig å tilpasse det nåværende listesystemet til å kunne vise en timeplan.
+Til dette formålet opprettet vi en ny type ListView og BaseAdapter som kunne sortere og presentere disse dataene, SectionedListView og SectionedListAdapter.
+Disse er definert som klasser som arver fra ListView og BaseAdapter, og det originale ListFragmentet ble utvidet med funksjonalitet til å håndtere disse nye klassene.
+Vi så det som nødvendig å gjøre dette fordi å presentere en tekst-tabell produserte ikke like pene og konsistente visninger som en liste, og en liste med objekter vil mye enklere kunne tilby \textit{rike brukeropplevelser}. Resultatet var en scrollbar liste med seksjoner for uker og dager, hvor den gjeldende dagen/uken er limt i en egen seksjon fast øverst i listen for å enklere holde oversikt. Denne seksjonen kan animeres og gjemmes basert på scrolling, dvs. at hvis man scroller ned til man kommer til en ny uke, forsvinner den nåværende uken og erstattes med den nye. 
+Listen kan i tillegg til dette akseptere trykk og annen interagering på lik linje med andre lister i mobil-applikasjonen.
+
+I tillegg til dette kan man sjekke "dagens" timeplan fra hvor som helst i applikasjonen, som illustrert under:
 
 \begin{figure}[H]
         \centering

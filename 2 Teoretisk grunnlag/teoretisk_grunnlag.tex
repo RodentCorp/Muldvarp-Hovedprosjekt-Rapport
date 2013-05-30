@@ -40,12 +40,12 @@ Dette er en protokoll som brukes av nettsider til å fortelle nettjenester om de
 Protokollen kan forby tilgang til deler av sin egen mappestruktur, eller for å blokkere spesifikke tjenester(ofte blokkere søkemotorer). Det er viktig å merke seg at denne protokollen ikke aktivt blokkerer noe som helst, men fungerer som internettets trafikkskilt. Det vil si at protokollen ikke hindrer deg i å gjøre noe, men den viser om det er lov eller ikke.
 
 \subsection{Model View Controller}
-\begin{wrapfigure}{r}{0.5\textwidth}
-  \begin{center}
+\begin{figure}[H]
+  \centering
     \includegraphics[width=0.3\textwidth]{mvc.png}
-  \end{center}
-  \caption{Model View Controller-modellen}
-\end{wrapfigure}
+   \caption{Model View Controller-modellen}
+\end{figure}
+
 Model View Controller (MVC) er en arkitektur for programvare som begrenser hvilke deler av programmet brukeren interagerer med. "Model"-delen er kjernen i applikasjonen og består av dataen til applikasjonen (databasen), applikasjonslogikk, metoder og funksjoner. "View"-delen består av den informasjonen fra modell-laget som er tiltenkt brukeren som for eksempel tekst, bilde, lyd osv. "Controller" delen består av håndtering av brukerens input for å styre de to andre lagene. \endnote{Ed Lecky-Thompson, Heow Eide-Goodman, Steven D. Nowicki og Alec Cove, Professional PHP5 (Wiley Publishing, Inc , 2005)}
 
 \subsection{Web Services}
@@ -86,7 +86,7 @@ En URI tjener som en identifikator til endepunkt i et system som tilbyr web-serv
 Denne delen beskriver forskjellige dataformat som har blitt benyttet i prosjektet og er relevant ellers for denne rapporten.
 
 \paragraph{JSON}
-JSON (JavaScript Object Notation) er et lettvekts dataformidlingsformat basert på delsyntaks fra JavaScript. Enkelheten i JSON ligger i at det er lettlest og lettskrevet av mennesker, noe som gjør jobbing med JSON til en relativt enkel oppgave sammenlignet med formater med lignende funksjonsområder. (b.l.a XML).\newline
+JSON (JavaScript Object Notation) er et lettvekts dataformidlingsformat basert på delsyntaks fra JavaScript. Enkelheten i JSON ligger i at det er lettlest og lettskrevet av mennesker, noe som gjør det å arbeide med JSON til en relativt enkel oppgave sammenlignet med formater med lignende funksjonsområder. (bla. XML).\newline
 I hovedsak er JSON basert på nøkkel/verdi-par og lister som har en nøkkelverdi som identifikasjon. Som nøkkelverdier bruker JSON strenger som demonstrert i figuren nedenfor:
 
 \begin{lstlisting}[language=HTML, frame=single, caption={(JSON-formatert data)}]
@@ -148,11 +148,11 @@ Språket er utviklet med fem hovedmål \endnote{\url{http://www.oracle.com/techn
 \item Det skal ha høy ytelse
 \item Det skal tolkes, genereres tråder og være dynamisk i sanntid
 \end{itemize}
-Java brukes i dag til alt ifra til et bredt spekter av formål og til mange forskjellige typer enheter. Dette innebærer bruk som webtjenere(nettsider etc.), enkeltstående applikasjoner(normale programmer) og innebygde systemer(vaskemaskiner, kaffemaskiner etc.). 
+Java brukes i dag til et bredt spekter av formål og til mange forskjellige typer enheter. Dette innebærer bruk som webtjenere(nettsider etc.), enkeltstående applikasjoner(normale programmer) og innebygde systemer(vaskemaskiner, kaffemaskiner etc.). 
 
 \subsubsection{Teknisk}
 
-Java applikasjoner, eller programmer kjører på en virtuell maskin som heter Java Virtual Machine(JVM). Dette vil si at på toppen har man applikasjonen. Denne kjører på en virtuell maskin. Dette vil si at uansett hvilken fysisk maskin applikasjonen kjører på, vil alltid maskinen se lik ut for applikasjonen. Om det gjøres systemkall til operativsystemet, oversetter den virtuelle maskinen dette for applikasjonen. \endnote{\url{http://www.java.com/en/about/} - 28.05.2013}
+Java applikasjoner, eller programmer kjører på en virtuell maskin som heter Java Virtual Machine(JVM). Dette betyr at applikasjonen kjører på en virtuell datamaskin. Dette vil si at uansett hvilken fysisk maskin applikasjonen kjører på, vil alltid maskinen se lik ut for applikasjonen. Om det gjøres systemkall til operativsystemet, oversetter den virtuelle maskinen dette for applikasjonen. \endnote{\url{http://www.java.com/en/about/} - 28.05.2013}
 
 \subsection{Regulære uttrykk og Java}
 
@@ -179,7 +179,7 @@ Enterprise JavaBeans arkitekturen er designet for å lage komponent-baserte appl
 
 \subsubsection{JavaServer Faces}
 
-JavaServer Faces (JSF) er en teknologistandard for å bygge grafiske brukergrensesnitt i serversiden, JSF blir ofte brukt i Java EE webapplikasjoner. En JSP (JavaServer Pages) fil kan inneholde standard HTML kode og JSF templates eller moduler kalt Facelets. JSF komponentene kan gjengis forskjellig på forskjellige klient-enheter. Formålet med JSF er å forenkle bygging av grafiske brukergrensesnitt for webapplikasjons-utviklere og å separere applikasjonslogikk og presentasjonslaget for modulær og teamvennlig utvikling. JSF gjør det også lettere for utviklere å kommunisere mellom applikasjonslogikken og presentasjonslaget.  \endnote{\url{http://www.oracle.com/technetwork/java/javaee/overview-140548.html} - 15.05.2013}
+JavaServer Faces (JSF) er en teknologistandard for å bygge grafiske brukergrensesnitt i serversiden. JSF blir ofte brukt i Java EE webapplikasjoner. En JSP (JavaServer Pages) fil kan inneholde standard HTML kode og JSF templates eller moduler kalt Facelets. JSF komponentene kan gjengis forskjellig på forskjellige klient-enheter. Formålet med JSF er å forenkle bygging av grafiske brukergrensesnitt for webapplikasjons-utviklere og å separere applikasjonslogikk og presentasjonslaget for modulær og teamvennlig utvikling. JSF gjør det også lettere for utviklere å kommunisere mellom applikasjonslogikken og presentasjonslaget.  \endnote{\url{http://www.oracle.com/technetwork/java/javaee/overview-140548.html} - 15.05.2013}
 
 \subsubsection{Primefaces}
 
@@ -226,7 +226,7 @@ public class resourceClass {
 \end{lstlisting}
 
 Kodesnutten ovenfor viser to metoder som begge er tilgjengelig via en URI som er definert i Java-annotasjonen @Path ovenfor klassen og metodene. Innenfor @Path-strengen er "{id}" en variabel som kan benyttes for å hente ut et spesifikt objekt. Java-annotasjonene @Produces og @Consumes spesifiserer hvilken mediatype (her JSON) som skal produseres og tolkes respektivt.
-Java-annotasjonen @Path har også støtte for regulære uttrykk \endnote{RESTful Java with JAX-RS, Bill Burke, O’Reilly Media, inc, 2009}, som muligjør flere typer URI-matching. Den tredje funksjonen i figur (FIGUR HER) demonstrerer dette, hvor det regulære uttrykket "\\w{1,10}" vil i Java matche enhver streng med sammenhengende karakterer med maksimal lengde 10, noe som gjør at man i praksis begrenser {name}-parameteren til 10 karakterer. Har {name}-parameteren en lengde på 11 eller mer, vil kun en 404-feil returneres.\newline
+Java-annotasjonen @Path har også støtte for regulære uttrykk \endnote{RESTful Java with JAX-RS, Bill Burke, O’Reilly Media, inc, 2009}, som muligjør flere typer URI-matching. Den tredje funksjonen i figur (FIGUR HER) demonstrerer dette, hvor det regulære uttrykket “\textbackslash\textbackslash w{1,10}” vil i Java matche enhver streng med sammenhengende karakterer med maksimal lengde 10. Dette gjør at man i praksis begrenser {name}-parameteren til 10 karakterer. Har {name}-parameteren en lengde på 11 eller mer, vil kun en 404-feil returneres.\newline
 Fra endepunktet’s perspektiv (den endelige URI’en)kan også det JAX-RS definerer som matrise-elementer benyttes, som består av forhåndsdefinerte strenger (@MatrixParam) som etterfølger en @PathParam-streng med ett semikolon (;). Denne funksjonaliten fører til økt fleksibilitet da man oppnår flere kombinasjoner med @PathParam og @MatrixParam.
 
 \subsection{Bibliotek}
@@ -245,7 +245,7 @@ JSoup er et bibliotek for Java som blir brukt til å håndtere HTML kode fra net
 
 \subsubsection{RibbonMenu}
 
-Ribbonmenu er et bibliotek for Android som brukes til å presentere data i en meny som kan "skli" inn fra siden av skjermen. Dette biblioteket etterligner den samme funksjonen som man finner i menyen på applikasjonene FaceBook og Google+. Fordelen med å bruke denne typen meny er at man har plass til mye informasjon og store ikoner i menyen, uten å bruke mye plass på skjermen når man ikke bruker den. En annen fordel er at den følger Google sine retningslinjer om komformitet i applikasjonsdesign. Det finnes et standard bibliotek fra Google med mye av den samme funksjonen, men denne var ikke tilgjengelig da utviklingen av applikasjonen startet. \endnote{\url{http://developer.android.com/design/patterns/navigation-drawer.html} - 28.05.2013}Dette biblioteket heter Navigation Drawer.
+Ribbonmenu er et bibliotek for Android som brukes til å presentere data i en meny som kan “skli” inn fra siden av skjermen. Dette biblioteket etterligner den samme funksjonen som man finner i menyen på mobilapplikasjonene FaceBook og Google+. Fordelen med å bruke denne typen meny er at man har plass til mye informasjon og store ikoner i menyen, uten å bruke mye plass på skjermen når man ikke bruker den. En annen fordel er at den følger Google sine retningslinjer om komformitet innen applikasjonsdesign. Det finnes et standard bibliotek fra Google med mye av den samme funksjonen, men denne var ikke tilgjengelig da utviklingen av applikasjonen startet. \endnote{\url{http://developer.android.com/design/patterns/navigation-drawer.html} - 28.05.2013}Dette biblioteket heter Navigation Drawer.
 
 \section{Programverktøy}
 

@@ -1,7 +1,7 @@
 \documentclass[../main.tex]{subfiles} 
 \begin{document}
 
-\section{RESULTATER}
+\chapter{RESULTATER}
 
 I denne seksjonen presenterer vi resultatet av prosjektet. Seksjonen er delt i tre deler, webapplikasjonsdelen hvor forandringene på serversiden blir presentert, mobilapplikasjonsdelen hvor forandringene i mobilapplikasjonen blir beskrevet og systemintegrasjonsdelen der vi presenterer løsningene til de integrerte systemene.\newline
 \newline
@@ -13,7 +13,7 @@ Diagrammet under viser den overordnede strukturen til hele systemet som ble utvi
   \caption{Oversikt over hele systemet}
 \end{figure}
 
-\subsection{Mobilapplikasjonen}
+\section{Mobilapplikasjonen}
 
 \begin{figure}[H]
         \centering
@@ -56,7 +56,7 @@ Når brukeren velger et fag fra fagliste-fragmentet går applikasjonen videre ti
 \newline
 Grunnen til at denne strukturen ble valgt er at den ble spesifisert av kunden da systemet ble bestilt i 2012. Kravspesifikasjonen hvor strukturen ble beskrevet ble fremlagt og produsert av Harald Yndestad. Denne kravspesifikasjonen spesifiserte systemet som ble utviklet opp til starten av dette prosjektet.\newline
 
-\subsubsection{Sammenligning med det gamle systemet}
+\subsection{Sammenligning med det gamle systemet}
 
 \begin{figure}[H]
   \centering
@@ -66,7 +66,7 @@ Grunnen til at denne strukturen ble valgt er at den ble spesifisert av kunden da
 
 I det gamle systemet hadde alle objektene på alle lagene de samme sidene. På fremsiden måtte ressurslinkene til informasjonen på serveren hardkodes inn i mobilapplikasjonen og kompileres hver gang det skulle gjøres en endring. Dette gjorde det gamle systemet veldig tungvint å vedlikeholde og gjorde systemet veldig sårbart mot systemkrasj om ressurser på serveren ble slettet. På lagene under (studier og fag) var informasjonen lagret som attributter i lag-objektet. Det vil si at hvert lag måtte ha en og bare en av hvert type dataobjekt (artikkel, videoer osv). Om lag-objektet manglet en ressurslink for et objekt eller linken til ressursen var ugyldig krasjet applikasjonen.
 
-\subsubsection{Git statistikk}
+\subsection{Git statistikk}
 
 Statistikk for endringer i mobilapplikasjonens github repository siden prosjektstart:
 \begin{itemize}
@@ -78,12 +78,12 @@ Statistikk for endringer i mobilapplikasjonens github repository siden prosjekts
 \item Totalt antall linjer - XML: 2146
 \end{itemize}
 
-\subsubsection{Installasjonsinstrukser}
+\subsection{Installasjonsinstrukser}
 
 For å installere mobilapplikasjonen på mobiltelefonen eller nettbrettet ditt trenger du minst versjon 4.0 (Ice Cream Sandwich) av Android operativsystemet. Siden applikasjonen ikke er tilgjengelig på Google Play butikken må den installeres manuelt, for å gjøre dette må du først tillate installering av eksterne applikasjoner gå inn på innstillinger -> sikkerhet og skru på “ukjente kilder”. Etter det er det bare å åpne den kompilerte .apk filen i prosjektmappen (Muldvarp/bin/Muldvarp-Debug.apk). Denne filen er også 
 linket til på fremsiden av webapplikasjonen.
 
-\subsubsection{Forklaring av brukergrensesnittet}
+\subsection{Forklaring av brukergrensesnittet}
 
 \begin{figure}[H]
   \centering
@@ -105,11 +105,11 @@ linket til på fremsiden av webapplikasjonen.
 \item Applikasjonsvelger-knapp. Standard i Android operativsystemet. Trykk her for å velge applikasjoner som kjører i bakgrunnen.
 \end{enumerate}
 
-\subsubsection{Serviceprossesen}
+\subsection{Serviceprossesen}
 
 Serviceprossesen er en egen prosses som kjører parallelt med applikasjonens hovedprosses. Den har ansvar for å hente data fra serveren, parse dataen og lagre dataobjektene i minne
 
-\subsubsection{Datainnlasting}
+\subsection{Datainnlasting}
 
 Mobilapplikasjonen laster inn data fra webapplikasjonen via REST tjenestene på serveren. Tjenestene leverer dataen i JSON format som blir parset og lagret i minnet av serviceprosessen.
 
@@ -122,16 +122,16 @@ Mobilapplikasjonen laster inn data fra webapplikasjonen via REST tjenestene på 
 Først lager hovedprosessen en tilkobling til serviceprosessen og sender en førespørsel om dataen den trenger. Så laster serviceprosessen ned og parser dataen hovedprosessen forespurte. Når informasjon er ferdig parset av serviceprosessen, sender den en melding til hovedprosessen om at informasjon er klar til bruk. Deretter henter hovedprosessen informasjonen fra serviceprosessen og gjør den tilgjengelig for bruk av fragmentene.\newline
 For eksempel så vil første innlasting av data til mobilapplikasjonen bestå av kall til “frontpage” for å få fragmentene til fremsiden, “programme” for å hente en liste av alle studiene, “articles/news” for å få nyhetene og “timeedit/<klasseid>” for å hente brukerens timeplan. Senere vil mobilapplikasjonen sende førespørsler etter mer data etter behov. Se seksjonen om webapplikasjonen i resultatdelen for nærmere oversikt over de forskjellige tjeneste-kallene
 
-\subsubsection{Fragmenter/Moduler}
+\subsection{Fragmenter/Moduler}
 
 Mobilapplikasjonen er bygd opp av flere lag der hvert lag har flere fragmenter (se begreper) eller sider med forskjellig informasjon. Disse fragmentene styres av laget (aktiviteten, se begreper) som henter frem og viser fragmenter etter behov. Hvilke fragmenter som er på hvilket lag og objekt er definert av webapplikasjonen. Her er en oversikt over de forskjellige typene fragmenter.
 
-\paragraph{Lister}
+\subsubsection{Lister}
 
 Store deler av applikasjonens sider består av lister over andre objekter. Disse listene kan inneholde alle de forskjellige dataobjekt typene. I disse listene kan brukerene filtrere listen med et søkeord med forstørrelsesglass knappen i toppmenyen
 
 
-\paragraph{Artikkel / Nyheter}
+\subsubsection{Artikkel / Nyheter}
 
 \begin{figure}[H]
         \centering
@@ -151,7 +151,7 @@ Store deler av applikasjonens sider består av lister over andre objekter. Disse
 
 Artikkel fragmentet viser en HTML side fra webapplikasjonen i et standard WebView i Android. Nyhetsfragmentet viser en liste med artikler fra valgt kategori, når du velger en får du samme visning som artikkel fragmentet.
 
-\paragraph{Studier / Fag}
+\subsubsection{Studier / Fag}
 
 \begin{figure}[H]
         \centering
@@ -171,7 +171,7 @@ Artikkel fragmentet viser en HTML side fra webapplikasjonen i et standard WebVie
 
 Viser en liste over alle studier / fag i valgte studie. Når du velger et studie eller fag går du “ned et lag” til det valgte studie / faget. Her vises studielisten filtrert med søkeordet “data” og fremsiden til det valgte objektet i studielaget.
 
-\paragraph{Dokumenter}
+\subsubsection{Dokumenter}
 
 \begin{figure}[H]
         \centering
@@ -191,7 +191,7 @@ Viser en liste over alle studier / fag i valgte studie. Når du velger et studie
 
 Inneholder en liste over alle dokumentene knyttet til fragmentet. Når klikker på et dokument i listen får du opp en oversiktsside med informasjon om det valgte dokumentet. Trykk på “Open” for å åpne dokumentet i mobilen/nettbrettets standard dokumentvisnings-applikasjon. Trykk “Download” for å laste ned filen til mobilen/nettbrettes standard nettlastingsmappe
 
-\paragraph{Video}
+\subsubsection{Video}
 
 \begin{figure}[H]
         \centering
@@ -211,7 +211,7 @@ Inneholder en liste over alle dokumentene knyttet til fragmentet. Når klikker p
 
 Video fragmentet inneholder en liste av alle videoer knyttet til fragmentet. Når du velger en video åpner videoprogrammet på mobilen, i dette tilfellet YouTube
 
-\paragraph{Quiz}
+\subsubsection{Quiz}
 
 Quiz-seksjonen av mobil-applikasjonen tilbyr quizzer eller andre type spørringer til brukerene. Av de forskjellige typene er kun de som ikke kommuniserer svar tilbake til server implementert grunnet mangel av sentralt brukersystem.
 Quiz-fragmentet som tilgjengelig fra hovedsiden inneholder en liste over quizzer som er knyttet til hovedsiden’s lagtype - fag, kurs eller genere
@@ -265,7 +265,7 @@ Videre kan man trykke oppsummeringsknappen for å se en opptelling riktige svar 
 
 
 
-\subsection{Webapplikasjonen}
+\section{Webapplikasjonen}
 
 \begin{figure}[H]
   \centering
@@ -295,7 +295,7 @@ Endringer i webapplikasjonen siden forrige versjon (høsten 2012)
 Laget dokumentasjonsider.
 \end{itemize}
 
-\subsubsection{Git statistikk}
+\subsection{Git statistikk}
 
 Statistikk for endringer i webapplikasjonens github repository siden prosjektstart:
 \begin{itemize}
@@ -307,11 +307,11 @@ Statistikk for endringer i webapplikasjonens github repository siden prosjektsta
 \item Totalt antall linjer xhtml / jsf: 7090
 \end{itemize}
 
-\subsubsection{Installasjonsinstrukser}
+\subsection{Installasjonsinstrukser}
 
 Webapplikasjonen kompileres til en .war fil. Denne filen kan publiseres på flere typer webapplikasjonsservere. I vårt prosjekt brukte vi GlassFish Open Source Edition som vår webapplikasjonsplattform, derfor er disse instruksjonene kun for GlassFish.
 
-\paragraph{Sette opp databasen:}
+\subsubsection{Sette opp databasen:}
 
 \begin{enumerate}
 \item Trykk på “Resources” i venstremenyen
@@ -340,7 +340,7 @@ Webapplikasjonen kompileres til en .war fil. Denne filen kan publiseres på fler
 \item Trykk “OK”
 \end{enumerate}
 
-\paragraph{Sette opp administratorbruker}
+\subsubsection{Sette opp administratorbruker}
 
 \begin{wrapfigure}{l}{4cm}
   \begin{center}
@@ -364,7 +364,7 @@ For å konfigurere administratorbrukeren:
 \item Trykk “Save”
 \end{enumerate}
 
-\paragraph{Publiser applikasjonen}
+\subsubsection{Publiser applikasjonen}
 \begin{enumerate}
 \item Gå til “Applications” i venstremenyen
 \item Trykk “Deploy”
@@ -376,7 +376,7 @@ For å konfigurere administratorbrukeren:
 
 Applikasjonen er nå klar til bruk og kan nås med adressen “http://domene.no/hials”. Om glassfish ikke kjører på port 80 må du legge til portnummeret i adressen (eg. http://domene.no:8080/hials).
 
-\paragraph{Sett webapplikasjonen til standardapplikasjon}
+\subsubsection{Sett webapplikasjonen til standardapplikasjon}
 
 For at webapplikasjonen skal visest i rot-adressen (eg. eapp.uials.no) må du gjøre følgende steg for å sette webapplikasjonen som standardapplikasjon
 
@@ -389,11 +389,11 @@ For at webapplikasjonen skal visest i rot-adressen (eg. eapp.uials.no) må du gj
 \end{enumerate}
 Nå er webapplikasjonen tilgjengelig på rot-adressen til serveren.
 
-\subsubsection{Administrasjonsgrensesnitt}
+\subsection{Administrasjonsgrensesnitt}
 
 Administrasjonsgrensesnittet er utviklet i JavaServer Faces og bruker spesielt funksjoner og komponenter fra Primefaces biblioteket. Grensesnittet er delt inn i flere faner, en fane for hvert type objekt i systemet
 
-\paragraph{Fremside}
+\subsubsection{Fremside}
 
 \begin{figure}[H]
   \centering
@@ -403,7 +403,7 @@ Administrasjonsgrensesnittet er utviklet i JavaServer Faces og bruker spesielt f
 
 Her kan tittelen og hvilke fragmenter som skal vises på fremsiden av mobilapplikasjonen styres. Her får også administratoren en forhåndsvisning av hvordan dette vil se ut på mobilapplikasjonen.
 
-\paragraph{Studier}
+\subsubsection{Studier}
 
 \begin{figure}[H]
   \centering
@@ -445,7 +445,7 @@ Her velger administratoren hvilke fag som er i studiet.
 
 Her velges fragmentene som skal visest for det valgte studiet i mobilapplikasjonen.
 
-\paragraph{Fag}
+\subsubsection{Fag}
 
 \begin{figure}[H]
   \centering
@@ -455,7 +455,7 @@ Her velges fragmentene som skal visest for det valgte studiet i mobilapplikasjon
 
 Redigeringssiden for fag. Her defineres fagets navn, brødtekst og bilde. Her visest også hvilke studier faget tilhører. Resten av siden er delt inn i underkategorier der fagets tema og oppgaver, obligatoriske innleveringer, eksamener og hvilke fragmenter som skal visest på mobilapplikasjonen defineres.
 
-\paragraph{Dokumenter}
+\subsubsection{Dokumenter}
 Som i de andre fanene vises først alle dokumentene i systemet i en liste.
 
 \begin{figure}[H]
@@ -466,7 +466,7 @@ Som i de andre fanene vises først alle dokumentene i systemet i en liste.
 
 Redigeringssiden for dokumenter. Her legges inn navnet til dokumentet, URL eller lenke til dokumentet (i denne versjonen av systemet er ikke filopplasting / lagring støttet, derfor må filene lastes opp til en annen server/tjeneste og linkes til) og en liten tekstbeskrivelse av dokumentet.
 
-\paragraph{Quizzer}
+\subsubsection{Quizzer}
 
 Som vanlig vises først en liste over alle quizzen i systemet.
 
@@ -504,7 +504,7 @@ Av disse typene er det kun feedback som er ferdig implementert grunnet tidshensy
 Redigeringssiden til et valgt spørsmål. Her kan administratoren legge til alternativer og velge hvilke som er riktig svar.
 
 
-\paragraph{Videoer}
+\subsubsection{Videoer}
 Først vises en liste over alle videoene i systemet.
 
 \begin{figure}[H]
@@ -516,7 +516,7 @@ Først vises en liste over alle videoene i systemet.
 Redigeringssiden for videoer. Her legges inn / redigeres navnet til videoen, typen (youtube eller videofil), URL / link til videoen, brødtekst, beskrivelse, URL til bildefil for videoens ikon i mobilapplikasjonens listevisning og et thumbnail bilde
 
 
-\paragraph{Artikler}
+\subsubsection{Artikler}
 Som vanlig vises en liste over alle artiklene i systemet.
 
 \begin{figure}[H]
@@ -528,7 +528,7 @@ Som vanlig vises en liste over alle artiklene i systemet.
 Redigeringssiden for artikler. Her legges inn / redigeres artikkelens tittel, forfatter, kategori (brukt til å sortere artikler for nyhetsfunksjonen), dato, beskrivelse, ingresstekst og selve artikkelen. Artikkelens tekst bruker en WYSIWYG editor og lagrer artikkelen i HTML format. Administratoren kan også legge inn egendefinerte HTML kode. Stien til artikkel siden er: “server.no/faces/article.xhtml?articleid=<ID>” der <ID> er artikkelens interne I
 
 
-\paragraph{Brukere}
+\subsubsection{Brukere}
 Viser en liste over brukerene i systemet.
 
 \begin{figure}[H]
@@ -539,7 +539,7 @@ Viser en liste over brukerene i systemet.
 
 Redigeringssiden for brukere. Her fylles inn diverse informasjon om brukeren. I denne versjonen av applikasjonen har brukersystemet ingen funksjon. Brukerfunksjonen var planlagt som både et brukersystem med rettigheter og eierskap av objekter i systemet, og som et oppslagsverk for lærere / ansatte i skolen for skolens eleve
 
-\paragraph{Dokumentasjon}
+\subsubsection{Dokumentasjon}
 
 \begin{figure}[H]
   \centering
@@ -550,11 +550,11 @@ Redigeringssiden for brukere. Her fylles inn diverse informasjon om brukeren. I 
 Hjelpeside for webapplikasjonen. Her finnes instruksjoner for bruk av de forskjellige delene av administrasjonsgrensesnittet.
 
 
-\subsubsection{Modulært fragmentsystem}
+\subsection{Modulært fragmentsystem}
 
 I tidligere versjoner av mobilapplikasjonen var fragmentene (se begreper) eller sidene på hvert lag statisk programmert inn i mobilapplikasjonen. I dette systemet hadde alle objektene på et lag (fremside, studieretninger, fag) de samme sidene, en av hvert type fragment. Det var ikke alle tilfellene dette passet med objektets tilgjengelige informasjon, og derfor ble det besluttet at sidene på hvert objekt skulle bli styrt av webapplikasjonen. Med det nye systemet kan administratorene definere nøyaktig hva som skal vises på mobilapplikasjonen. Dette systemet var også laget for å kunne lett utvides med nye moduler. Se kapittelet om mobilapplikasjonen for oversikt over de forskjellige fragmentene
 
-\subsubsection{ER modell}
+\subsection{ER modell}
 
 \begin{figure}[H]
   \centering
@@ -566,7 +566,7 @@ ER modellen er bygd opp med det logiske lagene på topp (fremside, studier, fag)
 \newline
 I det gamle systemet hadde hvert av lagene (fremside, studie, fag) relasjoner direkte til dataobjektene. Det vil si at hvert lag hadde en instans av hvert fragment. Med det nye fragmentsystemet kan hvert lag ha flere instanser av samme type fragment.
 
-\subsubsection{REST tjenester}
+\subsection{REST tjenester}
 
 For at eksterne applikasjoner som mobilapplikasjonen skal kunne bruke dataen i systemet har vi et sett med “RESTful” tjenester. Disse leverer begrenset informasjon basert på hva klientapplikasjonen spør om. Her er en oversikt over hvilke tjenester som er i bruk av denne versjonen av applikasjonen.
 
@@ -595,9 +595,9 @@ For at eksterne applikasjoner som mobilapplikasjonen skal kunne bruke dataen i s
 
 
 
-\subsection{Systemintegrasjon}
+\section{Systemintegrasjon}
 
-\subsubsection{TimeEdit}
+\subsection{TimeEdit}
 
 Den første oppgaven ved integreringen av TimeEdit var å videre definere hva av tjenesten som var nyttig for applikasjonen’s bruksområde. TimeEdit som implementert av HIALS tilbyr b.la booking av rom, oppslag av planlagte forelesninger basert på hvilke forelesere er med, eller hvilket studieløp forelesningen er med i, m.m. \endnote{\url{jsoup.org}} \endnote{\url{jsoup.org}} \newline
 \newline
@@ -605,7 +605,7 @@ Hovedfokuset i applikasjonen er sentrert rundt studier og enkelt-fag, og dermed 
 \newline
 Det å kunne enkelt reservere rom fra applikasjonen er forsåvidt også noe som har klar nytteverdi, men er ikke like godt knyttet opp mot applikasjonen’s hovedfokus. Dermed ble ikke tatt med i denne omgangen av funksjonsimplementeringen.
 
-\subsubsection{Utvikling}
+\subsection{Utvikling}
 
 Med en gang kunne vi ramse opp tre metoder for å implementere skolens timeplanløsning i applikasjonen. Disse tre er:
 
@@ -627,7 +627,7 @@ Dette gjør at vi har en ny problemstilling. Skal applikasjonen lages for dagens
 \newline
 Løsningen som ble valgt er å implementere en web-scraping mekanisme på server siden av applikasjonen, og så henter applikasjonen de dataene den trenger fra serveren. På denne måten trenger man bare forandre hvordan serveren innhenter data, mens android applikasjonen kan forbli uforandret. Det vil si at for brukerne vil ikke opplevelsen bli noe forskjellig med den gamle TimeEdit løsningen og den nye TimeEdit løsningen
 
-\subsubsection{Lovlige hensyn}
+\subsection{Lovlige hensyn}
 
 Med den web scraping løsningen som ble valgt var det viktig å vite at innhentingen av dataene ikke bryter med noen lover om opphavsrett, da spesifikt åndsverksloven.
 Etter å ha undersøkt dette, hovedsakelig ved bruk av internett kom vi frem til konklusjonen at innhentingen av data ikke bryter med lover eller retningslinjer for opphav av data. Dette er basert på de to følgende argumentene;
@@ -637,7 +637,7 @@ Etter å ha undersøkt dette, hovedsakelig ved bruk av internett kom vi frem til
 \item Robots.txt filen som ligger ved timeplanen tilsier at automatiske tjenester kan innhente data fra alle kataloger for domenet timeedit.hials.no. Dette er en vedlagt fil/protokoll som viser hva automatiske tjenester har tilgang til.
 \end{itemize}
 
-\subsubsection{Utvikling av løsning}
+\subsection{Utvikling av løsning}
 
 Da det var bestemt at vi skulle benytte oss av web-scraping for å søke etter og hente ut behandlingsklar informasjon, begynte vi med analyse av TimeEdit-tjenesten som tilbudt sluttbrukeren via nettsiden.
 
@@ -733,7 +733,7 @@ Disse er valgfrie, men bør defineres for enkelhets skyld.
 
 Med denne kunnskapen er det mulig å konstruere en URL som returnerer en ønsket timeplan gitt at man kan objektkoden tilhørende faget eller studieløpet i TimeEdit-systemet. 
 
-\paragraph{Valg av teknologi/støttebibliotek}
+\subsubsection{Valg av teknologi/støttebibliotek}
 
 Følgende den initielle analysen av TimeEdit’s presentasjonslag, gjenstår implementasjon av web-scraping løsning i server-delen av web-applikasjonen.  Løsningen må benytte Java, være i stand til å hente ut og analysere web-sider samt være godt nok dokumentert til å kunne enkelt endres ved behov. Kravet for å enkelt kunne endres var nødvendig for å kunne svare på eventuelle endringer i Time-Edit systemet.
 I tillegg til en selv-utviklet løsning eksisterer følgende løsninger myntet på nettopp web-scraping:
@@ -751,7 +751,7 @@ Tanken på utvikle en egen løsning via Java’s eget HTTPClient bibliotek falt 
 Gruppen som helhet analyserte de forskjellige alternativene som nevnt i listen ovenfor, og konkluderte med at Jsoup var det enklest benyttbare alternativet. En av de viktigste grunnene til at gruppen kom til denne beslutningen var at Jsoup viste seg å være best dokumentert, fra både offisielt hold og tredjeparts bruk av Jsoup.
 En annen og minst like viktig grunn, var hvordan gruppen oppfattet enkelheten i syntaksen. For eksempel HTMLUnit imiterer en klient, og krever gjerne dypere kjennskap til kildekoden som skal analyseres, og har litt mer komplisert og noe for ordrik syntaks. Jsoup og TagSoup imiterer DOM-treet på en logisk måde i kode-syntaksen, noe som gjorde det mer attraktivt en andre alternativer.
 
-\paragraph{Forskjellige systemer}
+\subsubsection{Forskjellige systemer}
 
 En metode for å kunne sette likhetstegn mellom to objekter i to forskjellige systemer, f.eks et fag som representert av E-lærings websiden og et fag som representert av TimeEdit var som tidligere nevnt er nødvendig.\newline
 \newline
@@ -765,15 +765,15 @@ TimeEdit støtter også søk med fritekst, og søk med fagkode eller klassekode 
 
 Som vist i figur (vis til tidligere kodesnipp her) inneholder treff-elementet objektkoden, og herfra er det kun et spørsmål om hvordan man skal legge til dette søkesteget i løsningen.
 
-\paragraph{Utvikling av løsning i Java med Jsoup og JAX-RS}
+\subsubsection{Utvikling av løsning i Java med Jsoup og JAX-RS}
 
 Basert på analysen av TimeEdit og ved valg av støttebibliotek gjensto det kun å utvikle løsningen konkret. 
 
-\paragraph{Generering av URL}
+\subsubsection{Generering av URL}
 
 Basert på det som kom fram av analysen av TimeEdit tidligere, opprettet vi funksjoner som genererte en korrekt formatert URL basert på relevante input-parametere.
 
-\paragraph{Parsing i Jsoup}
+\subsubsection{Parsing i Jsoup}
 Med Jsoup som støttebibliotek kan henting, parsing og REST-funksjonalitet skrives inn i en og samme EJB. Jsoup er kompakt, funksjonsrikt og lettbrukt nok til at dette er mulig uten å gjøre koden uleselig. For å beholde modulariteten i systemet, utviklet vi TimeEdit-løsningen som en enkelt støttet REST root resource klasse, som beskrevet under Nettjenester - REST tjenester.
 
 \begin{lstlisting}[language=Java, frame=single, caption={Kodesnipp fra klassen TimeEditService, som er grovt kortet ned.}]
@@ -861,7 +861,7 @@ switch(i){
 
 Med dette fikk vi organisert hele timeplanen inn i en struktur som vi senere kunne behandle programmatisk.  
 
-\paragraph{Spørring på fagkode og klassekode}
+\subsubsection{Spørring på fagkode og klassekode}
 
 Som tidligere nevnt var det også nødvendig å kunne hente ut en timeplan basert på fagkode eller klassekode. Dette løste vi ved å bruke to HTTP-spørringer, ett for å finne riktig TimeEdit objektkode basert på TimeEdit’s fritekstsøk, og ett siste for å hente ut den faktiske timeplanen som benyttet metoden vi har utviklet tidligere.
 
@@ -915,13 +915,13 @@ Som vil matche all tekst som inneholder denne javascript-funksjonen, og som et e
 Etter dette kan man enkelt skrelle vekk teksten i javascript-funksjonen og hente ut selve tallet (TimeEdit objektkode) med Java’s String replace-funksjon.
 Deretter kan man benytte den samme metoden vi utviklet for å hente ut timeplaner basert på objektkoder. Videre skulle det også å ha vært mulig å lagre klasse-kode og TimeEdit objektkodene, slik at det kun ville ha vært nødvendig å gjøre to HTTP-spørringer en gang for hver kode, eller muligens kjøre gjennom alle fagkodene for å hente ut TimeEdit objektkodene. Dette kunne oppnås ved å legge til ett felt i Course og Programme JPA-klassene som representerer en TimeEdit kode. 
 
-\paragraph{Design av API}
+\subsubsection{Design av API}
 Denne delen omhandler hvilke grunnlag vi la til rette for å utvikle vår API for TimeEdit samt hvilke resultater vi endte opp med.
 
-\paragraph{API}
+\subsubsection{API}
 API’et er utviklet kun med tanke for bruk av e-læringsapplikasjonen for mobile plattformer. Med dette blir dokumentasjon og svar-type mindre viktig og arbeidet kan fokuseres på å kunne produsere riktige og konsistente resultater. Det blir heller ikke nødvendig å produsere svar i mer enn en type dataformat, og gruppen ble enige om å bruke JSON siden det fremstår som mer lettlest og ikke unødvendig ordrikt. Dette betyr midlertidig ikke at flere dataformat kan tilbys om nødvendig i framtiden.
 
-\paragraph{API-URI}
+\subsubsection{API-URI}
 
 URI-en til TimeEdit API-et som tilbudt av E-lærings-nettstedet ble utviklet med overflatisk simplisitet og lesbarhet som mål. Dette betyr at man skulle kunne tolke og forstå hva som ønskes søkt av en spørring mot API’et kun ved å lese URI’en uten nødvendigvis å ha dyp kjennskap til API’et. Formålet med dette er å gjøre API’et lett å jobbe opp i mot, og å redusere tiden brukere av API’et benytter for å skaffe innsikt i systemet samt for å redusere tiden brukt til feilsøking da feil vil forhåpentligvis forekomme sjeldnere.\newline
 I tillegg skulle eventuelle feiltastinger eller annet feilbruk av API-et ikke taksere det underliggende systemet ved å gjøre unødvendig arbeid med spørringer som ikke vil gi noe nyttig resultat. Klart feilformaterte spørringer burde dermed forkastes, og bruker opplyses om dette.\newline
@@ -1105,7 +1105,7 @@ days:
 
 kan også en enklere formatert timeplan returneres som kun returnerer dager /m forelesninger og involverte fag. Dette ble vurdert som hensiktsmessig siden det ikke var nødvendig å returnere hele og fullt formaterte timeplaner til de fleste av funksjonene i mobil-applikasjonen. 
 
-\subsubsection{Integrering av TimeEdit i mobil-applikasjonen}
+\subsection{Integrering av TimeEdit i mobil-applikasjonen}
 
 Med ferdigutviklet metode for å koble sammen TimeEdit og vårt eget system for fag, gjensto det å implementere og presentere dataene i mobil-applikasjonen. Dette ble gjort i henhold med den eksisterende lag-strukturen i applikasjonen, og i tillegg til dette kan man sjekke dagens timeplan fra hvor som helst i applikasjonen, som illustrert under:
 
@@ -1141,7 +1141,7 @@ I mobilapplikasjonen er TimeEdit-funksjonalitet også tilgjengelig ved å trykke
 
 
 
-\subsubsection{Fronter}
+\subsection{Fronter}
 
 \begin{figure}[H]
   \centering
@@ -1153,7 +1153,7 @@ Vi ville hente meldinger fra læreren, dokumenter og innleverings-status fra rom
 \newline
 Siden vi ikke fikk den nødvendige tilgangen til skolens frontersystem valgte vi å gjøre ferdig så mye som mulig av systemet slik at det enkelt kunne tas ibruk i fremtiden når en slik tilgang foreligger. Derfor lagde vi et fast sett med eksempel-data for å vise at vår side av APIet fungerer. Det eneste som gjensto var å parse APIet til fronter.
 
-\paragraph{Fronter i appen}
+\subsubsection{Fronter i appen}
 
 \begin{figure}[H]
         \centering
@@ -1173,7 +1173,7 @@ Siden vi ikke fikk den nødvendige tilgangen til skolens frontersystem valgte vi
 
 Fronter fragmentet viser informasjon fra et valgt rom på fronter og kan kun leggest til på fag laget. Siden implenentasjonen ikke ble fullført vises kun eksempeldata her. Om fronter implementasjonen blir fullført i fremtiden er integrasjonen i mobilapplikasjonen allerede klar til bruk. 
 
-\subsubsection{BibSys}
+\subsection{BibSys}
 
 Det første som måtte gjøres var å definere hvilke funksjoner som skulle implementeres. De mer gjennomførte søkesidene på nettet tilbyr mange muligheter for tilpassede søkekriterier, slik som tittel, forfatter, ISBN, bibliotek, etc. Gruppen ble enige om å begrense funksjonaliteten til et enkelt søk på tittel, begrenset til beholdningen til biblioteket ved Høgskolen i Ålesund. Resultatet av dette søket skulle vises i en liste i mobilapplikasjonen.\newline
 \newline
@@ -1229,7 +1229,7 @@ Man kan se tydelig hvordan jobben serveren gjør forenkler jobben for mobilappli
 
 BibSys APIet i webapplikasjonen er tilgjengelig via URLen: domene.no/services/bibsys/<søkestreng> der <søkestreng> er hva som spurt om i BibSys sitt eget API.
 
-\paragraph{BibSys i appen}
+\subsubsection{BibSys i appen}
 
 \begin{figure}[H]
   \centering

@@ -1,4 +1,4 @@
-\documentclass[a4paper]{article}
+\documentclass[a4paper]{report}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{listings}
@@ -21,14 +21,18 @@
 \usepackage{fancyhdr}
 \usepackage{subfiles}
 \usepackage{subcaption}
+\usepackage{titlesec}
 
 \renewcommand\lstlistingname{Kodesnutt}
+
+\def\thesubsubsection{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
 
 \definecolor{White}{rgb}{1,1,1}
+\definecolor{Blue}{rgb}{0,0,1}
 
 \lstset{ %
   backgroundcolor=\color{White},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
@@ -42,7 +46,7 @@
   extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
   frame=single,                    % adds a frame around the code
   keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
-  keywordstyle=\color{blue},       % keyword style
+  keywordstyle=\color{Blue},       % keyword style
   language=Octave,                 % the language of the code
   morekeywords={*,...},            % if you want to add more keywords to the set
   numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
@@ -61,6 +65,10 @@
 \renewcommand\notesname{}
 \renewcommand{\theendnote}{[ \arabic{endnote} ]}
 \graphicspath{{bilder/}{../bilder/}}
+
+\titleformat{\chapter}
+{\normalfont\LARGE\bfseries}{\thechapter}{1em}{}
+\titlespacing*{\chapter}{0pt}{0pt}{1em}
 
 % Outline numbering
 \setcounter{secnumdepth}{2}
@@ -86,6 +94,13 @@
 % Pages styles
 \makeatletter
 
+\fancypagestyle{plain}{%
+ 	\fancyhead{} % clear all header fields
+	\fancyfoot{}
+	\fancyhead[LO,LE]{\scshape Høgskolen i Ålesund\\Hovedprosjekt}
+ 	\fancyhead[RO,RE]{\scshape Side \thepage}
+	\renewcommand{\headrulewidth}{0.0pt}
+}
 \fancypagestyle{normal}{%
  	\fancyhead{} % clear all header fields
 	\fancyfoot{}
@@ -209,19 +224,15 @@ Denne oppgaven er en eksamensbesvarelse utført av studenter ved Høgskolen i Å
 
 %\newpage
 
-\clearpage{\centering\bfseries
-INNHOLD
-\par}
-
-\setcounter{tocdepth}{3}
-\renewcommand\contentsname{}
+%\setcounter{tocdepth}{3}
+\renewcommand*\contentsname{INNHOLD}
 \tableofcontents
 
 \clearpage
 
-\renewcommand{\arraystretch}{1.1}
+\renewcommand{\arraystretch}{1.2}
 
-\section*{SAMMENDRAG}
+\chapter*{SAMMENDRAG}
 
 \subfile{"0.1 Sammendrag/sammendrag.tex"}
 

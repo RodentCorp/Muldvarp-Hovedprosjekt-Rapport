@@ -685,12 +685,14 @@ Da det var bestemt at vi skulle benytte oss av web-scraping for å søke etter o
 \begin{figure}[H]
   \centering
   \includegraphics[width=14cm]{timeedit1.png}
-  \caption{BESKRIVELSDSD}
+\caption{Ovenfor  er et skjermbilde av TimeEdtit’s nettside for søk på klasser}
+\label{fig:TimeEditMain}
 \end{figure}
+Nettsiden i Figur 1.31 er grensesnittet til tjenesten som vi skal integrere. Den er aksesserbar fra hvilkensomhelst nettleser via HIAL's hjemmeside \endnote{\url{http://www.hials.no}} og inneholder de funksjonene fra TimeEdit som vi ønsker å integrere i e-læringsapplikasjonen. Selve dataene vi ønsker befinner seg i tekstformat i en eller annen del av kildekoden. Kildekoden kan granskes enkelt ved hjelp av en nettleser eller ved å laste ned siden og åpne den med et tekstredigeringsprogram. Vi benyttet oss av nettleseren for å granske kildekoden. Kildekoden består av svært mye tekst, og det vil ikke legges ved denne rapporten, men kan undersøkes ved å laste ned nettsiden selv. Der det er nødvendig vil vi vise utdrag.\newline
+\newline
+Ved å se nærmere på kildekoden finner man at nettsiden består av standard HTML, og benytter seg av Javascript for å endre side-innhold via å manipulere og sende input-parametere via HTML-forms. 
 
-Ved å se nærmere på kildekoden finner man at nettsiden består av standard HTML, og benytter seg av Javascript for å endre side-innhold via å manipulere og sende input-parametere via HTML-forms
-
-\begin{lstlisting}[language=HTML, frame=single, caption={Kildekode tatt fra TimeEdit-systemet benyttet av HIA}]
+\begin{lstlisting}[language=HTML, frame=single, caption={Utdraget av HTML kildekoden til TimeEdit ovenfor viser en JavaScript-funksjon og en input-tag.}]
 function addObject(id) {
 var reloadingdiv = document.getElementById('reloading');
 reloadingdiv.style.display = '';
@@ -702,7 +704,8 @@ document.form.submit();
 <INPUT type='hidden' name='wv_addObj' value=
 \end{lstlisting}
 
-Disse parameterene sendes med HTTP GET, og kan dermed være en lesbar del av en URL. Dette gjør det enkelt å hente ut ønsket innhold uten å måtte benytte seg av Javascript eller å hente innhold mer enn en gang. Ønskede parametre kan settes som strenger i en URL, og ønsket innhold kan hentes direkte dersom man har kjennskap til strukturen.
+Dette foregår ved at brukeren interagerer med elementer i nettsiden (knapper, søkefelt (input forms) o.l) som er bundet tl JavaScript funksjoner. På denne måten kan nettleseren tolke brukeren's ønsker, og TimeEdit vil svare med mer HTML og JavaScript som inneholder en timeplan. Bruker-input lagres som parametere i HTML input-forms som tolkes som parametere ved sending. Disse parameterene sendes med HTTP GET, og dette betyr at bruker-inntastet data er synlig i URL'en. Det er da enkelt å hente ut ønsket innhold uten å måtte benytte seg av Javascript eller å hente innhold mer enn en gang. Ønskede parametre kan settes som strenger i etter den eksisterende URLen, og ønsket innhold kan hentes direkte dersom man har kjennskap til strukturen. På denne måten unngår vi bruk av TimeEdit's nettside helt. \newline
+Neste steg er derfor å skaffe seg kjennskap til og forståelse av strukturen i TimeEdit's nettleser-baserte tjeneste. Selve dataene som TimeEdit leverer og dets struktur (timeplan) må forstås, i tillegg til strukturen i det underliggende systemet og hvordan URL'en kan manipuleres for å levere resultatet som inneholder dataene vi trenger.
 
 \begin{figure}[H]
   \centering
@@ -727,23 +730,25 @@ Neste steg var å finne ut hvordan TimeEdit’s programstruktur gjør seg synlig
 \begin{figure}[H]
   \centering
   \includegraphics[width=5cm]{timeedit3.png}
+\caption{Treff-element som vises etter søk i TimeEdit som presentert i en nettleser.}
 \end{figure}
 
-\begin{lstlisting}[language=HTML, frame=single, caption={BESKRIVLESDDS}]
+\begin{lstlisting}[language=HTML, frame=single, caption={Utdrag av kildekoden til TimeEdit's nettside som vist i figur 1.32}]
 <a href='javascript:addObject(175000)'><img src='/img/plus.gif' ...>
 \end{lstlisting}
 
-Av kildekoden til TimeEdit og de assosierte elementene i nettleseren ovenfor, ser man at enheter i systemet som fag, lærere eller klasser er i systemet representert som objekt med tilhørende datafelt. Felles for alle objektene er en ID bestående utelukkende av tall på fem eller seks siffer som benyttes for å kunne gjøre oppslag i systemet. TimeEdit har dermed et eget system for håndtering og kontroll av informasjonsobjekter, som ikke er direkte kompatibelt med systemet i E-lærings websiden eller Høyskolens andre systemer. Dette var forventet, men presenterer også ett problem som må under utviklingen løses for at systemene skulle kobles sammen sømløst. 
+Av kildekoden til TimeEdit og det assosierte elementet i nettleseren ovenfor, kan vi resonnere oss fram til at enheter i systemet som fag, lærere eller klasser er i systemet representert som objekt med tilhørende datafelt. Felles for alle objektene er en ID bestående utelukkende av tall på fem eller seks siffer som benyttes for å kunne gjøre oppslag i systemet. Dette ser vi fra JavaScript funksjonen i figur 1.33. Disse informasjonsobjektene representerer f.eks fag, klasser eller rom, og danner grunnlaget for hvordan timeplanen skal formateres. Vi kan videre resonnere oss fram til at TimeEdit har dermed et eget system for håndtering og kontroll av informasjonsobjekter. Dette systemet ser ikke ut til å være direkte kompatibelt med systemet i E-lærings websiden eller Høyskolens andre systemer. Dette var forventet av gruppen, men presenterer også ett problem som må under utviklingen løses for at systemene skulle kobles sammen sømløst. Problemet er at vi ikke kan gjøre oppslag eller søk i TimeEdit's system med unike data-felt i vårt eller Høyskolen's system. \newline
+Det neste steget går ut på å analysere URLen som brukes for å hente svar fra HIALS TimeEdit's server. URL'en påvirker direkte svar-resultatet og kan i seg selv definere hva som skal hentes uten noe behov for å sende med ett objekt eller lignende. Nedenfor er en slik URL:
 
 \begin{lstlisting}[language=HTML, frame=single, caption={En URL generert når man søker etter en timeplan for ett spesifikt fag}]
 http://timeedit.hials.no/4DACTION/WebShowSearch/1/1-0?wv_type=5&wv_ts=20130511T191704X3729&wv_search=&wv_startWeek=1301&wv_stopWeek=1318&wv_first=0&wv_addObj=&wv_delObj=&wv_obj1=174000&wv_text=Tekstformat
 \end{lstlisting}
 
-Man kan lese av URL’en og analysere de forskjellige parameterene. Parameterene med tilhørende verdier er skrevet på engelsk eller norsk, og selve ordene er forkortelser eller sammensetninger som også forteller om parameterens bruksområde.  I tillegg matcher parameternavnene funksjonsnavnene i Javascript, som også gir videre grunnlag for å bestemme hva de gjør. Med enkel deduksjon og noe prøving og feiling, finner man fram hvilke parametre som gjør hva, hvilken rekkefølge de må stå i, og hvilke som er nyttige for E-lærings-applikasjonens bruk.
+Man kan lese av URL’en og analysere de forskjellige parameterene. Parameterene er forøvrig alt som befinner seg etter spørsmålstegnet i URL'en, og består av nøkkel-verdi par bundet sammen med likhetstegn. En parameter er separert fra en annen med tegnet ampersand. Selve parameterene med tilhørende verdier er skrevet på engelsk eller norsk, og disse ordene er forkortelser eller sammensetninger som også forteller om parameterens bruksområde.  I tillegg matcher parameternavnene funksjonsnavnene i Javascript, som også gir videre grunnlag for å bestemme hva de gjør. Med enkel deduksjon og noe prøving og feiling, finner man fram hvilke parametre som gjør hva, hvilken rekkefølge de må stå i, og hvilke som er nyttige for E-lærings-applikasjonens bruk.
 
 \begin{table}[H]
 \begin{center}
-\caption{DASDSADSADASDASDASDASDASDADASD}
+\caption{Tabell over parametere i URLen separert som navn og verdi med tilhørende funksjon}
   \begin{tabular}{ | p{3cm} | p{6cm} | p{6cm} |}
     \hline
     Navn & Verdi & Funksjon \\ \hline
@@ -761,8 +766,7 @@ Man kan lese av URL’en og analysere de forskjellige parameterene. Parameterene
 \end{center}
 \end{table}
 
-Av parameterene ovenfor er har kun ett fåtall noen nytteverdi for vår bruk, noe som er svært heldig da det vil gjøre jobben med å implementere en løsning mindre komplisert.
-Vi vil med første øyekast kun ha bruk for parameterene som velger objekt for visning i TimeEdit-systemet, og parameterne som velger tidsrammen for timeplanen. Videre testing viser at de nødvendige parameterene vi må benytte må stå i følgende rekkefølge:
+Tabellen ovenfor ble utarbeidet ved å bruke TimeEdit's nettside i en nettleser, gjøre endringer og observere hva som blir endret, fjernet eller lagt tili URLen. Av parameterene ovenfor er har kun ett fåtall noen nytteverdi for vår bruk, noe som er svært heldig da det vil gjøre jobben med å implementere en løsning mindre komplisert. Vi vil med første øyekast kun ha bruk for parameterene som velger objekt for visning i TimeEdit-systemet, og parameterne som velger tidsrammen for timeplanen. Videre testing viser at de nødvendige parameterene vi må benytte må stå i følgende rekkefølge:
 
 \begin{enumerate}
 \item wv\_obj1
@@ -777,7 +781,7 @@ Med denne kunnskapen er det mulig å konstruere en URL som returnerer en ønsket
 \subsubsection{Valg av teknologi/støttebibliotek}
 
 Følgende den initielle analysen av TimeEdit’s presentasjonslag, gjenstår implementasjon av web-scraping løsning i server-delen av web-applikasjonen.  Løsningen må benytte Java, være i stand til å hente ut og analysere web-sider samt være godt nok dokumentert til å kunne enkelt endres ved behov. Kravet for å enkelt kunne endres var nødvendig for å kunne svare på eventuelle endringer i Time-Edit systemet.
-I tillegg til en selv-utviklet løsning eksisterer følgende løsninger myntet på nettopp web-scraping:
+I tillegg til en selv-utviklet løsning som benytter Java's HTTPClient pakke, eksisterer følgende løsninger utviklet av tredjeparter myntet på nettopp web-scraping:
 
 \begin{itemize}
 \item Jsoup \endnote{\url{http://jsoup.org}}
@@ -789,10 +793,12 @@ I tillegg til en selv-utviklet løsning eksisterer følgende løsninger myntet p
 
 Tanken på utvikle en egen løsning via Java’s eget HTTPClient bibliotek falt bort da det er mye enklere og tidsbesparende å benytte en eksisterende løsning som allerede er godt dokumentert. Noe testing med en egen løsning ble utført, men det skapte en større kodebase å vedlikeholde, noe som ikke var ønskelig og heller ikke nødvendig i dette tilfellet. Ved å lære og bruke en av de ovennevnte støttebibliotekene kunne gruppen dermed fokusere på den viktigste delen av løsningen - selve uthentingen og bearbeidingen av informasjonen.\newline
 \newline
-Gruppen som helhet analyserte de forskjellige alternativene som nevnt i listen ovenfor, og konkluderte med at Jsoup var det enklest benyttbare alternativet. En av de viktigste grunnene til at gruppen kom til denne beslutningen var at Jsoup viste seg å være best dokumentert, fra både offisielt hold og tredjeparts bruk av Jsoup.
-En annen og minst like viktig grunn, var hvordan gruppen oppfattet enkelheten i syntaksen. For eksempel HTMLUnit imiterer en klient, og krever gjerne dypere kjennskap til kildekoden som skal analyseres, og har litt mer komplisert og noe for ordrik syntaks. Jsoup og TagSoup imiterer DOM-treet på en logisk måde i kode-syntaksen, noe som gjorde det mer attraktivt en andre alternativer.
+Gruppen som helhet analyserte de forskjellige alternativene som nevnt i listen ovenfor ved å gå gjennom dokumentasjon og presentasjon av funksjonalitet som bibliotekene hadde. Disse er alle nettbaserte.
+Gruppen konkluderte med at Jsoup var det enklest benyttbare alternativet. En av de viktigste grunnene til at gruppen kom til denne beslutningen var at Jsoup viste seg å være best dokumentert, fra både offisielt hold og tredjeparts bruk av Jsoup. 
+En annen og minst like viktig grunn, var hvordan gruppen oppfattet enkelheten i syntaksen. For eksempel HTMLUnit imiterer en klient, og krever gjerne dypere kjennskap til kildekoden som skal analyseres, og har litt mer komplisert og noe for ordrik syntaks. For å f.eks hente ut en spesifikk tag i et HTML-dokument krevde HTMLUnit for mye.
+Jsoup og TagSoup imiterer HTML-hierarkiet på en logisk måde i kode-syntaksen, noe som gjorde det mer attraktivt en andre alternativer (Objektstrukturen i biblioteket hadde et hierarki som etterlignet HTML-hierarki-systemet).Dette ville gjøre koden mer lesbar, vedlikeholdbar og ikke minst skrivbar for gruppemedlemmene. 
 
-\subsubsection{Forskjellige systemer}
+\subsubsection{TimeEdit og E-læringsapplikasjonen, to forskjellige systemer}
 
 En metode for å kunne sette likhetstegn mellom to objekter i to forskjellige systemer, f.eks et fag som representert av E-lærings websiden og et fag som representert av TimeEdit var som tidligere nevnt er nødvendig.\newline
 \newline
@@ -815,7 +821,7 @@ Basert på analysen av TimeEdit og ved valg av støttebibliotek gjensto det kun 
 Basert på det som kom fram av analysen av TimeEdit tidligere, opprettet vi funksjoner som genererte en korrekt formatert URL basert på relevante input-parametere.
 
 \subsubsection{Parsing i Jsoup}
-Med Jsoup som støttebibliotek kan henting, parsing og REST-funksjonalitet skrives inn i en og samme EJB. Jsoup er kompakt, funksjonsrikt og lettbrukt nok til at dette er mulig uten å gjøre koden uleselig. For å beholde modulariteten i systemet, utviklet vi TimeEdit-løsningen som en enkelt støttet REST root resource klasse, som beskrevet under Nettjenester - REST tjenester.
+Med Jsoup som støttebibliotek kan henting, parsing og REST-funksjonalitet skrives inn i en og samme klasse, en EJB om nødvendig. Jsoup er kompakt, funksjonsrikt og lettbrukt nok til at dette er mulig uten å gjøre koden uleselig. For å beholde modulariteten i systemet, utviklet vi TimeEdit-løsningen som en enkelt støttet REST root resource klasse, som beskrevet i seksjonen Teoretisk Grunnlag - REST tjenester. Et utdrag fra denne klassen er vist nedenfor:
 
 \begin{lstlisting}[language=Java, frame=single, caption={Kodesnipp fra klassen TimeEditService, som er grovt kortet ned.}]
 ......

@@ -7,21 +7,21 @@ Denne seksjonen beskriver de viktigste begrepene, konseptene og teknologiene som
 
 \section{Arkitekturer, teknologier og konsepter}
 
-Denne delen tar for seg de forskjellige teknologier, arkitekturmodeller og konsepter som er benyttet som designgrunnlag for prosjektet og er ellers omtalt i rapporten. Inndelingen av seksjoner er satt opp hierarkisk (dvs. at f.eks teknologier som tilhører en annen teknologi befinner seg i en underseksjon), og lineært oppbyggende. Det sistnevnte innebærer at tidligere delen av seksjonen gir grunnlag for å enklere forstå senere deler.
+Denne delen tar for seg de forskjellige teknologier, arkitekturmodeller og konsepter som er benyttet som designgrunnlag for prosjektet og er ellers omtalt i rapporten. Inndelingen av seksjoner er satt opp hierarkisk (dvs. at f.eks teknologier som tilhører en annen teknologi befinner seg i en underseksjon), og lineært oppbyggende. Det sistnevnte innebærer at den tidligere delen av seksjonen gir grunnlag for å enklere forstå senere deler.
 
 \subsection{Systemintegrasjon}
 
 \subsubsection{Definisjon}
 Systemintegrasjon er å få to eller flere systemer til å samhandle. Det har også blitt definert som "å bringe subsystemer sammen i et system, og forsikre at subsystemene arbeider sammen i systemet" \endnote{ \url{https://en.wikipedia.org/wiki/System_integration} - 22.05.2013}. \newline
 \newline
-Systemintegrasjon kan gjennomføres ved å få de aktuelle systemene til å snakke med hverandre, det ene snakker til det andre(som en slags monolog). I situasjoner hvor det er mer enn to systemer kan det være en kombinasjon av de to løsningene. Det kan også forekomme at mellom to(eller flere) systemer blir det implementert et tredje program som har som oppgave å koordinere de andre.\newline
+Systemintegrasjon kan gjennomføres ved å få de aktuelle systemene til å snakke med hverandre, det ene snakker til det andre(som en slags monolog). I situasjoner hvor det er mer enn to systemer kan det være en kombinasjon av de to løsningene. Det kan også forekomme at det mellom to(eller flere) systemer blir det implementert et tredje program som har som oppgave å koordinere de andre.\newline
 \newline
 I systemintegrasjon snakker man ofte om cohesion, eller grad av avhengigghet. Dette refererer til hvor mye de forskjellige subsystemene er avhengige av hverandre. Man ønsker å ha så lav cohesion som mulig samtidig som at systemet må kunne utføre de oppgavene som kreves av det. \endnote{\url{http://en.wikipedia.org/wiki/Cohesion_(computer_science)} - 25.05.2013}\newline
 \newline
-I systemintegrasjon finnes det en del forskjellige måter for programmer å samhandle. Her følger en kort beskrivelse av de vanligste metodene:
+I systemintegrasjon finnes det en del forskjellige måter for programmer å samhandle. Her følger en kort beskrivelse av de vanligste mekanismene:
 
 \subsubsection{Data Scraping}
-Data-scraping er en teknikk som involverer bruken av software-program til å hente ut spesifikk og meningsfull data fra et annet datasett formatert for å presentere menneskeleselig data. \endnote{\url{http://en.wikipedia.org/wiki/Data_scraping} - 28.05.2013} \endnote{\url{http://onlinejournalismblog.com/2010/07/07/an-introduction-to-data-scraping-with-scraperwiki/} - 28.05.2013}\newline Begrepet menneskeleselig beskriver informasjon formatert på en måte beregnet for å kunne vises til og forstås av en sluttbruker. Dette innebærer ofte at den relevante informasjonen man søker er omsluttet av irrelevant eller redundant data, eller befinner seg uforutsigbart plassert i datasettet. Fordi datastrukturen dermed ikke egner seg for videreføring av data mellom programmer, skiller data-scraping fra syntaktisk \endnote{\url{http://snl.no/syntaktisk} - 28.05.2013} data-analyse eller parsing som benytter seg av etablerte formateringsregler. Man kan si at data-scraping går ut på å gjøre ellers utilgjengelig data tilgjengelig for forståelse av programmer, eller å sette ustrukturert data i system.\newline
+Data-scraping er en teknikk som involverer bruken av software-program til å hente ut spesifikk og meningsfull data fra et annet datasett formatert for å presentere menneskeleselig data. \endnote{\url{http://en.wikipedia.org/wiki/Data_scraping} - 28.05.2013} \endnote{\url{http://onlinejournalismblog.com/2010/07/07/an-introduction-to-data-scraping-with-scraperwiki/} - 28.05.2013}\newline Begrepet menneskeleselig beskriver informasjon formatert på en måte beregnet for å kunne vises til og forstås av en sluttbruker. Dette innebærer ofte at den relevante informasjonen man søker er omsluttet av irrelevant eller redundant data, eller befinner seg uforutsigbart plassert i datasettet. Fordi datastrukturen dermed ikke egner seg for overføring av data mellom programmer, skiller data-scraping fra syntaktisk \endnote{\url{http://snl.no/syntaktisk} - 28.05.2013} data-analyse eller parsing som benytter seg av etablerte formateringsregler. Man kan si at data-scraping går ut på å gjøre ellers utilgjengelig data tilgjengelig for forståelse av programmer, eller å sette ustrukturert data i system.\newline
 \newline
 Web-scraping (se begreper) er en mer spesifikk teknikk innen data-scraping for å lokalisere og hente ut data fra nettsider som inneholder ustrukturert data. En nettside svarer typisk med data formatert som HTML, og selve scraping-delen vil da bestå i å filtrere vekk unødvendig data, og plukke ut og sortere relevant data programmatisk. 
 
@@ -32,7 +32,7 @@ Et API (Application Programming Interface) er et grensesnitt som gir eksterne br
 \subsubsection{Fil-dump baserte systemer}
 
 Eldre datasystemer hadde ofte ikke tilgang på store mengder minne. Variabler og mellomlagring av data måtte derfor skrives til disk. Dette gjorde at om man ville hente inn data fra et fil-dump basert program, måtte man lese fra disse filene. Den største ulempen med denne metoden er at disk IO er veldig tregt i forhold til IO fra minne, så disse operasjonene var generelt ganske trege. Et annet problem var samtidighet mellom flere kilder når de vil lese og/eller skrive til/fra den samme kilden. Om et program skriver til en fil samtidig som et annet leser fra den, kan det oppstå feil. Dette er riktignok håndtert automatisk i nyere operativsystemer, men det kan fortsatt oppstå feil hvor et program ikke gir fra seg rettighetene til å lese/skrive til en fil.\newline
-Selv om dette er en lite brukt måte å utvikle systemer på idag, finnes det fremdeles i bruk i <------------------------------------
+Selv om dette er en lite brukt måte å utvikle systemer på idag, finnes det fremdeles i bruk i bedriftsmarkedet.
 
 \subsection{Robots.txt}
 
@@ -86,7 +86,7 @@ En URI tjener som en identifikator til endepunkt i et system som tilbyr web-serv
 Denne delen beskriver forskjellige dataformat som har blitt benyttet i prosjektet og er relevant ellers for denne rapporten.
 
 \paragraph{JSON}
-JSON (JavaScript Object Notation) er et lettvekts dataformidlingsformat basert på delsyntaks fra JavaScript. Enkelheten i JSON ligger i at det er lettlest og lettskrevet av mennesker, noe som gjør det å arbeide med JSON til en relativt enkel oppgave sammenlignet med formater med lignende funksjonsområder. (bla. XML).\newline
+JSON (JavaScript Object Notation) er et lettvekts dataformidlingsformat basert på delsyntaks fra JavaScript. Enkelheten i JSON ligger i at det er lettlest og lettskrevet av mennesker, noe som gjør jobbing med JSON til en relativt enkel oppgave sammenlignet med formater med lignende funksjonsområder. (b.l.a XML).\newline
 I hovedsak er JSON basert på nøkkel/verdi-par og lister som har en nøkkelverdi som identifikasjon. Som nøkkelverdier bruker JSON strenger som demonstrert i figuren nedenfor:
 
 \begin{lstlisting}[language=HTML, frame=single, caption={(JSON-formatert data)}]
@@ -148,11 +148,11 @@ Språket er utviklet med fem hovedmål \endnote{\url{http://www.oracle.com/techn
 \item Det skal ha høy ytelse
 \item Det skal tolkes, genereres tråder og være dynamisk i sanntid
 \end{itemize}
-Java brukes i dag til et bredt spekter av formål og til mange forskjellige typer enheter. Dette innebærer bruk som webtjenere(nettsider etc.), enkeltstående applikasjoner(normale programmer) og innebygde systemer(vaskemaskiner, kaffemaskiner etc.). 
+Java brukes i dag til alt ifra til et bredt spekter av formål og til mange forskjellige typer enheter. Dette innebærer bruk som webtjenere(nettsider etc.), enkeltstående applikasjoner(normale programmer) og innebygde systemer(vaskemaskiner, kaffemaskiner etc.). 
 
 \subsubsection{Teknisk}
 
-Java applikasjoner, eller programmer kjører på en virtuell maskin som heter Java Virtual Machine(JVM). Dette betyr at applikasjonen kjører på en virtuell datamaskin. Dette vil si at uansett hvilken fysisk maskin applikasjonen kjører på, vil alltid maskinen se lik ut for applikasjonen. Om det gjøres systemkall til operativsystemet, oversetter den virtuelle maskinen dette for applikasjonen. \endnote{\url{http://www.java.com/en/about/} - 28.05.2013}
+Java applikasjoner, eller programmer kjører på en virtuell maskin som heter Java Virtual Machine(JVM). Dette vil si at på toppen har man applikasjonen. Denne kjører på en virtuell maskin. Dette vil si at uansett hvilken fysisk maskin applikasjonen kjører på, vil alltid maskinen se lik ut for applikasjonen. Om det gjøres systemkall til operativsystemet, oversetter den virtuelle maskinen dette for applikasjonen. \endnote{\url{http://www.java.com/en/about/} - 28.05.2013}
 
 \subsection{Regulære uttrykk og Java}
 
@@ -179,7 +179,7 @@ Enterprise JavaBeans arkitekturen er designet for å lage komponent-baserte appl
 
 \subsubsection{JavaServer Faces}
 
-JavaServer Faces (JSF) er en teknologistandard for å bygge grafiske brukergrensesnitt i serversiden. JSF blir ofte brukt i Java EE webapplikasjoner. En JSP (JavaServer Pages) fil kan inneholde standard HTML kode og JSF templates eller moduler kalt Facelets. JSF komponentene kan gjengis forskjellig på forskjellige klient-enheter. Formålet med JSF er å forenkle bygging av grafiske brukergrensesnitt for webapplikasjons-utviklere og å separere applikasjonslogikk og presentasjonslaget for modulær og teamvennlig utvikling. JSF gjør det også lettere for utviklere å kommunisere mellom applikasjonslogikken og presentasjonslaget.  \endnote{\url{http://www.oracle.com/technetwork/java/javaee/overview-140548.html} - 15.05.2013}
+JavaServer Faces (JSF) er en teknologistandard for å bygge grafiske brukergrensesnitt i serversiden, JSF blir ofte brukt i Java EE webapplikasjoner. En JSP (JavaServer Pages) fil kan inneholde standard HTML kode og JSF templates eller moduler kalt Facelets. JSF komponentene kan gjengis forskjellig på forskjellige klient-enheter. Formålet med JSF er å forenkle bygging av grafiske brukergrensesnitt for webapplikasjons-utviklere og å separere applikasjonslogikk og presentasjonslaget for modulær og teamvennlig utvikling. JSF gjør det også lettere for utviklere å kommunisere mellom applikasjonslogikken og presentasjonslaget.  \endnote{\url{http://www.oracle.com/technetwork/java/javaee/overview-140548.html} - 15.05.2013}
 
 \subsubsection{Primefaces}
 
@@ -245,7 +245,7 @@ JSoup er et bibliotek for Java som blir brukt til å håndtere HTML kode fra net
 
 \subsubsection{RibbonMenu}
 
-Ribbonmenu er et bibliotek for Android som brukes til å presentere data i en meny som kan “skli” inn fra siden av skjermen. Dette biblioteket etterligner den samme funksjonen som man finner i menyen på mobilapplikasjonene FaceBook og Google+. Fordelen med å bruke denne typen meny er at man har plass til mye informasjon og store ikoner i menyen, uten å bruke mye plass på skjermen når man ikke bruker den. En annen fordel er at den følger Google sine retningslinjer om komformitet innen applikasjonsdesign. Det finnes et standard bibliotek fra Google med mye av den samme funksjonen, men denne var ikke tilgjengelig da utviklingen av applikasjonen startet. \endnote{\url{http://developer.android.com/design/patterns/navigation-drawer.html} - 28.05.2013}Dette biblioteket heter Navigation Drawer.
+Ribbonmenu er et bibliotek for Android som brukes til å presentere data i en meny som kan "skli" inn fra siden av skjermen. Dette biblioteket etterligner den samme funksjonen som man finner i menyen på applikasjonene FaceBook og Google+. Fordelen med å bruke denne typen meny er at man har plass til mye informasjon og store ikoner i menyen, uten å bruke mye plass på skjermen når man ikke bruker den. En annen fordel er at den følger Google sine retningslinjer om komformitet i applikasjonsdesign. Det finnes et standard bibliotek fra Google med mye av den samme funksjonen, men denne var ikke tilgjengelig da utviklingen av applikasjonen startet. \endnote{\url{http://developer.android.com/design/patterns/navigation-drawer.html} - 28.05.2013}Dette biblioteket heter Navigation Drawer.
 
 \section{Programverktøy}
 

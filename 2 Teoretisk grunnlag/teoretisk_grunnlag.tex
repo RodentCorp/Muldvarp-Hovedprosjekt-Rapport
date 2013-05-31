@@ -81,6 +81,8 @@ http://customers.myintranet.com/customers/32133
 
 En URI tjener som en identifikator til endepunkt i et system som tilbyr web-services. Defineringen og utformingen av disse URI’ene har dermed mye å si for de som vil aksessere disse endepunktene, enten om de er programvareutviklere eller vanlige brukere. I et RESTful system vil en URI sørge for addressability-prinsippet, og en RESTful URI burde derfor følge arkitekturprinsippene så langt det er anvendbart. \endnote{Java Web Services - Up and running, Forfatter: Martin Kalin, Forlag: O’Reilly Media, Inc, År 2009}
 
+\newpage
+
 \subsubsection{Dataformater}
 
 Denne delen beskriver forskjellige dataformat som har blitt benyttet i prosjektet og er relevant ellers for denne rapporten.
@@ -228,6 +230,8 @@ public class resourceClass {
 Kodesnutten ovenfor viser to metoder som begge er tilgjengelig via en URI som er definert i Java-annotasjonen @Path ovenfor klassen og metodene. Innenfor @Path-strengen er "{id}" en variabel som kan benyttes for å hente ut et spesifikt objekt. Java-annotasjonene @Produces og @Consumes spesifiserer hvilken mediatype (her JSON) som skal produseres og tolkes respektivt.
 Java-annotasjonen @Path har også støtte for regulære uttrykk \endnote{RESTful Java with JAX-RS, Bill Burke, O’Reilly Media, inc, 2009}, som muligjør flere typer URI-matching. Den tredje funksjonen i figur (FIGUR HER) demonstrerer dette, hvor det regulære uttrykket “\textbackslash\textbackslash w{1,10}” vil i Java matche enhver streng med sammenhengende karakterer med maksimal lengde 10. Dette gjør at man i praksis begrenser {name}-parameteren til 10 karakterer. Har {name}-parameteren en lengde på 11 eller mer, vil kun en 404-feil returneres.\newline
 Fra endepunktet’s perspektiv (den endelige URI’en)kan også det JAX-RS definerer som matrise-elementer benyttes, som består av forhåndsdefinerte strenger (@MatrixParam) som etterfølger en @PathParam-streng med ett semikolon (;). Denne funksjonaliten fører til økt fleksibilitet da man oppnår flere kombinasjoner med @PathParam og @MatrixParam.
+
+\newpage
 
 \subsection{Bibliotek}
 

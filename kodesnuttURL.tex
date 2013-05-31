@@ -1,0 +1,55 @@
+\documentclass[../main.tex]{subfiles} 
+\begin{document}
+\begin{lstlisting}[language=Java, frame=single, caption={URL-genereringsmetoder fra klassen TimeEditService, som er grovt kortet ned.}]
+    private final static String TIMEEDIT_HIALS_URL = "http://timeedit.hials.no/4DACTION/WebShowSearch/1/1-0?";
+    private final static String TIMEDIT_PARAM_SEARCH_TYPE = "wv_type"
+    private final static String TIMEDIT_PARAM_SEARCH = "wv_search"; //Search variable. Can be used with course codes or names.
+    private final static String TIMEDIT_PARAM_FORMAT = "wv_text"; //Page will not return anything unless this is added first in the set of variables.    
+    //The "object" is the variable which defines the course or name. It is an ID unique to the Timeedit system
+    private final static String TIMEEDIT_PARAM_OBJECT = "wv_obj";
+    private final static String TIMEEDIT_PARAM_WEEKSTART = "wv_startWeek";
+    private final static String TIMEEDIT_PARAM_WEEKSTOP = "wv_stopWeek";
+    //Static variable types
+    private final static String TIMEEDIT_VALUE_FORMAT_TEXT = "text";
+    
+    /**
+     * This method generates an TimeEdit URL based on a String Array of
+     * objectCodes, a String representation of a starting and ending week.
+     *
+     * @param objectCodes
+     * @param startWeek
+     * @param stopWeek
+     * @return
+     */
+    public String getURL(String[] objectCodes, String startWeek, String stopWeek) {
+        String retVal = TIMEEDIT_HIALS_URL                
+                + generateObjectCodeURL(objectCodes)
+                + TIMEDIT_PARAM_FORMAT + "=" + TIMEEDIT_VALUE_FORMAT_TEXT;
+        if (startWeek != null && !startWeek.isEmpty()) {
+            retVal += "&" + TIMEEDIT_PARAM_WEEKSTART + "=" + startWeek;
+        }
+        if (stopWeek != null && !stopWeek.isEmpty()) {
+            retVal += "&" + TIMEEDIT_PARAM_WEEKSTOP + "=" + stopWeek;
+        }
+        return retVal;
+    }
+    
+    /**
+     * This method concatenates the TIMEEDIT_PARAM_OBJECT parameter plus a String array of 
+     * objectCodes into one string.
+     * @param objectCodes
+     * @return 
+     */
+    private String generateObjectCodeURL(String[] objectCodes){
+        String retVal = "";
+        for (int i = 0; i < objectCodes.length; i++) {
+            if (i >= MAX_OBJECT_REQUESTS) {
+                break;
+            } else {
+                retVal += TIMEEDIT_PARAM_OBJECT + Integer.toString(i + 1) + "=" + objectCodes[i] + "&";
+            }
+        }
+        return retVal;
+    }
+\end{lstlisting}
+\end{document}

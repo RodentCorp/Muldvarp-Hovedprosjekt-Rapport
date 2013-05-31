@@ -709,8 +709,8 @@ document.form.submit();
 <INPUT type='hidden' name='wv_addObj' value=
 \end{lstlisting}
 
-Dette foregår ved at brukeren interagerer med elementer i nettsiden (knapper, søkefelt (input forms) o.l) som er bundet tl JavaScript funksjoner. På denne måten kan nettleseren tolke brukeren's ønsker, og TimeEdit vil svare med mer HTML og JavaScript som inneholder en timeplan. Bruker-input lagres som parametere i HTML input-forms som tolkes som parametere ved sending. Disse parameterene sendes med HTTP GET, og dette betyr at bruker-inntastet data er synlig i URL'en. Det er da enkelt å hente ut ønsket innhold uten å måtte benytte seg av Javascript eller å hente innhold mer enn en gang. Ønskede parametre kan settes som strenger i etter den eksisterende URLen, og ønsket innhold kan hentes direkte dersom man har kjennskap til strukturen. På denne måten unngår vi bruk av TimeEdit's nettside helt. \newline
-Neste steg er derfor å skaffe seg kjennskap til og forståelse av strukturen i TimeEdit's nettleser-baserte tjeneste. Selve dataene som TimeEdit leverer og dets struktur (timeplan) må forstås, i tillegg til strukturen i det underliggende systemet og hvordan URL'en kan manipuleres for å levere resultatet som inneholder dataene vi trenger.
+Dette foregår ved at brukeren interagerer med elementer i nettsiden (knapper, søkefelt (input forms) o.l) som er bundet tl JavaScript funksjoner. På denne måten kan nettleseren tolke brukeren's ønsker, og TimeEdit vil svare med mer HTML og JavaScript som inneholder en timeplan. Bruker-input lagres som parametere i HTML input-forms som tolkes som parametere ved sending. Disse parameterene sendes med HTTP GET, og dette betyr at bruker-inntastet data er synlig i URLen. Det er da enkelt å hente ut ønsket innhold uten å måtte benytte seg av Javascript eller å hente innhold mer enn en gang. Ønskede parametre kan settes som strenger i etter den eksisterende URLen, og ønsket innhold kan hentes direkte dersom man har kjennskap til strukturen. På denne måten unngår vi bruk av TimeEdit's nettside helt. \newline
+Neste steg er derfor å skaffe seg kjennskap til og forståelse av strukturen i TimeEdit's nettleser-baserte tjeneste. Selve dataene som TimeEdit leverer og dets struktur (timeplan) må forstås, i tillegg til strukturen i det underliggende systemet og hvordan URLen kan manipuleres for å levere resultatet som inneholder dataene vi trenger.
 
 \begin{figure}[H]
   \centering
@@ -744,13 +744,13 @@ Neste steg var å finne ut hvordan TimeEdit’s programstruktur gjør seg synlig
 \end{lstlisting}
 
 Av kildekoden til TimeEdit og det assosierte elementet i nettleseren ovenfor, kan vi resonnere oss fram til at enheter i systemet som fag, lærere eller klasser er i systemet representert som objekt med tilhørende datafelt. Felles for alle objektene er en ID bestående utelukkende av tall på fem eller seks siffer som benyttes for å kunne gjøre oppslag i systemet. Dette ser vi fra JavaScript funksjonen i figur 1.33. Disse informasjonsobjektene representerer f.eks fag, klasser eller rom, og danner grunnlaget for hvordan timeplanen skal formateres. Vi kan videre resonnere oss fram til at TimeEdit har dermed et eget system for håndtering og kontroll av informasjonsobjekter. Dette systemet ser ikke ut til å være direkte kompatibelt med systemet i E-lærings websiden eller Høyskolens andre systemer. Dette var forventet av gruppen, men presenterer også ett problem som må under utviklingen løses for at systemene skulle kobles sammen sømløst. Problemet er at vi ikke kan gjøre oppslag eller søk i TimeEdit's system med unike data-felt i vårt eller Høyskolen's system. \newline
-Det neste steget går ut på å analysere URLen som brukes for å hente svar fra HIALS TimeEdit's server. URL'en påvirker direkte svar-resultatet og kan i seg selv definere hva som skal hentes uten noe behov for å sende med ett objekt eller lignende. Nedenfor er en slik URL:
+Det neste steget går ut på å analysere URLen som brukes for å hente svar fra HIALS TimeEdit's server. URLen påvirker direkte svar-resultatet og kan i seg selv definere hva som skal hentes uten noe behov for å sende med ett objekt eller lignende. Nedenfor er en slik URL:
 
 \begin{lstlisting}[language=HTML, frame=single, caption={En URL generert når man søker etter en timeplan for ett spesifikt fag}]
 http://timeedit.hials.no/4DACTION/WebShowSearch/1/1-0?wv_type=5&wv_ts=20130511T191704X3729&wv_search=&wv_startWeek=1301&wv_stopWeek=1318&wv_first=0&wv_addObj=&wv_delObj=&wv_obj1=174000&wv_text=Tekstformat
 \end{lstlisting}
 
-Man kan lese av URL’en og analysere de forskjellige parameterene. Parameterene er forøvrig alt som befinner seg etter spørsmålstegnet i URL'en, og består av nøkkel-verdi par bundet sammen med likhetstegn. En parameter er separert fra en annen med tegnet ampersand. Selve parameterene med tilhørende verdier er skrevet på engelsk eller norsk, og disse ordene er forkortelser eller sammensetninger som også forteller om parameterens bruksområde.  I tillegg matcher parameternavnene funksjonsnavnene i Javascript, som også gir videre grunnlag for å bestemme hva de gjør. Med enkel deduksjon og noe prøving og feiling, finner man fram hvilke parametre som gjør hva, hvilken rekkefølge de må stå i, og hvilke som er nyttige for E-lærings-applikasjonens bruk.
+Man kan lese av URLen og analysere de forskjellige parameterene. Parameterene er forøvrig alt som befinner seg etter spørsmålstegnet i URLen, og består av nøkkel-verdi par bundet sammen med likhetstegn. En parameter er separert fra en annen med tegnet ampersand. Selve parameterene med tilhørende verdier er skrevet på engelsk eller norsk, og disse ordene er forkortelser eller sammensetninger som også forteller om parameterens bruksområde.  I tillegg matcher parameternavnene funksjonsnavnene i Javascript, som også gir videre grunnlag for å bestemme hva de gjør. Med enkel deduksjon og noe prøving og feiling, finner man fram hvilke parametre som gjør hva, hvilken rekkefølge de må stå i, og hvilke som er nyttige for E-lærings-applikasjonens bruk.
 
 \begin{table}[H]
 \begin{center}
@@ -916,6 +916,8 @@ switch(i){
 
 Med dette fikk vi organisert hele timeplanen inn i en struktur som vi senere kunne behandle programmatisk.  
 
+\newpage
+
 \subsubsection{Spørring på fagkode og klassekode}
 
 Som tidligere nevnt var det også nødvendig å kunne hente ut en timeplan basert på fagkode eller klassekode. Dette løste vi ved å bruke to HTTP-spørringer, ett for å finne riktig TimeEdit objektkode basert på TimeEdit’s fritekstsøk, og ett siste for å hente ut den faktiske timeplanen som benyttet metoden vi har utviklet tidligere.
@@ -987,16 +989,16 @@ Denne delen omhandler hvilke grunnlag vi la til rette for å utvikle vår API fo
 API’et er utviklet kun med tanke for bruk av e-læringsapplikasjonen for mobile plattformer. Med dette blir dokumentasjon og svar-type mindre viktig og arbeidet kan fokuseres på å kunne produsere riktige og konsistente resultater. Det blir heller ikke nødvendig å produsere svar i mer enn en type dataformat, og gruppen ble enige om å bruke JSON siden det fremstår som mer lettlest og ikke unødvendig ordrikt. Dette betyr midlertidig ikke at flere dataformat kan tilbys om nødvendig i framtiden.
 
 \subsubsection{Utforming av URI}
-URI-en til TimeEdit API-et som tilbudt av E-lærings-nettstedet ble utviklet med overflatisk simplisitet og lesbarhet som mål i henhold til seksjonen om URI-design under teoretisk grunnlag. Dette innebærer at vi bruker REST-arkitekturstilen også til utformingen av URI'ene. REST er beregnet for bruk med teknologier som har blitt populære grunnet enkelhet mtp. lesbarhet og anvendbarhet av mennesker, og med dette som grunnlag har vi rom for å hevde at en URI skal helst være:
+URI-en til TimeEdit API-et som tilbudt av E-lærings-nettstedet ble utviklet med overflatisk simplisitet og lesbarhet som mål i henhold til seksjonen om URI-design under teoretisk grunnlag. Dette innebærer at vi bruker REST-arkitekturstilen også til utformingen av URIene. REST er beregnet for bruk med teknologier som har blitt populære grunnet enkelhet mtp. lesbarhet og anvendbarhet av mennesker, og med dette som grunnlag har vi rom for å hevde at en URI skal helst være:
 \begin{itemize}
 \item \textbf{Beskrivende og meningsfull for mennesker} \newline
-URI’en må beskrive ressursen URI’en identifiserer. Dette innebærer også at ordbruken må være
+URIen må beskrive ressursen URIen identifiserer. Dette innebærer også at ordbruken må være
 \begin{itemize}
 \item \textbf{Ordlagt med substantiv og ikke verb (HTTP)} \newline
-I henhold med prinsippet om et uniformt begrenset grensesnitt og HTTP, må URI’en også unngå å bruke verb fordi dette er allerede dekket av HTTP-protokollen. (GET, POST etc.)
+I henhold med prinsippet om et uniformt begrenset grensesnitt og HTTP, må URIen også unngå å bruke verb fordi dette er allerede dekket av HTTP-protokollen. (GET, POST etc.)
 \end{itemize}
 \item \textbf{Logisk strukturert} \newline
-Rekkefølgen og oppbyggingen av URI’en skal ikke vanskeliggjøre forståelse av hvilken ressurs som identifiseres, men heller gi mer innsikt jo lengre den er. Dette innebærer at URI’en må forstås som logisk stykkvis oppdelt og relatert til det foregående elementet.
+Rekkefølgen og oppbyggingen av URIen skal ikke vanskeliggjøre forståelse av hvilken ressurs som identifiseres, men heller gi mer innsikt jo lengre den er. Dette innebærer at URIen må forstås som logisk stykkvis oppdelt og relatert til det foregående elementet.
 \item \textbf{Kompenserende for menneskelig feil}
 \item \textbf{Konsistent}
 \end{itemize}
@@ -1015,7 +1017,7 @@ Som tidligere nevnt hadde vi opprettet en REST root resource service klasse (Tim
 \end{tabular}
 \end{center}
 \end{table}
-Deretter vil enhver funksjon med @Path annotasjon innenfor klasse-skopet benytte ressurs-stien ovenfor, i tillegg til sin egen-definerte variabel. Navnet "/services/" innenfor URI'en gjør det klart at alt som etterfølger er "services", eller på norsk, "tjenester" - dette har som henskit å gjøre det klart for brukeren hva som kan foventes av svar.\newline
+Deretter vil enhver funksjon med @Path annotasjon innenfor klasse-skopet benytte ressurs-stien ovenfor, i tillegg til sin egen-definerte variabel. Navnet "/services/" innenfor URIen gjør det klart at alt som etterfølger er "services", eller på norsk, "tjenester" - dette har som henskit å gjøre det klart for brukeren hva som kan foventes av svar.\newline
 Basert på behovet som definert tidligere kom vi fram til at API’et måtte tilby minst følgende tjenester:
 
 \begin{itemize}
@@ -1048,7 +1050,7 @@ For å tilfredsstille behovet ovenfor (og evt. ekstra behov), opprettet vi følg
 \end{center}
 \end{table}
 
-Som vist tabell \ref{table:timeeditd}  i @Path-Parameter-kolonnen, er ordene som benyttes i URI'en i lowercase, og på engelsk. Dette bidrar til at URIen blir \textit{konsistent} da de eksisterende URIene i applikasjonen for fag, studier etc... allerede er på engelsk. Hvis en bruker vet at alt er i lowercase, reduserer det sannsynligheten for skrivefeil da man ikke trenger å bekymre seg over tegnsetting. Noe som også forhåpentlig vil bidra til mindre skrivefeil er at forholdsvis korte men beskrivende ord brukes. Så langt har vi oppnådd en logisk struktur også, i og med at f.eks timeedit er overordnet alle parametere som kommer etter i URIen.
+Som vist tabell \ref{table:timeeditd}  i @Path-Parameter-kolonnen, er ordene som benyttes i URIen i lowercase, og på engelsk. Dette bidrar til at URIen blir \textit{konsistent} da de eksisterende URIene i applikasjonen for fag, studier etc... allerede er på engelsk. Hvis en bruker vet at alt er i lowercase, reduserer det sannsynligheten for skrivefeil da man ikke trenger å bekymre seg over tegnsetting. Noe som også forhåpentlig vil bidra til mindre skrivefeil er at forholdsvis korte men beskrivende ord brukes. Så langt har vi oppnådd en logisk struktur også, i og med at f.eks timeedit er overordnet alle parametere som kommer etter i URIen.
 
 \begin{figure}[H]
   \centering
@@ -1059,17 +1061,6 @@ Som vist tabell \ref{table:timeeditd}  i @Path-Parameter-kolonnen, er ordene som
 Disse ressurs-endepunktene vil naturligvis ikke dekke hele TimeEdit’s funksjonsbredd, men er mer en tilstrekkelig for vår bruk.
 
 \begin{lstlisting}[language=Java, frame=single, caption={Utdrag fra klassen TimeEditService som viser en JAX-RS annotert funksjon.}]
-  /**
-     *
-     * @param id The ID of the Object from which the schedule is to be
-     * retrieved. The Object ID can represent a Course (Fag), a
-     * Programme(Klasse), or a combination.
-     * @param objectString
-     * @param startweek
-     * @param stopweek
-     * @param date
-     * @return Response
-     */
     @GET
     @Path("{objectstring:|((\\d{6}|\\d{7})/?)+}{startweek:(/startweek/[^/]+?)?}{stopweek:(/stopweek/[^/]+?)?}{date:(/date/[^/]+?)?}")
     public Response getScheduleByMultipleObjectID(@PathParam("objectstring") String objectString,
@@ -1122,7 +1113,7 @@ Eksempelet ovenfor viser en gyldig URI som inneholder tre TimeEdit objektkoder, 
 
 \subsubsection{Konvertering av klasser til JSON}
 Når APIet var utformet gjensto det å konvertere klassene som holdt dataene til JSON. I seksjonen om JAX-RS i teoretisk grunnlag nevnes det at JAX-RS har egen støtte for nettopp konvertering av POJO-klasser (eller andre Java-API klasser som Response) til JSON, gitt at Getter-og-Setter funksjoner er definert. I klassen TimeEditService håndteres dette i metoden getResponse, som bruker Response-klassen i Java APIet til å genere svar. Eksempel på bygging av et slikt Response objekt ses nedenfor, hvor variabelen \textbf{responseEntity} er en TimeEditSchedule-klasse.
-\begin{lstlisting}[language=HTML, frame=single, caption={Fungerende eksempel på en URI i APIet.}]
+\begin{lstlisting}[language=HTML, frame=single, caption={Oppsett av Response}]
 return Response.ok(responseEntitity, MediaType.APPLICATION_JSON).build();
 \end{lstlisting}
 
@@ -1303,7 +1294,7 @@ Det første som måtte gjøres var å definere hvilke funksjoner som skulle impl
 \newline
 For å få tilgang til databasen til BIBSys tok vi kontakt med support på BIBSys ved hjelp av vår kontaktperson ved skolens bibliotek, Monica Marchant. Derifra ble det informert om at det grensesnittet de hadde som passet best til vårt var SRU(search/retrieve via URL). Dette er en metode hvor man setter søkeparametrene sine inn i en URL, og så svarer serveren med resultatet i form av et XML dokument.
 \newline
-Først måtte vi altså lage en mal til URL’en slik at vi kunne enkelt putte inn søkeparametrene vi ønsket. Ved hjelp av noen eksempler fra BIBSys sin support kom vi frem til følgende mal:
+Først måtte vi altså lage en mal til URLen slik at vi kunne enkelt putte inn søkeparametrene vi ønsket. Ved hjelp av noen eksempler fra BIBSys sin support kom vi frem til følgende mal:
 \newline
 \begin{lstlisting}[language=HTML, frame=single]
 http://sru.bibsys.no/search/biblio?version=1.2\&operation=searchRetrieve\&startRecord=1\&maximumRecords=10\&query=bs.bibkode=xb\%20AND\%20bs.tittel=ibsen
@@ -1324,7 +1315,7 @@ I denne url malen er det noen faste og variable parametre. Disse er som følger:
 \end{center}
 \end{table}
 
-Ved å bruke denne eksempel URL’en i en nettleser vil man kunne se resultatene som blir returnert fra BibSys sine servere.\newline
+Ved å bruke denne eksempel URLen i en nettleser vil man kunne se resultatene som blir returnert fra BibSys sine servere.\newline
 \newline
 Nå som vi visste hvordan man søker i BibSys sine databaser, og hva vi kunne vente oss tilbake, måtte vi avgjøre hva slags struktur systemet vårt skulle ha. Av tidligere erfaring fra alle de andre funksjonene som applikasjonen allerede tilbyr ble vi enige om at serveren skulle ta seg av spørringen til BibSys sine systemer og prossesere resultatet til et enklere format. Mobilapplikasjonen vil da kunne gjøre en enkel spørring mot serveren, og så tar serveren seg av spørringen og parsingen, og gir tilbake et enkelt resultat. På denne måten vil det også være enkelt å oppdatere løsningen i frtemtiden, da alle forandringer vil skje på serveren, og brukerne ikke trenger å oppdatere. Om det blir lagt til noen nye funksjoner, vil man alikevel måtte oppdatere mobilapplikasjonen.
 
